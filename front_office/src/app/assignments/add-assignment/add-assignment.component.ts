@@ -13,6 +13,12 @@ export class AddAssignmentComponent {
   // champs du formulaire
   nomDevoir = "";
   dateDeRendu!: Date;
+  auteur!:String;
+  matiere!:String;
+  note?:number=undefined;
+  remarque!:String;
+  haveNote=false;
+  stringNote="ajouter une Note";
 
 
   constructor(private assignmentsService: AssignmentsService,
@@ -20,15 +26,22 @@ export class AddAssignmentComponent {
 
   onSubmit(event: any) {
     // On vérifie que les champs ne sont pas vides
-    if (this.nomDevoir === "") return;
-    if (this.dateDeRendu === undefined) return;
+    if((this.nomDevoir === undefined || this.nomDevoir==="" || this.nomDevoir===null)
+        || (this.auteur === undefined || this.auteur==="" || this.auteur===null)
+        || (this.matiere === undefined || this.matiere==="" || this.auteur===null)
+      )return;
+    if(this.dateDeRendu===undefined)return;
 
     let nouvelAssignment = new Assignment();
     // génération d'id, plus tard ce sera fait dans la BD
     nouvelAssignment.id = Math.abs(Math.random() * 1000000000000000);
-    nouvelAssignment.nom = this.nomDevoir;
     nouvelAssignment.dateDeRendu = this.dateDeRendu;
+    nouvelAssignment.nom = this.nomDevoir;
     nouvelAssignment.rendu = false;
+    nouvelAssignment.auteur = this.auteur;
+    nouvelAssignment.matiere = this.matiere;
+    nouvelAssignment.note = this.note;
+    nouvelAssignment.remarque = this.remarque;
 
     // on demande au service d'ajouter l'assignment
     this.assignmentsService.addAssignment(nouvelAssignment)
@@ -41,4 +54,17 @@ export class AddAssignmentComponent {
 
       });
   }
+
+  addNote(){
+    if(!this.haveNote){
+      this.stringNote = "Enlever la note";
+      this.haveNote = true;
+    }
+   
+    else{
+      this.stringNote="ajouter une Note";
+      this.haveNote = false;
+    }
+  }
+
 }
