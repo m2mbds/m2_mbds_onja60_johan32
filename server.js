@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 
 // remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
 const uri = 'mongodb+srv://M2_MBDS_Binome_Onja_60_Johan_32:SoMOLdBy7Ffb15hu@cluster0.uooqryc.mongodb.net/assignments?retryWrites=true&w=majority';
-
+const multipart = require('connect-multiparty');
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -53,9 +53,38 @@ app.route(prefix + '/assignments/:id')
   .delete(assignment.deleteAssignment);
   
 
+
+const multipartMiddleware = multipart({
+    uploadDir: './uploads'
+});
+
+app.post('/api/upload', multipartMiddleware, (req, res) => {
+    
+    console.log(req['files'])
+     let file = req['files'].thumbnail;
+
+     console.log(file.path.split('\\').slice(-1).pop());
+     var finalresult = file.path.split('/').slice(-1).pop();
+
+    var fs = require('fs');
+    fs.rename(req['files'].thumbnail.path,'uploads\\'+req['files'].thumbnail.name,function(err){
+      if(err)console.log(err)
+    });
+
+    res.json(finalresult);
+
+})
+
+app.use(express.static('public')); 
+app.use('/imagesupload', express.static('uploads'));
+
+
+
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
+
+
 
 module.exports = app;
 
