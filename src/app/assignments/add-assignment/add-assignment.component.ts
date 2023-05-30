@@ -19,12 +19,14 @@ export class AddAssignmentComponent {
   remarque!:String;
   haveNote=false;
   stringNote="ajouter une Note";
+  uploadedFiles:Array <File>=[];
 
 
   constructor(private assignmentsService: AssignmentsService,
               private router:Router) { }
 
   onSubmit(event: any) {
+   
     // On vérifie que les champs ne sont pas vides
     if((this.nomDevoir === undefined || this.nomDevoir==="" || this.nomDevoir===null)
         || (this.auteur === undefined || this.auteur==="" || this.auteur===null)
@@ -33,6 +35,7 @@ export class AddAssignmentComponent {
     if(this.dateDeRendu===undefined)return;
 
     let nouvelAssignment = new Assignment();
+   
     // génération d'id, plus tard ce sera fait dans la BD
     nouvelAssignment.id = Math.abs(Math.random() * 1000000000000000);
     nouvelAssignment.dateDeRendu = this.dateDeRendu;
@@ -42,7 +45,9 @@ export class AddAssignmentComponent {
     nouvelAssignment.matiere = this.matiere;
     nouvelAssignment.note = this.note;
     nouvelAssignment.remarque = this.remarque;
+    nouvelAssignment.imageEleve = this.uploadedFiles[0].name;
 
+    console.log(nouvelAssignment.imageEleve);
     // on demande au service d'ajouter l'assignment
     this.assignmentsService.addAssignment(nouvelAssignment)
       .subscribe(message => {
@@ -66,5 +71,36 @@ export class AddAssignmentComponent {
       this.haveNote = false;
     }
   }
+
+  upload() {
+    let formData = new FormData();
+   for (var i = 0; i < this.uploadedFiles.length; i++) {
+        formData.append("thumbnail", this.uploadedFiles[i]);    
+        //console.log(this.uploadedFiles[i].lastModified);
+       // //console.log(this.uploadedFiles[i].name);  
+      
+       
+   } 
+       this.assignmentsService.postFile(formData).subscribe((response) => {
+           //console.log('response received is ', response);
+           console.log(response)
+       });
+
+ }
+
+ fileChange(files:any) {
+  this.uploadedFiles = files.target.files;
+  
+  const reader = new FileReader();
+console.log(this.uploadedFiles[0].name)
+reader.readAsDataURL(this.uploadedFiles[0]);
+reader.onload = () => {
+    if(reader.result!=null)
+    {
+      this.upload();
+    }
+  }
+ 
+}
 
 }

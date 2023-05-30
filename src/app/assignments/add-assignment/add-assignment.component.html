@@ -35,9 +35,12 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       
+      <input type="file"  (change)="fileChange($event)" class="form-control" placeholder="Image" required="required" />
 
     <button mat-stroked-button color="primary">
       Ajouter un devoir
     </button>
+
+
 </form>
 
