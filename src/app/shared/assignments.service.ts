@@ -145,8 +145,9 @@ assignments:Assignment[] = []
   }
 
   public postFile(fileToUpload:FormData):Observable<any> {
-   
-    return this.http.post('http://localhost:8010/api/upload',fileToUpload).pipe();
+    let upload = "https://m2-mbds-onja60-johan32-backend/api/upload";
+    //let upload = "http://localhost:8010/api/upload";
+    return this.http.post(upload,fileToUpload).pipe();
   }
  
 }
