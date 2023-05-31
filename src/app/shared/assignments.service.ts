@@ -145,8 +145,8 @@ assignments:Assignment[] = []
   }
 
   public postFile(fileToUpload:FormData):Observable<any> {
-    let upload = "https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/upload";
-    //let upload = "http://localhost:8010/api/upload";
+    let upload = "https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/upload";
+    //let upload = "http://localhost:8010/upload";
     return this.http.post(upload,fileToUpload).pipe();
   }
  

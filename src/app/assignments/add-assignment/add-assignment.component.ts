@@ -20,6 +20,9 @@ export class AddAssignmentComponent {
   haveNote=false;
   stringNote="ajouter une Note";
   uploadedFiles:Array <File>=[];
+  idImageEleve!:string;
+  linkIdImageEleve!:string;
+  isImageExist=false;
 
 
   constructor(private assignmentsService: AssignmentsService,
@@ -75,15 +78,19 @@ export class AddAssignmentComponent {
   upload() {
     let formData = new FormData();
    for (var i = 0; i < this.uploadedFiles.length; i++) {
-        formData.append("thumbnail", this.uploadedFiles[i]);    
+        formData.append("thumbnail", this.uploadedFiles[i]);   
+        
         //console.log(this.uploadedFiles[i].lastModified);
        // //console.log(this.uploadedFiles[i].name);  
       
        
    } 
        this.assignmentsService.postFile(formData).subscribe((response) => {
-           //console.log('response received is ', response);
-           console.log(response)
+           console.log('response received is ', response);
+           this.idImageEleve = response.datafile[0].id;
+           this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id="+this.idImageEleve; 
+           console.log('response received is ', this.idImageEleve);
+           this.isImageExist = true;
        });
 
  }
