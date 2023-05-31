@@ -19,7 +19,8 @@ const auth = new google.auth.GoogleAuth({
 const uploadFile = async (fileObject)=>{
     const bufferStream = new stream.PassThrough()
     bufferStream.end(fileObject.buffer)
-    console.log("miditra")
+    console.log(KEYFILEPATH)
+    
     const {data} = await google.drive({
         version:'v3',
         auth
