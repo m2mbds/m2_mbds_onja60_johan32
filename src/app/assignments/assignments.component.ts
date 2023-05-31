@@ -25,6 +25,7 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number = 0;
   hasNextPage: boolean = false;
   nextPage: number = 0;
+  linkImage = "https://drive.google.com/uc?export=view&id=";
 ;
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;

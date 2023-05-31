@@ -23,7 +23,7 @@ export class AddAssignmentComponent {
   idImageEleve!:string;
   linkIdImageEleve!:string;
   isImageExist=false;
-
+  nouvelAssignment = new Assignment();
 
   constructor(private assignmentsService: AssignmentsService,
               private router:Router) { }
@@ -37,31 +37,32 @@ export class AddAssignmentComponent {
       )return;
     if(this.dateDeRendu===undefined)return;
 
-    let nouvelAssignment = new Assignment();
-   
-    // génération d'id, plus tard ce sera fait dans la BD
-    nouvelAssignment.id = Math.abs(Math.random() * 1000000000000000);
-    nouvelAssignment.dateDeRendu = this.dateDeRendu;
-    nouvelAssignment.nom = this.nomDevoir;
-    nouvelAssignment.rendu = false;
-    nouvelAssignment.auteur = this.auteur;
-    nouvelAssignment.matiere = this.matiere;
-    nouvelAssignment.note = this.note;
-    nouvelAssignment.remarque = this.remarque;
-    nouvelAssignment.imageEleve = this.idImageEleve;
-    //nouvelAssignment.imageEleve = this.uploadedFiles[0].name;
+    this.nouvelAssignment.id = Math.abs(Math.random() * 1000000000000000);
+    this.nouvelAssignment.dateDeRendu = this.dateDeRendu;
+    this.nouvelAssignment.nom = this.nomDevoir;
+    this.nouvelAssignment.rendu = false;
+    this.nouvelAssignment.auteur = this.auteur;
+    this.nouvelAssignment.matiere = this.matiere;
+    this.nouvelAssignment.note = this.note;
+    this.nouvelAssignment.remarque = this.remarque;
 
-    console.log(nouvelAssignment.imageEleve);
-    // on demande au service d'ajouter l'assignment
-    this.assignmentsService.addAssignment(nouvelAssignment)
-      .subscribe(message => {
-        console.log(message);
+    
 
-        // On va naviguer vers la page d'accueil pour afficher la liste
-        // des assignments
-        this.router.navigate(["/home"]);
+    const reader = new FileReader();
+    console.log("uploaded file")
+    console.log(this.uploadedFiles)
+//console.log(this.uploadedFiles[0].name)
+reader.readAsDataURL(this.uploadedFiles[0]);
+reader.onload = () => {
+    if(reader.result!=null)
+    {
+      this.upload();
 
-      });
+      
+
+    }
+  }
+ 
   }
 
   addNote(){
@@ -78,36 +79,60 @@ export class AddAssignmentComponent {
 
   upload() {
     let formData = new FormData();
+    
    for (var i = 0; i < this.uploadedFiles.length; i++) {
         formData.append("thumbnail", this.uploadedFiles[i]);   
         
         //console.log(this.uploadedFiles[i].lastModified);
        // //console.log(this.uploadedFiles[i].name);  
       
-       
+      
    } 
+   console.log(formData)
        this.assignmentsService.postFile(formData).subscribe((response) => {
            console.log('response received is ', response);
            this.idImageEleve = response.datafile[0].id;
            this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id="+this.idImageEleve; 
            console.log('response received is ', this.idImageEleve);
            this.isImageExist = true;
+
+
+           //let nouvelAssignment = new Assignment();
+      // génération d'id, plus tard ce sera fait dans la BD
+
+      this.nouvelAssignment.imageEleve = this.idImageEleve;
+      //nouvelAssignment.imageEleve = this.uploadedFiles[0].name;
+  
+      console.log(this.nouvelAssignment);
+      // on demande au service d'ajouter l'assignment
+      this.assignmentsService.addAssignment(this.nouvelAssignment)
+        .subscribe(message => {
+          console.log(message);
+  
+          // On va naviguer vers la page d'accueil pour afficher la liste
+          // des assignments
+          this.router.navigate(["/home"]);
+  
+        });
+
+
        });
 
  }
 
  fileChange(files:any) {
-  this.uploadedFiles = files.target.files;
-  
-  const reader = new FileReader();
-console.log(this.uploadedFiles[0].name)
-reader.readAsDataURL(this.uploadedFiles[0]);
-reader.onload = () => {
-    if(reader.result!=null)
-    {
-      this.upload();
-    }
-  }
+  this.uploadedFiles.push(files.target.files[0]);
+  console.log(this.uploadedFiles)
+ 
+// const reader = new FileReader();
+// console.log(this.uploadedFiles[0].name)
+// reader.readAsDataURL(this.uploadedFiles[0]);
+// reader.onload = () => {
+//     if(reader.result!=null)
+//     {
+//       this.upload();
+//     }
+//   }
  
 }
 

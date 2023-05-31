@@ -6,7 +6,7 @@
 </nav>
 
 
-<form ngForm #assignmentForm (submit)="onSubmit($event); assignmentForm.reset()" class="form">
+<form ngForm #assignmentForm (submit)="onSubmit($event);" class="form">
     <mat-form-field>
         <input matInput [(ngModel)]="nomDevoir" placeholder="nom" name="nom" required>
     </mat-form-field>
@@ -41,7 +41,7 @@
       Ajouter un devoir
     </button>
 
-    <img *ngIf="isImageExist"  class="img-fluid" [src]="linkIdImageEleve"/>
+    <img *ngIf="isImageExist" width="100px" height="50px" class="img-fluid" [src]="linkIdImageEleve"/>
 
 </form>
 
