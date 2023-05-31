@@ -2,9 +2,16 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
-
+const uploadRouter = require('./routes/router.js');
+var cors = require('cors');
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(uploadRouter)
+app.use(cors())
+
 //mongoose.set('debug', true);
 
 // remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
@@ -58,25 +65,25 @@ const multipartMiddleware = multipart({
     uploadDir: './uploads'
 });
 
-app.post('/api/upload', multipartMiddleware, (req, res) => {
+// app.post('/api/upload', multipartMiddleware, (req, res) => {
     
-    console.log(req['files'])
-     let file = req['files'].thumbnail;
+//     console.log(req['files'])
+//      let file = req['files'].thumbnail;
 
-     console.log(file.path.split('\\').slice(-1).pop());
-     var finalresult = file.path.split('/').slice(-1).pop();
+//      console.log(file.path.split('\\').slice(-1).pop());
+//      var finalresult = file.path.split('/').slice(-1).pop();
 
-    var fs = require('fs');
-    fs.rename(req['files'].thumbnail.path,'uploads\\'+req['files'].thumbnail.name,function(err){
-      if(err)console.log(err)
-    });
+//     var fs = require('fs');
+//     fs.rename(req['files'].thumbnail.path,'uploads\\'+req['files'].thumbnail.name,function(err){
+//       if(err)console.log(err)
+//     });
 
-    res.json(finalresult);
+//     res.json(finalresult);
 
-})
+// })
 
-app.use(express.static('public')); 
-app.use('/imagesupload', express.static('uploads'));
+// app.use(express.static('public')); 
+// app.use('/imagesupload', express.static('uploads'));
 
 
 
