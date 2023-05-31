@@ -48,7 +48,8 @@ export class AddAssignmentComponent {
     nouvelAssignment.matiere = this.matiere;
     nouvelAssignment.note = this.note;
     nouvelAssignment.remarque = this.remarque;
-    nouvelAssignment.imageEleve = this.uploadedFiles[0].name;
+    nouvelAssignment.imageEleve = this.idImageEleve;
+    //nouvelAssignment.imageEleve = this.uploadedFiles[0].name;
 
     console.log(nouvelAssignment.imageEleve);
     // on demande au service d'ajouter l'assignment
