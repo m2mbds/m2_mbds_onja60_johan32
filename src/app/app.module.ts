@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
@@ -84,6 +85,7 @@ const routes: Routes = [
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule,
     MatTableModule, MatPaginatorModule,MatStepperModule,ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatSelectModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
