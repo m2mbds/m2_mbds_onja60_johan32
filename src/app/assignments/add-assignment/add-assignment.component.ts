@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Assignment } from '../assignment.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
+import { FormBuilder,FormsModule, FormGroup,Validators,FormControl }   from '@angular/forms';
 
 @Component({
   selector: 'app-add-assignment',
@@ -22,15 +24,22 @@ export class AddAssignmentComponent {
   stringNote="ajouter une Note";
   uploadedFiles:Array <File>=[];
   idImageEleve!:string;
+  fileImg!:string;
   linkIdImageEleve!:string;
   isImageExist=false;
   nouvelAssignment = new Assignment();
+  file_store!: FileList|null;
+  display: FormControl = new FormControl("", Validators.required);
+  index=0
+
+  @ViewChild('stepper') stepper!: MatStepper;
 
   constructor(private assignmentsService: AssignmentsService,
               private router:Router) { }
 
+
   onSubmit(event: any) {
-   
+   console.log("Submit")
     // On vérifie que les champs ne sont pas vides
     if((this.nomDevoir === undefined || this.nomDevoir==="" || this.nomDevoir===null)
         || (this.auteur === undefined || this.auteur==="" || this.auteur===null)
@@ -88,14 +97,57 @@ export class AddAssignmentComponent {
         })
       ).subscribe(message=>{ 
         console.log(message)
+        console.log(this.nouvelAssignment)
         this.isImageExist = true;
         //this.router.navigate(["/home"]);
       })
  }
 
- fileChange(files:any) {
-  this.uploadedFiles.push(files.target.files[0]);
-  console.log(this.uploadedFiles)
+
+ handleFileInputChange(l: FileList|null): void {
+  this.file_store = l;
+  if(l==null) return
+  if (l.length) {
+    const f = l[0];
+    const count = l.length > 1 ? `(+${l.length - 1} files)` : "";
+    this.display.patchValue(`${f.name}${count}`);
+  } else {
+    this.display.patchValue("");
+  }
+  this.uploadedFiles = [];
+  this.uploadedFiles.push(l[0]);
+  const reader = new FileReader();
+  reader.readAsDataURL(l[0]);
+  reader.onload = () => {
+    console.log("miditra");
+      console.log(reader.result);
+      this.fileImg = reader.result as string;
+  };
 }
+
+ fileChange(files:any) {
+  this.uploadedFiles = [];
+  this.uploadedFiles.push(files.target.files[0]);
+  //console.log(this.uploadedFiles)
+
+  const reader = new FileReader();
+    reader.readAsDataURL(files.target.files[0]);
+    reader.onload = () => {
+      console.log("miditra");
+        
+    };
+
+}
+
+move(index: number) {
+
+  this.stepper.selectedIndex = index;
+  this.index = index;
+}
+
+
+isLinearvarient = false;
+varientfirstFormGroup: FormGroup=Object.create(null);
+varientsecondFormGroup: FormGroup=Object.create(null);
 
 }
