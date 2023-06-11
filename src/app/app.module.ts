@@ -36,6 +36,10 @@ import {MatStepperModule} from '@angular/material/stepper';
 
 import {MatSelectModule} from '@angular/material/select';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LoadingBarComponent } from './loading-bar/loading-bar.component';
+
 
 const routes: Routes = [
   {
@@ -72,7 +76,8 @@ const routes: Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssignmentComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingBarComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +90,8 @@ const routes: Routes = [
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule,
     MatTableModule, MatPaginatorModule,MatStepperModule,ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatSelectModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule,MatGridListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

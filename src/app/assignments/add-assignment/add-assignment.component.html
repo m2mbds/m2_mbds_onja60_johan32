@@ -1,161 +1,183 @@
-<h3>Ajout d'un Assignment</h3>
-<!-- <nav class="ajouterBtn">
-      <button mat-flat-button color="accent" (click)="addNote()"> 
-          {{stringNote}}
-      </button>
-</nav> -->
+<h1 class="dark">
+    <nav>
+        <a routerLink="/home">Application de gestion de devoirs à rendre</a>
+    </nav>
+</h1>
+<h3 class="dark">Ajout d'un Assignment</h3>
 
-
-<!-- <form ngForm #assignmentForm (submit)="onSubmit($event);" class="form"> -->
-    <!-- <mat-form-field>
-        <input matInput [(ngModel)]="nomDevoir" placeholder="nom" name="nom" required>
-    </mat-form-field> -->
-    <!-- <mat-form-field>
-      <input matInput [(ngModel)]="auteur" placeholder="auteur" name="auteur" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput [(ngModel)]="matiere" placeholder="matiere" name="matiere" required>
-    </mat-form-field>
-    <mat-form-field *ngIf="haveNote">
-      <input matInput [(ngModel)]="note" value="" placeholder="note" name="note" required>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput [(ngModel)]="remarque" placeholder="remarque" name="remarque" required>
-    </mat-form-field> -->
-
-    <!-- <mat-form-field appearance="fill">
-        <mat-label>Date de rendu</mat-label>
-        <input matInput [matDatepicker]="picker" 
-        [(ngModel)]="dateDeRendu"
-        name="date" required
-        >
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field> -->
-      
-      <!-- <input type="file"  (change)="fileChange($event)" class="form-control" placeholder="Image" required="required" /> -->
-
-    <!-- <button mat-stroked-button color="primary">
-      Ajouter un devoir
-    </button> -->
-
-    <!-- <img *ngIf="isImageExist" width="100px" height="50px" class="img-fluid" [src]="linkIdImageEleve"/> -->
-
-<!-- </form> -->
-
-
-<h1>Etape d'Ajout Assignment</h1>
-<form ngForm #assignmentForm (submit)="onSubmit($event);" class="form">
-<mat-vertical-stepper #stepper (click)="move(index)">
-   
-  <mat-step label="Step 1 (Obligatoire)" >
-		<p>
-		<mat-form-field appearance="fill" >
-		  <mat-label>Nom</mat-label>
-		  <input matInput placeholder="Placeholder" [(ngModel)]="nomDevoir" name="nom" required>
-		  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
-		</mat-form-field>
-	  </p>
-	  <p>
-		<mat-form-field appearance="fill">
-		  <mat-label>Auteur</mat-label>
-		  <input matInput placeholder="Placeholder" [(ngModel)]="auteur" placeholder="auteur" name="auteur" required>
-		  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
-		</mat-form-field>
-	  </p>
-
-	  <p>
-		<mat-form-field appearance="fill">
-		  <mat-label>Matiere</mat-label>
-		  <input matInput placeholder="Placeholder" [(ngModel)]="matiere" placeholder="matiere" name="matiere" required>
-		  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
-		</mat-form-field>
-	  </p>
-
-	  <p>
-		<mat-form-field appearance="fill">
-		  <mat-label>Remarque</mat-label>
-		  <input matInput placeholder="Placeholder" [(ngModel)]="remarque" placeholder="remarque" name="remarque">
-		  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
-		</mat-form-field>
-	  </p>
-		<p>
-			<mat-form-field>
-				<mat-label>Choose a date</mat-label>
-				<input matInput [matDatepicker]="picker"  
-				[(ngModel)]="dateDeRendu"
-				name="date" required>
-				<mat-hint>MM/DD/YYYY</mat-hint>
-				<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-				<mat-datepicker #picker></mat-datepicker>
-			</mat-form-field>
-		</p>
-
-		<a mat-button (click)="move(1)">Besoin de Note</a>
-		<a mat-button (click)="move(2)">Besoin d'Image de l'Eleve</a>
-		<a mat-button (click)="move(3)">Finalisez</a>
-
-  </mat-step>
-
-	<mat-step label="Step 2 (note)">
+<mat-grid-list cols="10" rowHeight="100%" class="dark">
 	
-		<p>
-			<mat-form-field appearance="fill">
-			  <mat-label>note</mat-label>
-			  <input matInput [(ngModel)]="note" value="" type="number" placeholder="note" name="note" required>
-			  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
-			</mat-form-field>
-		</p>
-		<a mat-button (click)="move(0)">Revenir</a>
-		<a mat-button (click)="move(2)">Besoin d'Image de l'Eleve</a>
-		<a mat-button (click)="move(3)">Finalisez</a>
-	  </mat-step>
-  
-    
-  <mat-step label="Step 3">
-	<mat-card-content>
-		<br><br>
+	<mat-divider></mat-divider>
+	<mat-grid-tile colspan="1" ></mat-grid-tile>
+	<mat-grid-tile colspan="8">
 		
-		<mat-form-field>
-			<mat-label>File</mat-label>
-			<a mat-icon-button matPrefix (click)="f_input.click()">
-        <mat-icon>attach_file</mat-icon>
-			</a>
-			<input type="text" readonly matInput [formControl]="display" />
-			<input
-        type="file"
-        multiple
-        hidden
-        #f_input
-        (change)="handleFileInputChange(f_input.files)"
-      />
-		<mat-error>this field is required</mat-error>
-		</mat-form-field>
-		<br><br>
-	</mat-card-content>
-	<p>
-		<img *ngIf="fileImg" class="img-fluid" [src]="(fileImg)" width="150px" height="100px"/>
-	</p>
-	<a mat-button (click)="move(0)">Revenir</a>
-	<a mat-button (click)="move(1)">Besoin de Note</a>
-	<a mat-button (click)="move(3)">Finalisez</a>
-  </mat-step>   
+		<!-- mettre le formulaire au centre -->
+		<div  style="padding-top: 0%; width:100%; height: 95%;">
+			<form  ngForm #assignmentForm (submit)="onSubmit($event);" class="form">
+				<mat-stepper class="dark-form"  #stepper (animationDone)="move(index)">
+					
+				  <mat-step>
+					  <ng-template matStepLabel>
+						<a mat-stroked-button style="{{ColorCss}}" routerLink="."><span>Assignment (Obligatoire)</span></a><a><mat-icon style="{{IconCss}}">{{Icon}}</mat-icon></a>
+					  </ng-template>
 
-  <mat-step label="Step 4">
-	
-	
-	<div class="example-button-row">
-		<a mat-button (click)="move(0)">Revenir</a>
-		<p>
-			<button mat-raised-button style="width: 100%;">Valider</button>
-		</p>
-	</div>
+					<ng-template matStepperIcon="edit">
+						<mat-icon>check</mat-icon>
+				    </ng-template>
+						<p>
+						<mat-form-field appearance="fill" >
+						  <mat-label>Nom</mat-label>
+						  <input matInput placeholder="Placeholder" [(ngModel)]="nomDevoir" name="nom" required="le nom est obligatoire">
+						  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
+						</mat-form-field>
+					  </p>
+					  <p>
+						<mat-form-field  appearance="fill">
+						  <mat-label>Auteur</mat-label>
+						  <input matInput placeholder="Placeholder" [(ngModel)]="auteur" placeholder="auteur" name="auteur"  required>
+						  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
+						</mat-form-field>
+					  </p>
+				
+					  <p>
+						<mat-form-field appearance="fill">
+						  <mat-label>Matiere</mat-label>
+						  <input matInput placeholder="Placeholder" [(ngModel)]="matiere" placeholder="matiere" name="matiere" required>
+						  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
+						</mat-form-field>
+					  </p>
+				
+					  <p>
+						<mat-form-field appearance="fill">
+						  <mat-label>Remarque</mat-label>
+						  <input matInput placeholder="Placeholder" [(ngModel)]="remarque" placeholder="remarque" name="remarque">
+						  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
+						</mat-form-field>
+					  </p>
+						<p>
+							<mat-form-field>
+								<mat-label>Choose a date</mat-label>
+								<input matInput [matDatepicker]="picker"  
+								[(ngModel)]="dateDeRendu"
+								name="date" required>
+								<mat-hint>MM/DD/YYYY</mat-hint>
+								<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+								<mat-datepicker #picker></mat-datepicker>
+							</mat-form-field>
+						</p>
+				
+						<a mat-button class="dark-form" (click)="moveIs(1)">Besoin de Note</a>
+						<a mat-button class="dark-form" (click)="moveIs(2)">Besoin d'Image de l'Eleve</a>
+						<a mat-button class="dark-form" (click)="moveIs(3)">Finalisez</a>
+				
+				  </mat-step>
+				
+					<mat-step>
+						  <ng-template matStepLabel>
+							<a mat-stroked-button style="{{ColorWarnCss}}" routerLink="."><span>Note (non Obligatoire)</span></a><a><mat-icon style ="{{IconWarnCss}}">{{IconWarn}}</mat-icon></a>
+						  </ng-template>
+						<p>
+							<mat-form-field appearance="fill">
+							  <mat-label>note</mat-label>
+							  <input matInput [(ngModel)]="note" value="" type="number" placeholder="note" name="note">
+							  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>		  
+							</mat-form-field>
+						</p>
+						<a mat-button class="dark-form" (click)="moveIs(0)">Revenir</a>
+						<a mat-button class="dark-form" (click)="moveIs(2)">Besoin d'Image de l'Eleve</a>
+						<a mat-button class="dark-form" (click)="moveIs(3)">Finalisez</a>
+					  </mat-step>
+				  
+					
+				  <mat-step>
+					<!-- <ng-template matStepLabel>
+						<span>Les Photos (Non Obligatoire)<mat-icon>check</mat-icon></span>						
+					  </ng-template> -->
+					  <ng-template matStepLabel>
+						<a mat-stroked-button style="{{ColorImageWarnCss}}" routerLink="."><span>Les Photos (Non Obligatoire)</span></a><a><mat-icon style="{{ColorImageWarnCss}}">{{IconImageWarn}}</mat-icon></a>
+					  </ng-template>
 
-  </mat-step>   
+					<mat-card-content>
+						<br><br>
+						
+						<mat-form-field >
+							<mat-label>File</mat-label>
+							<a mat-icon-button matPrefix (click)="f_input.click()">
+						<mat-icon style="color: black;">attach_file</mat-icon>
+							</a>
+							<input  type="text" readonly matInput [formControl]="display" />
+							<input
+						type="file"
+						multiple
+						hidden
+						#f_input
+						(change)="handleFileInputChange(f_input.files)"
+					  />
+						<mat-error>this field is required</mat-error>
+						</mat-form-field>
+						<br><br>
+					</mat-card-content>
+					<p>
+						<img width="500" height="400" *ngIf="fileImg" class="img-fluid" style="
+							display: block;
+							margin: auto;
+							width: 50%;
+							margin-top:-10%;
+						  " [src]="(fileImg)" />
+					</p>
+					<a mat-button class="dark-form" (click)="moveIs(0)">Revenir</a>
+					<a mat-button class="dark-form" (click)="moveIs(1)">Besoin de Note</a>
+					<a mat-button class="dark-form" (click)="moveIs(3)">Finalisez</a>
+				  </mat-step>   
+				
+				  <mat-step>
+					<ng-template matStepLabel>
+						<a mat-stroked-button style="{{ColorCss}}" routerLink="."><span>Finalisation</span></a><a><mat-icon style="{{IconCss}}">{{Icon}}</mat-icon></a>
+					</ng-template>
+					
+					<mat-card class="example-card">
+						<mat-card-header>
+						  <div mat-card-avatar class="example-header-image"></div>
+						  <mat-card-title>Nom du devoir : {{nomDevoir}}</mat-card-title>
+						  <mat-card-subtitle><b>Nom de la matiere :</b>  {{matiere}}
+							<h4><b>Date de Rendu :</b> {{dateDeRendu}}</h4>
+						  </mat-card-subtitle>
+						</mat-card-header>
+						<img mat-card-image style="max-height: 350px; max-width: 400px;" *ngIf="fileImg" [src]="(fileImg)" alt="Photo of a Shiba Inu">
+						<mat-card-content>
+						  <p>
+							<b>remarque :</b>  {{remarque}}
+						  </p>
+						  <p *ngIf="note">
+							<b>Note :</b>  {{note}}
+						  </p>
+						
+						</mat-card-content>
+						<mat-card-actions>
+						  <button mat-button>Valider</button>
+						  <button mat-button (click)="moveIs(0)">Revenir</button>
+						</mat-card-actions>
+					  </mat-card>
 
-</mat-vertical-stepper>
+					<!-- <div class="example-button-row">
+						
+						<a mat-button (click)="moveIs(0)" class="dark-form">Revenir</a>
+						<p>
+							<button mat-raised-button style="width: 100%;">Valider</button>
+						</p>
+					</div> -->
+				
+				  </mat-step>   
+				
+				</mat-stepper>
+				
+			</form>
+		</div>
+	</mat-grid-tile>
+	<mat-grid-tile colspan="1"></mat-grid-tile>
+</mat-grid-list>
 
-</form>
 
+
+
+  

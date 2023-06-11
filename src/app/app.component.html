@@ -1,3 +1,6 @@
+
+
+<div *ngIf="currentRoute !== '/add'">
 <h1>
     <nav>
         <a routerLink="/home">{{title}}</a>
@@ -9,7 +12,7 @@
     </button>
 </p>
 
-<div *ngIf="currentRoute !== '/login'">
+<div *ngIf="currentRoute !== '/login'" #loggedOut>
     <p>Route courante : {{currentRoute}}</p>
     <nav>
         <a routerLink="/login">
@@ -18,8 +21,9 @@
     </nav>
     <p *ngIf="isLogged()">Vous êtes connecté en tant que {{nom}}</p>
 </div>
-
+</div>
 <!-- Indique que le composant affiché sera celui
      correspondant à l'URL courant
 -->
-<router-outlet></router-outlet>
+<router-outlet class="darkmode"></router-outlet>
+

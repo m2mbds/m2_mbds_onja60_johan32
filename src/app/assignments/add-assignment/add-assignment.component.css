@@ -9,3 +9,35 @@ mat-form-field{
     margin:5px;
 }
 
+.mat-grid-tile-content {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.dark{
+    background-color: rgb(52, 46, 46);
+}
+.dark-form{
+    background-color: rgb(33, 32, 32);
+    color:rgb(249, 233, 233);
+}
+
+.example-card {
+    max-width: 400px;
+    color: black;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    
+  }
+

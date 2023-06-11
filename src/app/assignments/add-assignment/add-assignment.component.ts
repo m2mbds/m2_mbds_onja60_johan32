@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { FormBuilder,FormsModule, FormGroup,Validators,FormControl }   from '@angular/forms';
-
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { LoadingBarComponent } from 'src/app/loading-bar/loading-bar.component';
 @Component({
   selector: 'app-add-assignment',
   templateUrl: './add-assignment.component.html',
@@ -31,11 +32,21 @@ export class AddAssignmentComponent {
   file_store!: FileList|null;
   display: FormControl = new FormControl("", Validators.required);
   index=0
+  ColorCss!:string;
+  IconCss!:string;
+  Icon!:string;
+  IconWarnCss!:string;
+  ColorWarnCss!:string;
+  IconWarn!:string;
+
+  IconImageWarnCss!:string;
+  ColorImageWarnCss!:string;
+  IconImageWarn!:string;
 
   @ViewChild('stepper') stepper!: MatStepper;
 
   constructor(private assignmentsService: AssignmentsService,
-              private router:Router) { }
+              private router:Router,private dialog: MatDialog) { }
 
 
   onSubmit(event: any) {
@@ -59,14 +70,17 @@ export class AddAssignmentComponent {
     //lit le fichier
     const reader = new FileReader();
     console.log(this.uploadedFiles)
-    reader.readAsDataURL(this.uploadedFiles[0]);
-    //si le ficchier est chargé excécuter upload
-    reader.onload = () => {
-      if(reader.result!=null)
-      {
-        this.upload();
-      }
+    if(this.uploadedFiles.length>0){
+      reader.readAsDataURL(this.uploadedFiles[0]);
     }
+      this.upload();
+    //si le ficchier est chargé excécuter upload
+      reader.onload = () => {
+        // if(reader.result!=null)
+        // {
+         // this.upload();
+        // }
+      } 
 }
 
   addNote(){
@@ -80,26 +94,35 @@ export class AddAssignmentComponent {
       this.haveNote = false;
     }
   }
-
   upload() {
+    var dialogRef = this.dialog.open(LoadingBarComponent,{data:"Chargement.gif"});
+    dialogRef.disableClose = true;
    let formData = new FormData();   
+    console.log(this.uploadedFiles)
    for (var i = 0; i < this.uploadedFiles.length; i++) {
         formData.append("thumbnail", this.uploadedFiles[i]);  
    } 
       this.assignmentsService.postFile(formData).pipe(
         switchMap((res: any)=>{
+          console.log("upload");
           console.log("voici")
-          console.log(res.datafile[0])
-          this.idImageEleve = res.datafile[0].id;
-          this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id="+this.idImageEleve;
-          this.nouvelAssignment.imageEleve = this.idImageEleve; 
+          if(res.datafile.length>0){
+            console.log(res.datafile[0])
+            this.idImageEleve = res.datafile[0].id;
+            this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id="+this.idImageEleve;
+            this.nouvelAssignment.imageEleve = this.idImageEleve; 
+          }
+          else{
+            this.nouvelAssignment.imageEleve = undefined; 
+          }          
           return this.assignmentsService.addAssignment(this.nouvelAssignment)
         })
-      ).subscribe(message=>{ 
+      ).subscribe(message=>{      
         console.log(message)
         console.log(this.nouvelAssignment)
         this.isImageExist = true;
-        //this.router.navigate(["/home"]);
+        dialogRef.close();
+        this.router.navigate(["/home"]);
       })
  }
 
@@ -125,29 +148,46 @@ export class AddAssignmentComponent {
   };
 }
 
- fileChange(files:any) {
-  this.uploadedFiles = [];
-  this.uploadedFiles.push(files.target.files[0]);
-  //console.log(this.uploadedFiles)
-
-  const reader = new FileReader();
-    reader.readAsDataURL(files.target.files[0]);
-    reader.onload = () => {
-      console.log("miditra");
-        
-    };
-
-}
-
 move(index: number) {
+  if((this.nomDevoir === undefined || this.nomDevoir==="" || this.nomDevoir===null)
+        || (this.auteur === undefined || this.auteur==="" || this.auteur===null)
+        || (this.matiere === undefined || this.matiere==="" || this.auteur===null)
+        || (this.dateDeRendu === undefined || this.dateDeRendu===null)
+      ){
+        console.log("mbola miditra ato "+this.stepper.selectedIndex)
+        this.stepper.selectedIndex=0
+        this.ColorCss = "border-color: transparent; color:  red;font-size: small;";
+        this.Icon = "close";
+        this.IconCss = "color:  red;";
+      }
+      else{
+        this.ColorCss=this.ColorWarnCss = this.IconImageWarnCss = "border-color: transparent; color:  rgb(105, 246, 114);font-size: small;";
+        this.Icon = this.IconWarnCss = this.IconImageWarn  = "check";
+        this.IconCss = this.IconWarn = this.ColorImageWarnCss="color:  rgb(105, 246, 114);";
+      }
+      if(this.note === undefined || this.note===null){
+        this.ColorWarnCss = "border-color: transparent; color:  yellow;font-size: small;";
+        this.IconWarnCss = "color:  yellow;";
+        this.IconWarn = "warning";
+      }
+      else{
+        this.ColorWarnCss = "border-color: transparent; color:  rgb(105, 246, 114);font-size: small;";
+        this.IconWarn  = "check";
+        this.IconWarnCss = "color:  rgb(105, 246, 114);";
+      }
+      if(this.display.status!=="VALID"){
+        this.IconImageWarnCss = "border-color: transparent; color:  yellow;font-size: small;";
+        this.ColorImageWarnCss = "color:  yellow;";
+        this.IconImageWarn = "warning";
+      }
+      else{
+        this.IconImageWarnCss = "border-color: transparent; color:  rgb(105, 246, 114);font-size: small;";
+        this.IconImageWarn  = "check";
+        this.ColorImageWarnCss="color:  rgb(105, 246, 114);";
+      }  
+  }
 
-  this.stepper.selectedIndex = index;
-  this.index = index;
-}
-
-
-isLinearvarient = false;
-varientfirstFormGroup: FormGroup=Object.create(null);
-varientsecondFormGroup: FormGroup=Object.create(null);
-
+  moveIs(index: number){
+      this.stepper.selectedIndex = index;
+  }
 }
