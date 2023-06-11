@@ -7,6 +7,7 @@ import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { FormBuilder,FormsModule, FormGroup,Validators,FormControl }   from '@angular/forms';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { LoadingBarComponent } from 'src/app/loading-bar/loading-bar.component';
+import { ElementRef } from '@angular/core';
 @Component({
   selector: 'app-add-assignment',
   templateUrl: './add-assignment.component.html',
@@ -42,8 +43,11 @@ export class AddAssignmentComponent {
   IconImageWarnCss!:string;
   ColorImageWarnCss!:string;
   IconImageWarn!:string;
+  rowHeight!:number;
 
   @ViewChild('stepper') stepper!: MatStepper;
+
+  @ViewChild('divstep') elementView!: any;
 
   constructor(private assignmentsService: AssignmentsService,
               private router:Router,private dialog: MatDialog) { }
@@ -143,9 +147,16 @@ export class AddAssignmentComponent {
   reader.readAsDataURL(l[0]);
   reader.onload = () => {
     console.log("miditra");
-      console.log(reader.result);
+      // console.log(reader.result);
       this.fileImg = reader.result as string;
+      
   };
+  reader.onloadend = () => {
+
+    this.rowHeight = this.elementView.nativeElement.firstChild.clientHeight;
+      console.log(this.elementView.nativeElement.firstChild.clientHeight);
+  };
+  
 }
 
 move(index: number) {
@@ -185,9 +196,16 @@ move(index: number) {
         this.IconImageWarn  = "check";
         this.ColorImageWarnCss="color:  rgb(105, 246, 114);";
       }  
+      this.rowHeight =this.elementView.nativeElement.firstChild.clientHeight;
+      console.log(this.elementView.nativeElement.firstChild.clientHeight);
   }
 
+  ngAfterViewInit() {
+    console.log(this.elementView);
+    console.log(this.elementView.nativeElement.firstChild.clientHeight);
+}
   moveIs(index: number){
       this.stepper.selectedIndex = index;
+      console.log(this.elementView.nativeElement.firstChild.clientHeight);
   }
 }
