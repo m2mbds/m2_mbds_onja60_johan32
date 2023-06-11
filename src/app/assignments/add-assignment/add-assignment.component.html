@@ -140,7 +140,7 @@
 						  <div mat-card-avatar class="example-header-image"></div>
 						  <mat-card-title>Nom du devoir : {{nomDevoir}}</mat-card-title>
 						  <mat-card-subtitle><b>Nom de la matiere :</b>  {{matiere}}
-							<h4><b>Date de Rendu :</b> {{dateDeRendu}}</h4>
+							<h4><b>Date de Rendu :</b> {{dateDeRendu | date: 'dd/MM/yy'}}</h4>
 						  </mat-card-subtitle>
 						</mat-card-header>
 						<img mat-card-image style="max-height: 350px; max-width: 400px;" *ngIf="fileImg" [src]="(fileImg)" alt="Photo of a Shiba Inu">
@@ -158,14 +158,6 @@
 						  <a mat-button (click)="moveIs(0)">Revenir</a>
 						</mat-card-actions>
 					  </mat-card>
-
-					<!-- <div class="example-button-row">
-						
-						<a mat-button (click)="moveIs(0)" class="dark-form">Revenir</a>
-						<p>
-							<button mat-raised-button style="width: 100%;">Valider</button>
-						</p>
-					</div> -->
 				
 				  </mat-step>   
 				

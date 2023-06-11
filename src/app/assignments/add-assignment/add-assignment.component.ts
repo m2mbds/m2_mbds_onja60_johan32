@@ -153,7 +153,7 @@ export class AddAssignmentComponent {
   };
   reader.onloadend = () => {
 
-    this.rowHeight = this.elementView.nativeElement.firstChild.clientHeight;
+    this.rowHeight = this.elementView.nativeElement.firstChild.clientHeight+20;
       console.log(this.elementView.nativeElement.firstChild.clientHeight);
   };
   
@@ -196,7 +196,7 @@ move(index: number) {
         this.IconImageWarn  = "check";
         this.ColorImageWarnCss="color:  rgb(105, 246, 114);";
       }  
-      this.rowHeight =this.elementView.nativeElement.firstChild.clientHeight;
+      this.rowHeight =this.elementView.nativeElement.firstChild.clientHeight+20;
       console.log(this.elementView.nativeElement.firstChild.clientHeight);
   }
 
