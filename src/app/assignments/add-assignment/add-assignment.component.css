@@ -35,6 +35,7 @@ mat-form-field{
 
 .example-card {
     max-width: 400px;
+    margin: auto;
     color: black;
   }
   

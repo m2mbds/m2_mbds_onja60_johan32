@@ -40,6 +40,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LoadingBarComponent } from './loading-bar/loading-bar.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 const routes: Routes = [
   {
@@ -91,7 +93,7 @@ const routes: Routes = [
     MatTableModule, MatPaginatorModule,MatStepperModule,ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatSelectModule,
     MatProgressSpinnerModule,MatGridListModule,
-    MatDialogModule
+    MatDialogModule,FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -102,14 +102,14 @@
             </mat-list-item>
             <mat-divider></mat-divider>
             <p>
-                <img [src]="linkImage+a.imageEleve" width="300px"/>
+                <!-- <img [src]="linkImage+a.imageEleve" width="300px"/> -->
             </p>
         </a>
     </mat-list>
     
 
     <h1>Exemple de scrolling virtuel infini</h1>
-    <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller>
+    <!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller>
     <mat-list *cdkVirtualFor="let a of assignments">
         <a routerLink="/assignments/{{a.id}}">
             <h3 mat-subheader>Date limite: {{a.dateDeRendu | date: 'dd/MM/yy'}}</h3>
@@ -124,6 +124,33 @@
             <mat-divider></mat-divider>
         </a>
     </mat-list>
-</cdk-virtual-scroll-viewport>
+</cdk-virtual-scroll-viewport> -->
 
+
+  <cdk-virtual-scroll-viewport itemSize="6" class="example-viewport"  #scroller>
+    <div class="grid-container">
+        <div class="grid-item" *cdkVirtualFor="let a of assignments; let index = index">
+            <mat-card class="example-card">
+                <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>
+                    {{a.dateDeRendu |  date: 'dd/MM/yy'}}                  
+                </mat-card-title>
+                <mat-card-subtitle>{{a.matiere}} {{a.nom}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image [src]="linkImage+a.imageEleve" height="200px" alt="Photo of a Shiba Inu"/>  
+                <mat-card-content>
+                <p>
+                   {{a.remarque}}
+                </p>
+                </mat-card-content>
+                <mat-card-actions>             
+                <button routerLink="/assignments/{{a.id}}" mat-button>DETAILS</button>              
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</cdk-virtual-scroll-viewport>
 </main>
+
+  
