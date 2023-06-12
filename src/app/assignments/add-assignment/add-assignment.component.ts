@@ -8,6 +8,7 @@ import { FormBuilder,FormsModule, FormGroup,Validators,FormControl }   from '@an
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { LoadingBarComponent } from 'src/app/loading-bar/loading-bar.component';
 import { ElementRef } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-assignment',
   templateUrl: './add-assignment.component.html',
@@ -50,7 +51,7 @@ export class AddAssignmentComponent {
   @ViewChild('divstep') elementView!: any;
 
   constructor(private assignmentsService: AssignmentsService,
-              private router:Router,private dialog: MatDialog) { }
+              private router:Router,private dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
 
   onSubmit(event: any) {
@@ -126,7 +127,12 @@ export class AddAssignmentComponent {
         console.log(this.nouvelAssignment)
         this.isImageExist = true;
         dialogRef.close();
+        this.openSnackBar(message.message, "Ajout Assignment Fait")
         this.router.navigate(["/home"]);
+        setTimeout(() => {
+          this._snackBar.dismiss()    
+      }, 5000);
+       
       })
  }
 
@@ -208,4 +214,10 @@ move(index: number) {
       this.stepper.selectedIndex = index;
       console.log(this.elementView.nativeElement.firstChild.clientHeight);
   }
+
+  openSnackBar(message: string, action: string) {
+    console.log(message)
+    this._snackBar.open(message, action);
+  }
+
 }

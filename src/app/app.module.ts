@@ -42,6 +42,8 @@ import { LoadingBarComponent } from './loading-bar/loading-bar.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 const routes: Routes = [
   {
@@ -93,7 +95,7 @@ const routes: Routes = [
     MatTableModule, MatPaginatorModule,MatStepperModule,ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatSelectModule,
     MatProgressSpinnerModule,MatGridListModule,
-    MatDialogModule,FlexLayoutModule
+    MatDialogModule,FlexLayoutModule,MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
