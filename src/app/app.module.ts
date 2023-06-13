@@ -17,11 +17,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
@@ -32,18 +32,23 @@ import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assi
 import { authGuard } from './shared/auth.guard';
 import { LoginComponent } from './login/login.component';
 
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LoadingBarComponent } from './loading-bar/loading-bar.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
+// 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+// 
 
 const routes: Routes = [
   {
@@ -92,10 +97,13 @@ const routes: Routes = [
     MatButtonModule, MatIconModule, MatDividerModule,
     MatInputModule, MatFormFieldModule, MatDatepickerModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule,
-    MatTableModule, MatPaginatorModule,MatStepperModule,ReactiveFormsModule,
+    MatTableModule, MatPaginatorModule, MatStepperModule, ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatSelectModule,
-    MatProgressSpinnerModule,MatGridListModule,
-    MatDialogModule,FlexLayoutModule,MatSnackBarModule
+    MatProgressSpinnerModule, MatGridListModule,
+    MatDialogModule, FlexLayoutModule, MatSnackBarModule,
+    // 
+    MatToolbarModule, MatSidenavModule,
+    // 
   ],
   providers: [],
   bootstrap: [AppComponent]
