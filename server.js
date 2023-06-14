@@ -11,7 +11,7 @@ let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(uploadRouter)
 app.use(cors())
 
@@ -23,7 +23,7 @@ const multipart = require('connect-multiparty');
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify:false
+  useFindAndModify: false
 };
 
 mongoose.connect(uri, options)
@@ -31,7 +31,7 @@ mongoose.connect(uri, options)
     console.log("Connecté à la base MongoDB assignments dans le cloud !");
     console.log("at URI = " + uri);
     console.log("vérifiez with http://localhost:8010/api/assignments que cela fonctionne")
-    },
+  },
     err => {
       console.log('Erreur de connexion: ', err);
     });
@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
 });
 
 // Pour les formulaires
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 let port = process.env.PORT || 8010;
@@ -64,51 +64,31 @@ app.route(prefix + '/assignments/:id')
 
 
 
-  app.route(prefix + '/eleves')
+app.route(prefix + '/eleves')
   .get(eleve.getElevesSansPagination)
   .post(eleve.postEleve)
-  
-  app.route(prefix + '/eleves/:id')
+
+app.route(prefix + '/eleves/:id')
   .get(eleve.getEleve)
 
-  app.route(prefix + '/matieres')
+app.route(prefix + '/matieres')
   .get(matiere.getMatieresSansPagination)
   .post(matiere.postMatiere)
-  
-  app.route(prefix + '/matieres/:id')
+
+app.route(prefix + '/matieres/:id')
   .get(matiere.getMatiere)
 
-  app.route(prefix + '/profs')
+app.route(prefix + '/profs')
   .get(prof.getProfs)
   .post(prof.postProf)
-  
-  app.route(prefix + '/profs/:id')
+
+app.route(prefix + '/profs/:id')
   .get(prof.getProf)
 
 
 const multipartMiddleware = multipart({
-    uploadDir: './uploads'
+  uploadDir: './uploads'
 });
-
-// app.post('/api/upload', multipartMiddleware, (req, res) => {
-    
-//     console.log(req['files'])
-//      let file = req['files'].thumbnail;
-
-//      console.log(file.path.split('\\').slice(-1).pop());
-//      var finalresult = file.path.split('/').slice(-1).pop();
-
-//     var fs = require('fs');
-//     fs.rename(req['files'].thumbnail.path,'uploads\\'+req['files'].thumbnail.name,function(err){
-//       if(err)console.log(err)
-//     });
-
-//     res.json(finalresult);
-
-// })
-
-// app.use(express.static('public')); 
-// app.use('/imagesupload', express.static('uploads'));
 
 
 

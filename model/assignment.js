@@ -18,15 +18,15 @@ let Matiere = require('../model/matiere');
 //     remarque:String
 // });
 let AssignmentSchema = Schema({
-id: Number,
-nom: String,
-profid:String,
-eleveid:String,   
-dateDeRendu: Date,
-rendu: Boolean,
-matiereid:String,
-note: Number,
-remarque: String,
+    id: Number,
+    nom: String,
+    profid: String,
+    eleveid: String,
+    dateDeRendu: Date,
+    rendu: Boolean,
+    matiereid: String,
+    note: Number,
+    remarque: String,
 });
 
 AssignmentSchema.plugin(aggregatePaginate);

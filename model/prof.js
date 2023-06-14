@@ -2,11 +2,11 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
-let ProfSchema = Schema({  
+let ProfSchema = Schema({
     nom: String,
     prenom: String,
     imageProf: String,
-    idMatiere:String,
+    idMatiere: String,
 });
 
 ProfSchema.plugin(aggregatePaginate);

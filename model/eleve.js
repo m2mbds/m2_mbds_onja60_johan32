@@ -3,8 +3,8 @@ let Schema = mongoose.Schema;
 var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 let EleveSchema = Schema({
-    nom:String,
-    imageEleve:String,
+    nom: String,
+    imageEleve: String,
 });
 
 EleveSchema.plugin(aggregatePaginate);
