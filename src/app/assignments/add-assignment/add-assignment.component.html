@@ -29,20 +29,40 @@
 							</mat-form-field>
 						</p>
 						<p>
-							<mat-form-field appearance="fill">
+							<!-- <mat-form-field appearance="fill">
 								<mat-label>Auteur</mat-label>
 								<input matInput placeholder="Placeholder" [(ngModel)]="auteur" placeholder="auteur"
 									name="auteur" required>
 								<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+							</mat-form-field> -->
+
+							<mat-form-field>
+								<mat-label>Eleve</mat-label>
+								<mat-select [(ngModel)]="auteur" name="eleve">
+									<mat-option *ngFor="let item of auteurList"  [value]="item._id">
+									  {{item.nom}}
+									</mat-option>
+								  </mat-select>
+
 							</mat-form-field>
+
 						</p>
 
 						<p>
-							<mat-form-field appearance="fill">
+							<!-- <mat-form-field appearance="fill">
 								<mat-label>Matiere</mat-label>
 								<input matInput placeholder="Placeholder" [(ngModel)]="matiere" placeholder="matiere"
 									name="matiere" required>
 								<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+							</mat-form-field> -->
+							<mat-form-field>
+								<mat-label>Matiere</mat-label>
+								<mat-select [(ngModel)]="matiere" name="matiere" (valueChange)="changeAuthor()">
+									<mat-option *ngFor="let item of matiereList"  [value]="item._id">
+									  {{item.nom}}
+									</mat-option>
+								  </mat-select>
+
 							</mat-form-field>
 						</p>
 
@@ -98,28 +118,58 @@
 						</ng-template>
 
 						<mat-card-content>
-							<br><br>
-
 							<mat-form-field>
 								<mat-label>File</mat-label>
 								<a mat-icon-button matPrefix (click)="f_input.click()">
 									<mat-icon style="color: black;">attach_file</mat-icon>
 								</a>
 								<input type="text" readonly matInput [formControl]="display" />
-								<input type="file" multiple hidden #f_input
-									(change)="handleFileInputChange(f_input.files)" />
+								<input type="file" hidden #f_input (change)="handleFileInputChange(f_input.files)" />
+								<mat-error>this field is required</mat-error>
+							</mat-form-field>
+
+							<mat-form-field>
+								<mat-label>Image de La Matiere</mat-label>
+								<a mat-icon-button matPrefix (click)="f_inputmatiere.click()">
+									<mat-icon style="color: black;">attach_file</mat-icon>
+								</a>
+								<input type="text" readonly matInput [formControl]="displayMatiere" />
+								<input type="file" hidden #f_inputmatiere
+									(change)="InputFileMatiereChange(f_inputmatiere.files)" />
+								<mat-error>this field is required</mat-error>
+							</mat-form-field>
+
+							<mat-form-field>
+								<mat-label>Image du Prof</mat-label>
+								<a mat-icon-button matPrefix (click)="f_inputprof.click()">
+									<mat-icon style="color: black;">attach_file</mat-icon>
+								</a>
+								<input type="text" readonly matInput [formControl]="displayProf" />
+								<input type="file" hidden #f_inputprof
+									(change)="InputFileProfChange(f_inputprof.files)" />
 								<mat-error>this field is required</mat-error>
 							</mat-form-field>
 							<br><br>
 						</mat-card-content>
-						<p>
-							<img width="500" height="400" *ngIf="fileImg" class="img-fluid" style="
-							display: block;
-							margin: auto;
-							width: 50%;
-							margin-top:-10%;
-						  " [src]="(fileImg)" />
-						</p>
+
+						<div class="grid-container" height="auto">
+							<div class="grid-item">
+								<img width="100%" *ngIf="fileImg" class="img-fluid" style="
+								display: block;
+								margin: auto;
+														
+							  " [src]="(fileImg)" />
+							</div>
+							<div class="grid-item">
+								<img width="100%" *ngIf="fileMatierefImg" class="img-fluid photosUpload"
+									[src]="(fileMatierefImg)" />
+							</div>
+							<div class="grid-item">
+								<img width="100%" *ngIf="fileProfImg" class="img-fluid photosUpload"
+									[src]="(fileProfImg)" />
+							</div>
+						</div>
+
 						<a mat-button class="dark-form" (click)="moveIs(0)">Revenir</a>
 						<a mat-button class="dark-form" (click)="moveIs(1)">Besoin de Note</a>
 						<a mat-button class="dark-form" (click)="moveIs(3)">Finalisez</a>
@@ -132,31 +182,62 @@
 									[ngStyle]="{IconCss}">{{Icon}}</mat-icon></a>
 						</ng-template>
 
-						<mat-card class="example-card">
-							<mat-card-header>
-								<div mat-card-avatar class="example-header-image"></div>
-								<mat-card-title>Nom du devoir : {{nomDevoir}}</mat-card-title>
-								<mat-card-subtitle><b>Nom de la matiere :</b> {{matiere}}
-									<h4><b>Date de Rendu :</b> {{dateDeRendu | date: 'dd/MM/yy'}}</h4>
-								</mat-card-subtitle>
-							</mat-card-header>
-							<img mat-card-image style="max-height: 350px; max-width: 400px;" *ngIf="fileImg"
-								[src]="(fileImg)" alt="Photo of a Shiba Inu">
-							<mat-card-content>
-								<p>
-									<b>remarque :</b> {{remarque}}
-								</p>
-								<p *ngIf="note">
-									<b>Note :</b> {{note}}
-								</p>
 
-							</mat-card-content>
-							<mat-card-actions>
-								<button mat-button>Valider</button>
-								<a mat-button (click)="moveIs(0)">Revenir</a>
-							</mat-card-actions>
-						</mat-card>
+						<div class="grid-container-final" height="auto">
+							<div class="grid-item">
+								<mat-card class="example-card">
+									<mat-card-header>
+										<div mat-card-avatar class="example-header-image"></div>
+										<mat-card-title>Nom du devoir : {{nomDevoir}}</mat-card-title>
+										<mat-card-subtitle><b>Nom de la matiere :</b> {{matiere}}
+											<h4><b>Date de Rendu :</b> {{dateDeRendu | date: 'dd/MM/yy'}}</h4>
+										</mat-card-subtitle>
+									</mat-card-header>
+									<img mat-card-image style="max-height: 350px; max-width: 400px;" *ngIf="fileImg"
+										[src]="(fileImg)" alt="Photo of a Shiba Inu">
+									<mat-card-content>
+										<p>
+											<b>remarque :</b> {{remarque}}
+										</p>
+										<p *ngIf="note">
+											<b>Note :</b> {{note}}
+										</p>
 
+									</mat-card-content>
+									<mat-card-actions>
+										<button mat-button>Valider</button>
+										<a mat-button (click)="moveIs(0)">Revenir</a>
+									</mat-card-actions>
+								</mat-card>
+							</div>
+							<div class="grid-item">
+								<mat-card class="example-card">
+									<mat-card-header>
+										<div mat-card-avatar class="example-header-image"
+											style="background-image: url('{{fileImg}}');"></div>
+										<mat-card-title>Nom du devoir : {{nomDevoir}}</mat-card-title>
+										<mat-card-subtitle><b>Nom de la matiere :</b> {{matiere}}
+											<h4><b>Date de Rendu :</b> {{dateDeRendu | date: 'dd/MM/yy'}}</h4>
+										</mat-card-subtitle>
+									</mat-card-header>
+									<img mat-card-image *ngIf="fileMatierefImg" [src]="(fileMatierefImg)"
+										alt="Photo de la Matiere">
+									<mat-card-content>
+										<p>
+											<b>remarque :</b> {{remarque}}
+										</p>
+										<p *ngIf="note">
+											<b>Note :</b> {{note}}
+										</p>
+
+									</mat-card-content>
+									<mat-card-actions>
+										<button mat-button>Valider</button>
+										<a mat-button (click)="moveIs(0)">Revenir</a>
+									</mat-card-actions>
+								</mat-card>
+							</div>
+						</div>
 					</mat-step>
 
 				</mat-stepper>

@@ -4,6 +4,10 @@ import { Observable, catchError, forkJoin, map, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
 import { bdInitialAssignments } from './data';
+import { MatieresService } from './matieres.service';
+import { Matiere } from '../matieres/matiere.model';
+import { Eleve } from '../eleves/eleve.model';
+import { ElevesService } from './eleves.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +16,10 @@ export class AssignmentsService {
   // tableau de devoirs à rendre
   assignments: Assignment[] = []
   constructor(private loggingService: LoggingService,
-    private http: HttpClient) { }
+    private http: HttpClient, private matiere:MatieresService,private eleve:ElevesService) { }
 
-  //uri_api = 'http://localhost:8010/api/assignments';
-  uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/assignments';
+  uri_api = 'http://localhost:8010/api/assignments';
+  //uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/assignments';
 
   getAssignments(page: number, limit: number): Observable<any> {
     // normalement on doit envoyer une requête HTTP
@@ -30,13 +34,11 @@ export class AssignmentsService {
   }
 
   getAssignment(id: number): Observable<Assignment | undefined> {
-    // Plus tard on utilisera un Web Service et une BD
-    return this.http.get<Assignment | undefined>(`${this.uri_api}/${id}`)
-
+    var s = this.http.get<Assignment | undefined>(`${this.uri_api}/${id}`)
       .pipe(
         map(a => {
           if (a) {
-            a.nom += " MAP MAP MAP";
+            
           }
           return a;
         }),
@@ -52,6 +54,31 @@ export class AssignmentsService {
         }),
         catchError(this.handleError<Assignment>("Erreur dans le traitement de assignment avec id = " + id))
       )
+      return s;
+
+    // Plus tard on utilisera un Web Service et une BD
+    // return this.http.get<Assignment | undefined>(`${this.uri_api}/${id}`)
+
+    //   .pipe(
+    //     map(a => {
+    //       if (a) {
+    //         a.nom += " MAP MAP MAP";
+    //       }
+    //       return a;
+    //     }),
+    //     tap(a => {
+    //       if (a)
+    //         console.log("ICI DANS LE TAP " + a.nom)
+    //     }),
+    //     map(a => {
+    //       if (a) {
+    //         a.nom += " TOTOTOTO";
+    //       }
+    //       return a;
+    //     }),
+    //     catchError(this.handleError<Assignment>("Erreur dans le traitement de assignment avec id = " + id))
+    //   )
+      
 
     // On va chercher dans le tableau des assignments
     // l'assignment dont l'id est celui passé en paramètre

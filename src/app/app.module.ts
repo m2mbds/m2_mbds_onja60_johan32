@@ -47,6 +47,10 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ElevesComponent } from './eleves/eleves.component';
+import { ProfsComponent } from './profs/profs.component';
+import { MatieresComponent } from './matieres/matieres.component';
+import { NgFor } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -86,7 +90,10 @@ const routes: Routes = [
     EditAssignmentComponent,
     LoginComponent,
     LoadingBarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ElevesComponent,
+    ProfsComponent,
+    MatieresComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +108,7 @@ const routes: Routes = [
     MatFormFieldModule, MatInputModule, MatSelectModule,
     MatProgressSpinnerModule, MatGridListModule,
     MatDialogModule, FlexLayoutModule, MatSnackBarModule,
-    MatToolbarModule, MatSidenavModule,
+    MatToolbarModule, MatSidenavModule,NgFor
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -34,7 +34,7 @@
             <h3>{{assignmentTransmis.nom}} ({{assignmentTransmis.dateDeRendu| date}})</h3>
             <span>{{assignmentTransmis.remarque}}</span>
             <p>
-              <img [src]="linkImage+assignmentTransmis.imageEleve" width="200px">
+              <img *ngIf="assignmentTransmis.eleveid" [src]="linkImage+assignmentTransmis.eleve.imageEleve" width="200px">
             </p>
 
             <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
@@ -47,8 +47,6 @@
 
             <button mat-raised-button color="accent" style="margin-top: 2%; margin-left: 50%;"
               (click)="onDeleteAssignment()">DELETE</button>
-
-
 
           </div>
         </div>
