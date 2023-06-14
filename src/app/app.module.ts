@@ -44,11 +44,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-// 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
-// 
 
 const routes: Routes = [
   {
@@ -75,7 +72,8 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  }
+  },
+  { path: '**', redirectTo: '/', pathMatch: 'full' }, // default route
 ]
 @NgModule({
   declarations: [
@@ -101,9 +99,7 @@ const routes: Routes = [
     MatFormFieldModule, MatInputModule, MatSelectModule,
     MatProgressSpinnerModule, MatGridListModule,
     MatDialogModule, FlexLayoutModule, MatSnackBarModule,
-    // 
     MatToolbarModule, MatSidenavModule,
-    // 
   ],
   providers: [],
   bootstrap: [AppComponent]

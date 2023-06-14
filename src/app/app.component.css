@@ -30,7 +30,7 @@ mat-sidenav {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    /* font-size: 2rem; */
     color: lightgray;
     border-radius: 10px;
 }
@@ -49,7 +49,7 @@ mat-sidenav {
 
 .designation {
     margin-top: 2px;
-    font-size: 0.7rem;
+    /* font-size: 0.7rem; */
     color: lightgrey;
 }
 
@@ -64,7 +64,7 @@ mat-divider {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-size: 1rem;
+    /* font-size: 1rem; */
 }
 
 mat-icon {
@@ -74,4 +74,12 @@ mat-icon {
 
 span {
     color: white;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+a {
+    text-decoration: none;
 }

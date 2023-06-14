@@ -1,34 +1,40 @@
 <!--  -->
 <mat-toolbar>
-    Application de gestion de devoirs à rendre
+    <nav>
+        <a routerLink="/home"><span>{{title}}</span></a>
+    </nav>
+    <span class="example-spacer"></span>
+    <!--  -->
+    <a routerLink="{{linkConnexion}}">
+        <button mat-raised-button (click)="login()">{{labelConnexion}}</button>
+    </a>
+    <!--  -->
 </mat-toolbar>
 
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened>
         <img class="avatar mat-elevation-z8" src="assets/image/profil.png" />
 
-        <h4 class="name">Ny Onja</h4>
+        <h4 class="name">
+            <span *ngIf="isLogged()">{{nom}}</span>
+        </h4>
         <p class="designation">Enseignante</p>
 
         <mat-divider></mat-divider>
         <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <span routerLink="/login">Se connecter</span>
-        </button>
-        <button mat-button class="menu-button">
             <mat-icon>person</mat-icon>
             <span>Profil</span>
         </button>
-        <button mat-button class="menu-button">
-            <mat-icon>info</mat-icon>
-            <span>Assignement</span>
+        <button mat-button class="menu-button" routerLink="/home">
+            <mat-icon>home</mat-icon>
+            <span>Accueil</span>
         </button>
 
         <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button">
+        <button mat-button class="menu-button" (click)="creerDonneesDeTest()">
             <mat-icon>help</mat-icon>
-            <span>Aide</span>
+            <span>Données ++</span>
         </button>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -41,31 +47,8 @@
 </mat-sidenav-container>
 <!--  -->
 <!-- temp -->
-<div *ngIf="currentRoute !== '/add'">
-    <h1>
-        <nav>
-            <a routerLink="/home">{{title}}</a>
-        </nav>
-    </h1>
-    <p>
-        <button mat-raised-button color="primary" (click)="creerDonneesDeTest()">
-            Peupler BD avec données de test
-        </button>
-    </p>
-
-    <div *ngIf="currentRoute !== '/login'" #loggedOut>
-        <p>Route courante : {{currentRoute}}</p>
-        <nav>
-            <a routerLink="/login">
-                <button mat-raised-button (click)="login()">{{labelConnexion}}</button>
-            </a>
-        </nav>
-        <p *ngIf="isLogged()">Vous êtes connecté en tant que {{nom}}</p>
-    </div>
-</div>
 <!-- Indique que le composant affiché sera celui
      correspondant à l'URL courant
 -->
 <router-outlet class="darkmode"></router-outlet>
-
 <!-- temp -->
