@@ -27,11 +27,11 @@ mat-form-field {
 
 
 .dark {
-    background-color: rgb(52, 46, 46);
+    /* background-color: rgb(52, 46, 46); */
 }
 
 .dark-form {
-    background-color: rgb(33, 32, 32);
+    background-color: rgb(58, 54, 54);
     color: rgb(249, 233, 233);
 }
 

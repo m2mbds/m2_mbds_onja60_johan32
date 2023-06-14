@@ -1,14 +1,11 @@
-<!--  -->
 <mat-toolbar>
     <nav>
         <a routerLink="/home"><span>{{title}}</span></a>
     </nav>
     <span class="example-spacer"></span>
-    <!--  -->
     <a routerLink="{{linkConnexion}}">
         <button mat-raised-button (click)="login()">{{labelConnexion}}</button>
     </a>
-    <!--  -->
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -39,17 +36,13 @@
         </button>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div class="content mat-elevation-z4">
+        <!-- <div class="content mat-elevation-z4"> -->
+        <div class="content">
             <!-- Main content -->
-            <!-- <router-outlet class="darkmode"></router-outlet> -->
+            <!-- Indique que le composant affiché sera celui correspondant à l'URL courant -->
+            <router-outlet class="darkmode"></router-outlet>
             <!-- Main content -->
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
-<!--  -->
-<!-- temp -->
-<!-- Indique que le composant affiché sera celui
-     correspondant à l'URL courant
--->
-<router-outlet class="darkmode"></router-outlet>
-<!-- temp -->
+<!-- <router-outlet class="darkmode"></router-outlet> -->
