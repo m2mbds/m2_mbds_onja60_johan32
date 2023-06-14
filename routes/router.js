@@ -6,7 +6,7 @@ const{google} = require('googleapis')
 
 const uploadRouter = express.Router();
 const upload = multer()
-
+//si windows sinon
 //const KEYFILEPATH = path.join(__dirname + "\\credentials.json")
 const KEYFILEPATH = path.join(__dirname + "/credentials.json")
 

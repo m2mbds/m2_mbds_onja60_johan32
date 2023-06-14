@@ -40,15 +40,18 @@ function getAssignment(req, res){
 
 // Ajout d'un assignment (POST)
 function postAssignment(req, res){
-    console.log(req.body.note)
+    console.log(req.body.profid)
     let assignment = new Assignment();
     assignment.id = req.body.id;
     assignment.nom = req.body.nom;
-    assignment.imageEleve = req.body.imageEleve;
+    assignment.matiereid = req.body.matiereid
+    assignment.eleveid = req.body.eleveid
+    assignment.profid = req.body.profid
+    // assignment.imageEleve = req.body.imageEleve;
     assignment.dateDeRendu = req.body.dateDeRendu;
     assignment.rendu = req.body.rendu;
-    assignment.auteur = req.body.auteur;
-    assignment.matiere = req.body.matiere;
+    // assignment.auteur = req.body.auteur;
+    // assignment.matiere = req.body.matiere;
 
     (req.body.note=== undefined)?assignment.note = null:assignment.note = req.body.note;
     assignment.remarque = req.body.remarque;
@@ -58,11 +61,14 @@ function postAssignment(req, res){
     console.log("POST assignment reçu :");
     console.log(assignment)
 
-    assignment.save( (err) => {
+    assignment.save((err) => {
         if(err){
-            res.send('cant post assignment ', err);
+            res.status(500).send('cant post assignment ');
+            console.log(err)
         }
-        res.json({ message: `${assignment.nom} saved!`})
+        else{
+            res.json({ message: `${assignment.nom} saved!`})
+        }
     })
 }
 
@@ -74,7 +80,7 @@ function updateAssignment(req, res) {
     Assignment.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, assignment) => {
         if (err) {
             console.log(err);
-            res.send(err)
+            res.status(status).send(err)
         } else {
           res.json({message: assignment.nom + 'updated'})
         }

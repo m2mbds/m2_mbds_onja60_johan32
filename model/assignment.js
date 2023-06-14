@@ -1,17 +1,32 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
+let Prof = require('../model/prof');
+let Eleve = require('../model/eleve');
+let Matiere = require('../model/matiere');
 
+
+// let AssignmentSchema = Schema({
+//     id: Number,
+//     dateDeRendu: Date,
+//     nom: String,
+//     rendu: Boolean,
+//     imageEleve:String,
+//     auteur:String,
+//     matiere:String,
+//     note:Number,
+//     remarque:String
+// });
 let AssignmentSchema = Schema({
-    id: Number,
-    dateDeRendu: Date,
-    nom: String,
-    rendu: Boolean,
-    imageEleve:String,
-    auteur:String,
-    matiere:String,
-    note:Number,
-    remarque:String
+id: Number,
+nom: String,
+profid:String,
+eleveid:String,   
+dateDeRendu: Date,
+rendu: Boolean,
+matiereid:String,
+note: Number,
+remarque: String,
 });
 
 AssignmentSchema.plugin(aggregatePaginate);
