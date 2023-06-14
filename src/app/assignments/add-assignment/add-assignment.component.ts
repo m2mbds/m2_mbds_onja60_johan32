@@ -19,7 +19,7 @@ import { ProfsService } from 'src/app/shared/profs.service';
   templateUrl: './add-assignment.component.html',
   styleUrls: ['./add-assignment.component.css']
 })
-export class AddAssignmentComponent implements OnInit{
+export class AddAssignmentComponent implements OnInit {
   contentTitle = 'Ajout d\'un Assignment';
   // champs du formulaire
   nomDevoir = "";
@@ -27,9 +27,9 @@ export class AddAssignmentComponent implements OnInit{
   auteur!: String;
   matiere?: string;
   //liste des matieres
-  matiereList!:Matiere[];
+  matiereList!: Matiere[];
   //liste des eleves
-  eleveList!:Eleve[];
+  eleveList!: Eleve[];
   note?: number = undefined;
   remarque!: String;
   haveNote = false;
@@ -43,7 +43,7 @@ export class AddAssignmentComponent implements OnInit{
   file_store!: FileList | null;
   display: FormControl = new FormControl("", Validators.required);
 
-  auteurList!:Eleve[];
+  auteurList!: Eleve[];
 
   index = 0
   ColorCss!: string;
@@ -67,31 +67,31 @@ export class AddAssignmentComponent implements OnInit{
   //control de valeur du prof
   displayProf: FormControl = new FormControl("", Validators.required);
 
-    //liste des fichiers Profs et Matiere
-    uploadedMatiereFiles: Array<File> = [];
-    //fichier prof convertit en base64
-    fileMatierefImg!: string;
-    //control de valeur du prof
-    displayMatiere: FormControl = new FormControl("", Validators.required);
+  //liste des fichiers Profs et Matiere
+  uploadedMatiereFiles: Array<File> = [];
+  //fichier prof convertit en base64
+  fileMatierefImg!: string;
+  //control de valeur du prof
+  displayMatiere: FormControl = new FormControl("", Validators.required);
 
   @ViewChild('stepper') stepper!: MatStepper;
 
   @ViewChild('divstep') elementView!: any;
 
   constructor(private assignmentsService: AssignmentsService,
-    private router: Router, private dialog: MatDialog, private _snackBar: MatSnackBar,private _matiere:MatieresService,private eleveService:ElevesService, private profService:ProfsService) { }
+    private router: Router, private dialog: MatDialog, private _snackBar: MatSnackBar, private _matiere: MatieresService, private eleveService: ElevesService, private profService: ProfsService) { }
 
-    ngOnInit(): void {
-    this._matiere.getMatieres().subscribe(result=>{
-          this.matiereList = result;
-          console.log(this.matiereList)
-        })
-    this.eleveService.getEleves().subscribe(result=>{
-        this.auteurList = result;
+  ngOnInit(): void {
+    this._matiere.getMatieres().subscribe(result => {
+      this.matiereList = result;
+      console.log(this.matiereList)
     })
-        // this.matiereList = this._matiere.getMatieres();
-       
-    }
+    this.eleveService.getEleves().subscribe(result => {
+      this.auteurList = result;
+    })
+    // this.matiereList = this._matiere.getMatieres();
+
+  }
 
   onSubmit(event: any) {
     console.log("Submit")
@@ -112,8 +112,8 @@ export class AddAssignmentComponent implements OnInit{
     this.nouvelAssignment.remarque = this.remarque;
 
     console.log(this.nouvelAssignment);
-  
-    
+
+
     //lit le fichier
     const reader = new FileReader();
     console.log(this.uploadedFiles)
@@ -123,15 +123,15 @@ export class AddAssignmentComponent implements OnInit{
     this.upload();
   }
 
-  changeAuthor(){
-    if(this.matiere)
-    this.profService.getProf(this.matiere).subscribe(result=>{
-      console.log(result)
-      if(result){
-        this.nouvelAssignment.profid = result._id;
-        console.log("id du prof "+this.nouvelAssignment.profid);
-      }    
-    });
+  changeAuthor() {
+    if (this.matiere)
+      this.profService.getProf(this.matiere).subscribe(result => {
+        console.log(result)
+        if (result) {
+          this.nouvelAssignment.profid = result._id;
+          console.log("id du prof " + this.nouvelAssignment.profid);
+        }
+      });
   }
 
   addNote() {
@@ -161,7 +161,7 @@ export class AddAssignmentComponent implements OnInit{
     // for (var i = 0; i < this.uploadedMatiereFiles.length; i++) {
     //   formDataMatiere.append("thumbnail", this.uploadedMatiereFiles[i]);
     // }
-    
+
     // this.assignmentsService.postFile(formData).pipe(
     //   switchMap((res: any) => {
     //     console.log("upload");

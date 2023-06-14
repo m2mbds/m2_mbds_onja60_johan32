@@ -39,10 +39,10 @@
 							<mat-form-field>
 								<mat-label>Eleve</mat-label>
 								<mat-select [(ngModel)]="auteur" name="eleve">
-									<mat-option *ngFor="let item of auteurList"  [value]="item._id">
-									  {{item.nom}}
+									<mat-option *ngFor="let item of auteurList" [value]="item._id">
+										{{item.nom}}
 									</mat-option>
-								  </mat-select>
+								</mat-select>
 
 							</mat-form-field>
 
@@ -57,11 +57,11 @@
 							</mat-form-field> -->
 							<mat-form-field>
 								<mat-label>Matiere</mat-label>
-								<mat-select [(ngModel)]="matiere" name="matiere" (valueChange)="changeAuthor()">
-									<mat-option *ngFor="let item of matiereList"  [value]="item._id">
-									  {{item.nom}}
+								<mat-select [(ngModel)]="matiere" name="matiere" (selectionChange)="changeAuthor()">
+									<mat-option *ngFor="let item of matiereList" [value]="item._id">
+										{{item.nom}}
 									</mat-option>
-								  </mat-select>
+								</mat-select>
 
 							</mat-form-field>
 						</p>
