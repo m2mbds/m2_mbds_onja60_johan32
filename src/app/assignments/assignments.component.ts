@@ -10,15 +10,15 @@ import { filter, map, pairwise, tap, throttleTime } from 'rxjs';
   styleUrls: ['./assignments.component.css']
 })
 export class AssignmentsComponent implements OnInit {
-  titre="Liste des devoirs à rendre";
+  contentTitle = 'Liste des devoirs à rendre';
   // les données à afficher
-  assignments:Assignment[] = [];
+  assignments: Assignment[] = [];
   // Pour la data table
   displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
 
   // propriétés pour la pagination
-  page: number=1;
-  limit: number=10;
+  page: number = 1;
+  limit: number = 10;
   totalDocs: number = 0;
   totalPages: number = 0;
   hasPrevPage: boolean = false;
@@ -26,14 +26,14 @@ export class AssignmentsComponent implements OnInit {
   hasNextPage: boolean = false;
   nextPage: number = 0;
   linkImage = "https://drive.google.com/uc?export=view&id=";
-;
+  ;
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
-  constructor(private assignmentsService:AssignmentsService,
-              private ngZone: NgZone) {    
+  constructor(private assignmentsService: AssignmentsService,
+    private ngZone: NgZone) {
   }
-  
+
   ngOnInit(): void {
     console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
     // exercice : regarder si il existe des query params
@@ -44,82 +44,82 @@ export class AssignmentsComponent implements OnInit {
     this.getAssignments();
   }
 
-  ngAfterViewInit() { 
+  ngAfterViewInit() {
     console.log("after view init");
 
-    if(!this.scroller) return;
+    if (!this.scroller) return;
 
     // on s'abonne à l'évènement scroll de la liste
     this.scroller.elementScrolled()
-    .pipe(
-      tap(event => {
-        //console.log(event);
-      }),
-      map(event => {
-         return this.scroller.measureScrollOffset('bottom');
-      }),
-      tap(y => {
-        //console.log("y = " + y);
-      }),
-      pairwise(),
-      tap(([y1, y2]) => {
-        //console.log("y1 = " + y1 + " y2 = " + y2);
-      }),
-      filter(([y1, y2]) => {
-        return y2 < y1 && y2 < 100;
-      }),
-      // Pour n'envoyer des requêtes que toutes les 200ms
-      //throttleTime(200)
-    )
-    .subscribe((val) => {
-      console.log("val = " + val);
-      console.log("je CHARGE DE NOUVELLES DONNEES page = " + this.page);
-      this.ngZone.run(() => {
-        if(!this.hasNextPage) return;
+      .pipe(
+        tap(event => {
+          //console.log(event);
+        }),
+        map(event => {
+          return this.scroller.measureScrollOffset('bottom');
+        }),
+        tap(y => {
+          //console.log("y = " + y);
+        }),
+        pairwise(),
+        tap(([y1, y2]) => {
+          //console.log("y1 = " + y1 + " y2 = " + y2);
+        }),
+        filter(([y1, y2]) => {
+          return y2 < y1 && y2 < 100;
+        }),
+        // Pour n'envoyer des requêtes que toutes les 200ms
+        //throttleTime(200)
+      )
+      .subscribe((val) => {
+        console.log("val = " + val);
+        console.log("je CHARGE DE NOUVELLES DONNEES page = " + this.page);
+        this.ngZone.run(() => {
+          if (!this.hasNextPage) return;
 
-        this.page = this.nextPage;
-        this.getAddAssignmentsForScroll();
+          this.page = this.nextPage;
+          this.getAddAssignmentsForScroll();
+        });
       });
-    });
   }
 
   getAssignments() {
     console.log("On va chercher les assignments dans le service");
 
     this.assignmentsService.getAssignments(this.page, this.limit)
-    .subscribe(data => {
-      this.assignments = data.docs;
-      this.page = data.page;
-      this.limit = data.limit;
-      this.totalDocs = data.totalDocs;
-      this.totalPages = data.totalPages;
-      this.hasPrevPage = data.hasPrevPage;
-      this.prevPage = data.prevPage;
-      this.hasNextPage = data.hasNextPage;
-      this.nextPage = data.nextPage;
+      .subscribe(data => {
+        this.assignments = data.docs;
+        this.page = data.page;
+        this.limit = data.limit;
+        this.totalDocs = data.totalDocs;
+        this.totalPages = data.totalPages;
+        this.hasPrevPage = data.hasPrevPage;
+        this.prevPage = data.prevPage;
+        this.hasNextPage = data.hasNextPage;
+        this.nextPage = data.nextPage;
 
-      console.log("Données reçues");
-    });
+        console.log("Données reçues");
+      });
   }
 
   getAddAssignmentsForScroll() {
     this.assignmentsService.getAssignments(this.page, this.limit)
-    .subscribe(data => {
-      // au lieu de remplacer le tableau, on va concaténer les nouvelles données
-      this.assignments = this.assignments.concat(data.docs);
-      // ou comme ceci this.assignments = [...this.assignments, ...data.docs]
-      //this.assignments = data.docs;
-      this.page = data.page;
-      this.limit = data.limit;
-      this.totalDocs = data.totalDocs;
-      this.totalPages = data.totalPages;
-      this.hasPrevPage = data.hasPrevPage;
-      this.prevPage = data.prevPage;
-      this.hasNextPage = data.hasNextPage;
-      this.nextPage = data.nextPage;
+      .subscribe(data => {
+        // au lieu de remplacer le tableau, on va concaténer les nouvelles données
+        this.assignments = this.assignments.concat(data.docs);
+        // ou comme ceci this.assignments = [...this.assignments, ...data.docs]
+        //this.assignments = data.docs;
+        this.page = data.page;
+        this.limit = data.limit;
+        this.totalDocs = data.totalDocs;
+        this.totalPages = data.totalPages;
+        this.hasPrevPage = data.hasPrevPage;
+        this.prevPage = data.prevPage;
+        this.hasNextPage = data.hasNextPage;
+        this.nextPage = data.nextPage;
 
-      console.log("Données ajoutées pour scrolling");
-    });
+        console.log("Données ajoutées pour scrolling");
+      });
   }
 
   premierePage() {
@@ -144,7 +144,7 @@ export class AssignmentsComponent implements OnInit {
   // Pour mat-paginator
   handlePage(event: any) {
     console.log(event);
-   
+
     this.page = event.pageIndex;
     this.limit = event.pageSize;
     this.getAssignments();

@@ -21,20 +21,21 @@
         <p class="designation">Enseignante</p>
 
         <mat-divider></mat-divider>
-        <button mat-button class="menu-button">
-            <mat-icon>person</mat-icon>
-            <span>Profil</span>
-        </button>
         <button mat-button class="menu-button" routerLink="/home">
             <mat-icon>home</mat-icon>
             <span>Accueil</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="/add">
+            <mat-icon>add</mat-icon>
+            <span>Assignment</span>
         </button>
 
         <mat-divider></mat-divider>
 
         <button mat-button class="menu-button" (click)="creerDonneesDeTest()">
             <mat-icon>help</mat-icon>
-            <span>Données ++</span>
+            <span>Ajout données</span>
         </button>
     </mat-sidenav>
     <mat-sidenav-content>

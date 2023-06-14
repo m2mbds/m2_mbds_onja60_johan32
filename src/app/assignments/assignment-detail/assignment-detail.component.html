@@ -23,38 +23,37 @@
   <mat-grid-tile colspan="12">
     <mat-card>
       <mat-card-content style="color: black;">
-          <div class="grid-container">       
-            <div class="grid-item" style="margin-left: 30%; margin-top: 3%;">
-              <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" width="50px" height="50px" style="border-radius: 100%;">             
-            </div> 
-          
-            <div class="grid-item" style="color: black; margin-left: -60%;">  
+        <div class="grid-container">
+          <div class="grid-item" style="margin-left: 30%; margin-top: 3%;">
+            <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" width="50px" height="50px"
+              style="border-radius: 100%;">
+          </div>
 
-              <h3>{{assignmentTransmis.nom}} ({{assignmentTransmis.dateDeRendu| date}})</h3>
-              <span>{{assignmentTransmis.remarque}}</span>
-              <p>
-                <img [src]="linkImage+assignmentTransmis.imageEleve" width="200px">
-              </p>
-             
-                <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
-                  Rendu
-                </mat-checkbox>   
-             
-              <mat-divider></mat-divider>
-              <button mat-raised-button color="primary" 
-              (click)="onEditAssignment()"
+          <div class="grid-item" style="color: black; margin-left: -60%;">
+
+            <h3>{{assignmentTransmis.nom}} ({{assignmentTransmis.dateDeRendu| date}})</h3>
+            <span>{{assignmentTransmis.remarque}}</span>
+            <p>
+              <img [src]="linkImage+assignmentTransmis.imageEleve" width="200px">
+            </p>
+
+            <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
+              Rendu
+            </mat-checkbox>
+
+            <mat-divider></mat-divider>
+            <button mat-raised-button color="primary" (click)="onEditAssignment()"
               [disabled]="!isLogged()">EDIT</button>
 
-              <button mat-raised-button color="accent" style="margin-top: 2%; margin-left: 50%;" (click)="onDeleteAssignment()" >DELETE</button>
+            <button mat-raised-button color="accent" style="margin-top: 2%; margin-left: 50%;"
+              (click)="onDeleteAssignment()">DELETE</button>
 
-              
-             
-            </div>       
+
+
           </div>
+        </div>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="4"></mat-grid-tile>
 </mat-grid-list>
-
-

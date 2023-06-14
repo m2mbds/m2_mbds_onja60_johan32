@@ -1,72 +1,72 @@
 .container {
-    display:flex;
-    flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
 
 .ajouterBtn {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 .example-viewport {
-    height: 600px;
-    width: 1600px;
-    border: 1px solid black;
-  }
-  
-  .example-item {
-    height: 150px;
-  }
+  height: 600px;
+  width: 1600px;
+  border: 1px solid black;
+}
 
-  .demo-table {
-    width: 100%;
-  }
-  
-  .mat-column-id {
-    width: 32px;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
-  }
-  
-  .mat-column-nom {
-    padding-left: 16px;
-    font-size: 20px;
-  }
-  
-  .mat-column-dateDeRendu {
-    font-style: italic;
-  }
-  
-  .mat-column-rendu {
-    width: 32px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .example-card {
-    max-width: 400px;
-    margin:5px 5px 5px 5px;
-    color:black;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-    
-  }
+.example-item {
+  height: 150px;
+}
 
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 1rem;
-    border: 1px dashed #000;
-    margin: auto;
-    padding: 5px;
+.demo-table {
+  width: 100%;
+}
+
+.mat-column-id {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-nom {
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.mat-column-dateDeRendu {
+  font-style: italic;
+}
+
+.mat-column-rendu {
+  width: 32px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.example-card {
+  max-width: 400px;
+  margin: 5px 5px 5px 5px;
+  color: black;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1rem;
+  border: 1px dashed #000;
+  margin: auto;
+  padding: 5px;
 }
 
 .grid-item {
-    padding: .5rem;
-    color: white;
-    text-align: center;
+  padding: .5rem;
+  color: white;
+  text-align: center;
 }

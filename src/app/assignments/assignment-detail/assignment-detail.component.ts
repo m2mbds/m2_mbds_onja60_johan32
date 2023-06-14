@@ -15,7 +15,7 @@ export class AssignmentDetailComponent implements OnInit {
   constructor(private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService:AuthService) { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     // appelée avant le rendu du composant
@@ -68,13 +68,13 @@ export class AssignmentDetailComponent implements OnInit {
     // this.router.navigate([path]);
     // c'est pour vous montrer la syntaxe avec [...]
     this.router.navigate(["/assignments", this.assignmentTransmis?.id, "edit"],
-    {
-      queryParams: {
-        nom: this.assignmentTransmis?.nom,
-        matiere: "Angular"
-      },
-      fragment: "edition"
-    });
+      {
+        queryParams: {
+          nom: this.assignmentTransmis?.nom,
+          matiere: "Angular"
+        },
+        fragment: "edition"
+      });
   }
 
   isLogged() {

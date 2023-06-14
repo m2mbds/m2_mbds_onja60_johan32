@@ -1,12 +1,13 @@
 .form {
     display: flex;
     flex-direction: column;
-    margin:5px;
+    margin: 5px;
 }
-mat-form-field{
+
+mat-form-field {
     display: flex;
     flex-direction: column;
-    margin:5px;
+    margin: 5px;
 }
 
 .mat-grid-tile-content {
@@ -21,30 +22,31 @@ mat-form-field{
     height: auto;
     padding: 0;
     margin: 0;
-    
+
 }
 
 
-.dark{
+.dark {
     background-color: rgb(52, 46, 46);
 }
-.dark-form{
+
+.dark-form {
     background-color: rgb(33, 32, 32);
-    color:rgb(249, 233, 233);
+    color: rgb(249, 233, 233);
 }
 
 .example-card {
     max-width: 400px;
     margin: auto;
     color: black;
-  }
-  
-  .example-header-image {
+}
+
+.example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
-    
-  }
 
-  mat-form-field {
+}
+
+mat-form-field {
     margin-right: 12px;
-  }
+}
