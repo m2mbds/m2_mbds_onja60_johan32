@@ -3,6 +3,7 @@ Fonctionnalités existants :
 - Authentification JWT
 - *** Fichier du variable d'environnement https://www.itsolutionstuff.com/post/how-to-use-environment-variable-in-angularexample.html
 - Page not found (default page (default route) si l'url donné n'existe pas)
+- Utilisation de Shift + Alt + F pour ranger les codes
 =====================================================================================================================================
 Conception base de données
 - User 
