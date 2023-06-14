@@ -46,6 +46,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -73,7 +74,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }, // default route
+  { path: '**', component: PageNotFoundComponent }, // default route
 ]
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ const routes: Routes = [
     AddAssignmentComponent,
     EditAssignmentComponent,
     LoginComponent,
-    LoadingBarComponent
+    LoadingBarComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
