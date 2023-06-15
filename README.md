@@ -67,17 +67,31 @@ TeacherSubject(2, 4)
 =====================================================================================================================================
 Fonctionnalités :
  - Login
+  1) login(email, pwd)
  - Role teacher (isAdmin)
   - List assignment concerné
+    2) getAssignmentByUser(idUser(user connecté))*
   - EDIT attributs assignment concerné
-  - Noté assignment concerné
-  - Rendu assignment concerné
+    - Noté assignment concerné
+    - Rendu assignment concerné
+        3) editAssignment()
+          - note
+          - remark
+          - isRender
+          - limitDate
   - DELETE assignment concerné
+    4) deleteAssignment()
   - Details assignment concerné
+    5) getAssignmentById(idAssignment)*
+
  - Role student (!isAdmin)
   - Create son assignment
+    6) createAssignment()
   - List de son assignment
+    2) getAssignmentByUser(idUser(user connecté))*
   - Details de son assignment
+    5) getAssignmentById(idAssignment)*
  - Logout
+    7) logout()
  
 =====================================================================================================================================
