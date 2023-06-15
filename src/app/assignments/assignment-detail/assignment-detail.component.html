@@ -97,28 +97,67 @@
   <mat-card-header>
     <img mat-card-avatar src="assets/image/profil.png">
     <mat-card-title>
-      Matière Big data
+      Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
     </mat-card-title>
     <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+    <!--  -->
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon color="primary">edit</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon color="warn">delete</mat-icon>
+    </button>
+    <!--  -->
   </mat-card-header>
   <mat-card-content>
-    <p>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe facilis optio, cupiditate esse non magnam
-      dignissimos nesciunt distinctio nisi sequi quas incidunt est officiis impedit voluptate minus totam eaque earum.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam voluptatum corporis omnis praesentium dicta
-      similique impedit illum placeat! Aut harum nihil temporibus laboriosam quasi, deleniti amet quos incidunt hic
-      accusamus.
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur illum quibusdam nisi explicabo quo
-      voluptatibus ab molestias repellat quis, vel nostrum praesentium assumenda perferendis cumque, nemo laboriosam?
-      Sunt, quo dolor!
-    </p>
+    <div class="item-desc">
+      <strong>Titre</strong>
+      <p>
+        Hello word!
+      </p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="item-desc">
+      <strong>Description</strong>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe facilis optio, cupiditate esse non magnam
+        dignissimos nesciunt distinctio nisi sequi quas incidunt est officiis impedit voluptate minus totam eaque earum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam voluptatum corporis omnis praesentium dicta
+        similique impedit illum placeat! Aut harum nihil temporibus laboriosam quasi, deleniti amet quos incidunt hic
+        accusamus.
+      </p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="item-desc">
+      <strong>PJ</strong>
+      <p>
+        =====================FILE=====================
+      </p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="item-desc">
+      <strong>Note</strong>
+      <p>
+        18 / 20
+      </p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="item-desc">
+      <strong>Remarque</strong>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur illum quibusdam nisi explicabo quo
+        voluptatibus ab molestias repellat quis, vel nostrum praesentium assumenda perferendis cumque, nemo laboriosam?
+        Sunt, quo dolor!
+      </p>
+    </div>
   </mat-card-content>
-  <mat-card-actions id="bottom">
+  <!-- <mat-card-actions id="bottom">
     <button mat-button color="primary" (click)="onEditAssignment()">
       Modifier
     </button>
     <button mat-button color="accent" (click)="onDeleteAssignment()">
       Supprimer
     </button>
-  </mat-card-actions>
+  </mat-card-actions> -->
 </mat-card>

@@ -53,6 +53,16 @@ import { MatieresComponent } from './matieres/matieres.component';
 import { NgFor } from '@angular/common';
 
 import { MatChipsModule } from '@angular/material/chips';
+// 
+import { Component } from '@angular/core';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
+// 
 
 const routes: Routes = [
   {
@@ -111,6 +121,14 @@ const routes: Routes = [
     MatProgressSpinnerModule, MatGridListModule,
     MatDialogModule, FlexLayoutModule, MatSnackBarModule,
     MatToolbarModule, MatSidenavModule, NgFor, MatChipsModule,
+    // 
+    // Component,
+    // CdkDragDrop,
+    // moveItemInArray,
+    // transferArrayItem,
+    CdkDrag,
+    CdkDropList,
+    // 
   ],
   providers: [],
   bootstrap: [AppComponent]

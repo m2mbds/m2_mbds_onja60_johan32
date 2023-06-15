@@ -35,4 +35,12 @@ mat-card {
   margin-right: 16px;
 }
 
+.item-desc {
+  margin-top: 12px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
 /* ================= */

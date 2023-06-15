@@ -4,6 +4,16 @@ import { AssignmentsService } from '../shared/assignments.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { filter, map, pairwise, tap, throttleTime } from 'rxjs';
 
+// 
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
+// 
+
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
@@ -14,7 +24,8 @@ export class AssignmentsComponent implements OnInit {
   // les données à afficher
   assignments: Assignment[] = [];
   // Pour la data table
-  displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
+  // displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
+  displayedColumns: string[] = ['id', 'nom'];
 
   // propriétés pour la pagination
   page: number = 1;
@@ -149,4 +160,22 @@ export class AssignmentsComponent implements OnInit {
     this.limit = event.pageSize;
     this.getAssignments();
   }
+  // ==========================================================
+  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+
+  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
+  // ==========================================================
 }
