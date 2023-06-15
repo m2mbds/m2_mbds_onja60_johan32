@@ -10,8 +10,8 @@ import { LoggingService } from './logging.service';
 export class ElevesService {
 
   constructor(private loggingService: LoggingService,private http: HttpClient) { }
-  // uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/eleves';
-  uri_api = 'http://localhost:8010/api/eleves';
+  uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/eleves';
+  // uri_api = 'http://localhost:8010/api/eleves';
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {

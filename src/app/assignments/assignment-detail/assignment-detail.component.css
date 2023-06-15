@@ -4,6 +4,7 @@
   justify-content: space-between;
 }
 
+/* 
 .example-card {
   max-width: 400px;
 }
@@ -26,4 +27,12 @@
   color: white;
   margin-top: -1%;
 
+} */
+
+/* ================= */
+mat-card {
+  margin-top: 16px;
+  margin-right: 16px;
 }
+
+/* ================= */

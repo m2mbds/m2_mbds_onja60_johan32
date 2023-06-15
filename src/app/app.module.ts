@@ -52,6 +52,8 @@ import { ProfsComponent } from './profs/profs.component';
 import { MatieresComponent } from './matieres/matieres.component';
 import { NgFor } from '@angular/common';
 
+import { MatChipsModule } from '@angular/material/chips';
+
 const routes: Routes = [
   {
     path: '',
@@ -108,7 +110,7 @@ const routes: Routes = [
     MatFormFieldModule, MatInputModule, MatSelectModule,
     MatProgressSpinnerModule, MatGridListModule,
     MatDialogModule, FlexLayoutModule, MatSnackBarModule,
-    MatToolbarModule, MatSidenavModule,NgFor
+    MatToolbarModule, MatSidenavModule, NgFor, MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

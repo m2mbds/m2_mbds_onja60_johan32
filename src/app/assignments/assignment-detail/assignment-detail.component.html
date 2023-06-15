@@ -7,18 +7,15 @@
     <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
       Rendu
     </mat-checkbox>
-    
-    <button mat-raised-button color="primary"
-            (click)="onEditAssignment()"
-            [disabled]="!isLogged()"
-    >
+
+    <button mat-raised-button color="primary" (click)="onEditAssignment()" [disabled]="!isLogged()">
       EDIT
     </button>
 
-  <button mat-raised-button color="accent" (click)="onDeleteAssignment()">DELETE</button>
+    <button mat-raised-button color="accent" (click)="onDeleteAssignment()">DELETE</button>
   </mat-card-actions>
 </mat-card> -->
-<mat-grid-list cols="20" rowHeight="500" *ngIf="assignmentTransmis">
+<!-- <mat-grid-list cols="20" rowHeight="500" *ngIf="assignmentTransmis">
   <mat-grid-tile colspan="4"></mat-grid-tile>
   <mat-grid-tile colspan="12">
     <mat-card>
@@ -54,4 +51,74 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="4"></mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+
+
+<!-- <mat-card *ngIf="assignmentTransmis">
+  <mat-card-content>
+    <mat-card-title>Titre de l'assignment ici</mat-card-title>
+    <mat-card-subtitle>Date de rendu : 20/06/23</mat-card-subtitle>
+
+  </mat-card-content>
+  <mat-card-content>
+    <div>
+
+    </div>
+  </mat-card-content>
+  <mat-card-actions id="bottom">
+    <mat-chip-option color="accent" selected>Rendu</mat-chip-option>
+    <button mat-raised-button color="primary" (click)="onEditAssignment()" [disabled]="!isLogged()">
+      EDIT
+    </button>
+    <button mat-raised-button color="accent" (click)="onDeleteAssignment()">DELETE</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card *ngIf="assignmentTransmis">
+  <mat-card-content>
+    <mat-card-title>Titre de l'assignment ici</mat-card-title>
+    <mat-card-subtitle>Date de rendu : 20/06/23</mat-card-subtitle>
+
+  </mat-card-content>
+  <mat-card-content>
+    <div>
+
+    </div>
+  </mat-card-content>
+  <mat-card-actions id="bottom">
+    <mat-chip-option color="accent" selected>Rendu</mat-chip-option>
+    <button mat-raised-button color="primary" (click)="onEditAssignment()" [disabled]="!isLogged()">
+      EDIT
+    </button>
+    <button mat-raised-button color="accent" (click)="onDeleteAssignment()">DELETE</button>
+  </mat-card-actions>
+</mat-card> -->
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <img mat-card-avatar src="assets/image/profil.png">
+    <mat-card-title>
+      Matière Big data
+    </mat-card-title>
+    <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe facilis optio, cupiditate esse non magnam
+      dignissimos nesciunt distinctio nisi sequi quas incidunt est officiis impedit voluptate minus totam eaque earum.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam voluptatum corporis omnis praesentium dicta
+      similique impedit illum placeat! Aut harum nihil temporibus laboriosam quasi, deleniti amet quos incidunt hic
+      accusamus.
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur illum quibusdam nisi explicabo quo
+      voluptatibus ab molestias repellat quis, vel nostrum praesentium assumenda perferendis cumque, nemo laboriosam?
+      Sunt, quo dolor!
+    </p>
+  </mat-card-content>
+  <mat-card-actions id="bottom">
+    <button mat-button color="primary" (click)="onEditAssignment()">
+      Modifier
+    </button>
+    <button mat-button color="accent" (click)="onDeleteAssignment()">
+      Supprimer
+    </button>
+  </mat-card-actions>
+</mat-card>
