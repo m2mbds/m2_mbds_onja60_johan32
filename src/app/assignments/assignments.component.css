@@ -139,3 +139,7 @@ table {
 #content {
   margin-right: 1%;
 }
+
+.example-spacer {
+  flex: 1 1 auto;
+}

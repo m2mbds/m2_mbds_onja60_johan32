@@ -9,6 +9,7 @@ export class LoginComponent {
   username = "";
   password = "";
   showSpinner = false;
+  hide = true;
 
   login() {
     console.log("LOGIN")

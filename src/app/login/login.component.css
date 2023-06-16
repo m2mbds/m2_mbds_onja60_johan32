@@ -1,0 +1,23 @@
+.example-card {
+    margin-top: 16px;
+    margin-right: 16px;
+    padding-bottom: 20%;
+}
+
+.example-form {
+    width: 50%;
+    margin: auto;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.action {
+    width: 50%;
+    margin: auto;
+}
+
+mat-spinner {
+    margin: auto;
+}

@@ -1,9 +1,11 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
+    <mat-card-title>
+      <h3>Login</h3>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class="example-form">
+    <!-- <form class="example-form">
       <table class="example-full-width" cellspacing="0">
         <tr>
           <td>
@@ -18,10 +20,32 @@
             </mat-form-field></td>
         </tr>
       </table>
+    </form> -->
+    <!--  -->
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Entrer votre Email</mat-label>
+        <input type="email" matInput placeholder="Ex : sonja@gmail.com">
+        <mat-error>
+          Please enter a valid email address
+        </mat-error>
+        <mat-error>
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Entrer votre mot de passe</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
     </form>
+    <!--  -->
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="login()" color="primary">Login</button>
+    <button class="action" mat-raised-button (click)="login()" color="primary">Se connecter</button>
   </mat-card-actions>
 </mat-card>
