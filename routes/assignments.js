@@ -38,6 +38,16 @@ function getAssignment(req, res){
     })
 }
 
+// Récupérer un assignment par son id (GET)
+function getAssignmentByIdUser(req, res){
+    let userId = req.params.idUser;
+
+    Assignment.findOne({idAuthor: userId}, (err, assignment) =>{
+        if(err){res.send(err)}
+        res.json(assignment);
+    })
+}
+
 // Ajout d'un assignment (POST)
 function postAssignment(req, res){
     console.log(req.body.profid)
@@ -47,12 +57,9 @@ function postAssignment(req, res){
     assignment.matiereid = req.body.matiereid
     assignment.eleveid = req.body.eleveid
     assignment.profid = req.body.profid
-    // assignment.imageEleve = req.body.imageEleve;
     assignment.dateDeRendu = req.body.dateDeRendu;
     assignment.rendu = req.body.rendu;
-    // assignment.auteur = req.body.auteur;
-    // assignment.matiere = req.body.matiere;
-
+    
     (req.body.note=== undefined)?assignment.note = null:assignment.note = req.body.note;
     assignment.remarque = req.body.remarque;
 
@@ -103,4 +110,4 @@ function deleteAssignment(req, res) {
 
 
 
-module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment };
+module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment,getAssignmentByIdUser };

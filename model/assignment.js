@@ -17,16 +17,31 @@ let Matiere = require('../model/matiere');
 //     note:Number,
 //     remarque:String
 // });
+// let AssignmentSchema = Schema({
+//     id: Number,
+//     nom: String,
+//     profid: String,
+//     eleveid: String,
+//     dateDeRendu: Date,
+//     rendu: Boolean,
+//     matiereid: String,
+//     note: Number,
+//     remarque: String,
+// });
+
 let AssignmentSchema = Schema({
     id: Number,
-    nom: String,
-    profid: String,
-    eleveid: String,
-    dateDeRendu: Date,
-    rendu: Boolean,
-    matiereid: String,
+    title: String,
+    description: String,
+    PJ: String,
+    idSubject: Number,
+    idAuthor: Number,
     note: Number,
-    remarque: String,
+    remark: String,
+    isRender: String,
+    limitDate: Date,
+    createdAt: Date,
+    renderedAt: Date
 });
 
 AssignmentSchema.plugin(aggregatePaginate);
