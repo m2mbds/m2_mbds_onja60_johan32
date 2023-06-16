@@ -40,7 +40,7 @@ export class AppComponent {
     } else {
       this.authService.logOut();
       this.labelConnexion = "Se connecter";
-      this.linkConnexion = "/logout";
+      this.linkConnexion = "/login";
       // et on navigue vers la page d'accueil
       this.router.navigate(["/home"]);
     }
