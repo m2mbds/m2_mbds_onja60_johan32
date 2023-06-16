@@ -2,9 +2,12 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
-let eleve = require('./routes/eleves');
-let matiere = require('./routes/matieres');
-let prof = require('./routes/profs');
+// let eleve = require('./routes/eleves');
+// let matiere = require('./routes/matieres');
+// let prof = require('./routes/profs');
+let subject = require('./routes/subject');
+let user = require('./routes/users');
+let teacherSubject = require('./routes/teacherSubjects');
 const uploadRouter = require('./routes/router.js');
 var cors = require('cors');
 let mongoose = require('mongoose');
@@ -64,26 +67,48 @@ app.route(prefix + '/assignments/:id')
 
 
 
-app.route(prefix + '/eleves')
-  .get(eleve.getElevesSansPagination)
-  .post(eleve.postEleve)
+// app.route(prefix + '/eleves')
+//   .get(eleve.getElevesSansPagination)
+//   .post(eleve.postEleve)
 
-app.route(prefix + '/eleves/:id')
-  .get(eleve.getEleve)
+// app.route(prefix + '/eleves/:id')
+//   .get(eleve.getEleve)
 
-app.route(prefix + '/matieres')
-  .get(matiere.getMatieresSansPagination)
-  .post(matiere.postMatiere)
+// app.route(prefix + '/matieres')
+//   .get(matiere.getMatieresSansPagination)
+//   .post(matiere.postMatiere)
 
-app.route(prefix + '/matieres/:id')
-  .get(matiere.getMatiere)
+// app.route(prefix + '/matieres/:id')
+//   .get(matiere.getMatiere)
 
-app.route(prefix + '/profs')
-  .get(prof.getProfs)
-  .post(prof.postProf)
+// app.route(prefix + '/profs')
+//   .get(prof.getProfs)
+//   .post(prof.postProf)
 
-app.route(prefix + '/profs/:id')
-  .get(prof.getProf)
+// app.route(prefix + '/profs/:id')
+//   .get(prof.getProf)
+
+app.route(prefix + '/subjects')
+  .get(subject.getSubjectsSansPagination)
+  .post(subject.postSubject)
+
+app.route(prefix + '/subjects/:id')
+  .get(subject.getSubject)
+
+app.route(prefix + '/users')
+  .get(user.getUsers)
+  .post(user.postUser)
+
+app.route(prefix + '/users/:id')
+  .get(user.getUser)
+
+
+app.route(prefix + '/teacherSubjects')
+  .get(teacherSubject.getTeacherSubjectsSansPagination)
+  .post(teacherSubject.postTeacherSubject)
+
+app.route(prefix + '/teacherSubjects/:id')
+  .get(teacherSubject.getTeacherSubject)
 
 
 const multipartMiddleware = multipart({

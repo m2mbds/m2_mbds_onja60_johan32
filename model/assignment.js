@@ -1,9 +1,9 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
-let Prof = require('../model/prof');
-let Eleve = require('../model/eleve');
-let Matiere = require('../model/matiere');
+// let Prof = require('../model/prof');
+// let Eleve = require('../model/eleve');
+// let Matiere = require('../model/matiere');
 
 
 // let AssignmentSchema = Schema({

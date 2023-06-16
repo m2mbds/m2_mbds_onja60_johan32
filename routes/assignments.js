@@ -53,17 +53,20 @@ function postAssignment(req, res){
     console.log(req.body.profid)
     let assignment = new Assignment();
     assignment.id = req.body.id;
-    assignment.nom = req.body.nom;
-    assignment.matiereid = req.body.matiereid
-    assignment.eleveid = req.body.eleveid
-    assignment.profid = req.body.profid
-    assignment.dateDeRendu = req.body.dateDeRendu;
-    assignment.rendu = req.body.rendu;
+    assignment.title = req.body.title;
+    assignment.description = req.body.description
+    assignment.PJ = req.body.PJ
+    assignment.idSubject = req.body.idSubject
+    assignment.idAuthor = req.body.idAuthor
+    assignment.note = req.body.note;
+    assignment.remark = req.body.remark;
+    assignment.isRender = req.body.isRender;
+    assignment.limitDate = req.body.limitDate;
+    assignment.createdAt = req.body.createdAt;
+    assignment.renderedAt = req.body.renderedAt;
     
-    (req.body.note=== undefined)?assignment.note = null:assignment.note = req.body.note;
-    assignment.remarque = req.body.remarque;
-
-
+    // (req.body.note=== undefined)?assignment.note = null:assignment.note = req.body.note;
+    // assignment.remarque = req.body.remarque;
 
     console.log("POST assignment reçu :");
     console.log(assignment)
