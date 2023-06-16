@@ -1,13 +1,64 @@
-<h3 class="dark">{{contentTitle}}</h3>
-
+<h3 class="dark">Ajout d'un Assignment</h3>
+<!--  -->
+<mat-stepper #stepper>
+	<mat-step [stepControl]="firstFormGroup">
+		<form [formGroup]="firstFormGroup">
+			<ng-template matStepLabel>Etape 1</ng-template>
+			<mat-form-field>
+				<mat-label>Matière</mat-label>
+				<input matInput required>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>Deadline</mat-label>
+				<input matInput placeholder="Deadline" required>
+			</mat-form-field>
+			<div>
+				<button mat-raised-button matStepperNext>Next</button>
+			</div>
+		</form>
+	</mat-step>
+	<mat-step [stepControl]="secondFormGroup">
+		<form [formGroup]="secondFormGroup">
+			<ng-template matStepLabel>Etape 2</ng-template>
+			<mat-form-field>
+				<mat-label>Titre</mat-label>
+				<input matInput required>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>Description</mat-label>
+				<textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+					cdkAutosizeMinRows="5"></textarea>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>PJ</mat-label>
+				<input matInput>
+			</mat-form-field>
+			<div>
+				<button mat-raised-button matStepperPrevious>Back</button>
+				<button class="right" mat-raised-button matStepperNext>Next</button>
+			</div>
+		</form>
+	</mat-step>
+	<mat-step>
+		<ng-template matStepLabel>Validation</ng-template>
+		<p>Voulez-vous enregistrer?</p>
+		<div class="right">
+			<button mat-raised-button matStepperPrevious color="primary">Enregistrer</button>
+			{{""}}
+			<button mat-raised-button (click)="stepper.reset()" color="warn">Annuler</button>
+		</div>
+	</mat-step>
+</mat-stepper>
+<!--  -->
+<!-- 
 <mat-grid-list cols="10" [rowHeight]="rowHeight" class="dark">
 
 	<mat-divider></mat-divider>
 	<mat-grid-tile colspan="1"></mat-grid-tile>
-	<mat-grid-tile colspan="8">
+	<mat-grid-tile colspan="8"> -->
 
-		<!-- mettre le formulaire au centre -->
-		<div #divstep style="padding-top: 0%; width:100%; height: 95%;">
+<!-- mettre le formulaire au centre -->
+<!-- <div #divstep style="padding-top: 0%; width:100%; height: 95%;">
 			<form ngForm #assignmentForm (submit)="onSubmit($event);" class="form">
 				<mat-stepper class="dark-form" #stepper (animationDone)="move(index)">
 
@@ -28,15 +79,15 @@
 								<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
 							</mat-form-field>
 						</p>
-						<p>
-							<!-- <mat-form-field appearance="fill">
+						<p> -->
+<!-- <mat-form-field appearance="fill">
 								<mat-label>Auteur</mat-label>
 								<input matInput placeholder="Placeholder" [(ngModel)]="auteur" placeholder="auteur"
 									name="auteur" required>
 								<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
 							</mat-form-field> -->
 
-							<mat-form-field>
+<!-- <mat-form-field>
 								<mat-label>Eleve</mat-label>
 								<mat-select [(ngModel)]="auteur" name="eleve">
 									<mat-option *ngFor="let item of auteurList" [value]="item._id">
@@ -48,14 +99,14 @@
 
 						</p>
 
-						<p>
-							<!-- <mat-form-field appearance="fill">
+						<p> -->
+<!-- <mat-form-field appearance="fill">
 								<mat-label>Matiere</mat-label>
 								<input matInput placeholder="Placeholder" [(ngModel)]="matiere" placeholder="matiere"
 									name="matiere" required>
 								<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
 							</mat-form-field> -->
-							<mat-form-field>
+<!-- <mat-form-field>
 								<mat-label>Matiere</mat-label>
 								<mat-select [(ngModel)]="matiere" name="matiere" (selectionChange)="changeAuthor()">
 									<mat-option *ngFor="let item of matiereList" [value]="item._id">
@@ -246,4 +297,4 @@
 		</div>
 	</mat-grid-tile>
 	<mat-grid-tile colspan="1"></mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->

@@ -1,4 +1,4 @@
-.form {
+/* .form {
     display: flex;
     flex-direction: column;
     margin: 5px;
@@ -14,22 +14,23 @@ mat-form-field {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    /* position: absolute; */
-    /* display: flex; */
-    align-items: center;
+    bottom: 0; */
+/* position: absolute; */
+/* display: flex; */
+/* align-items: center;
     justify-content: center;
     height: auto;
     padding: 0;
     margin: 0;
 
-}
+} */
 
 
 .dark {
     /* background-color: rgb(52, 46, 46); */
 }
 
+/* 
 .dark-form {
     background-color: rgb(58, 54, 54);
     color: rgb(249, 233, 233);
@@ -80,4 +81,21 @@ mat-form-field {
 .photosUpload {
     display: block;
     margin: auto;
+} */
+
+/* =============== */
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.right {
+    float: right;
 }
