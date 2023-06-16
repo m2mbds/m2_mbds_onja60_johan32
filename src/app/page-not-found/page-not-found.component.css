@@ -1,0 +1,11 @@
+.button {
+    color: white;
+    background-color: rgb(52, 46, 46);
+}
+
+.page-not-found {
+    text-align: center;
+    margin-top: 15%;
+    height: 100%;
+    width: 100%;
+}

@@ -1,4 +1,4 @@
-<div class="container" *ngIf="assignment">
+<!-- <div class="container" *ngIf="assignment">
   <h1>Edition de l'assignment {{assignment.nom}}</h1>
   <form ngForm class="form" #formupdate (submit)="onSaveAssignment(); formupdate.reset(); ">
     <mat-form-field>
@@ -14,4 +14,80 @@
       Sauver
     </button>
   </form>
-</div>
+</div> -->
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <img mat-card-avatar src="assets/image/profil.png">
+    <mat-card-title>
+      Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+    </mat-card-title>
+    <!--  -->
+    <span class="example-spacer"></span>
+    <button routerLink="/home" mat-icon-button class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon">
+      <mat-icon color="primary">save</mat-icon>
+    </button>
+    <!--  -->
+  </mat-card-header>
+  <mat-card-content>
+    <!--  -->
+    <div class="item-desc">
+      <mat-form-field>
+        <mat-label>Deadline</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <!--  -->
+    <div class="item-desc">
+      <mat-form-field>
+        <mat-label>Titre</mat-label>
+        <input matInput value="Hello word!">
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="item-desc">
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" value="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe facilis optio, cupiditate esse non magnam
+        dignissimos nesciunt distinctio nisi sequi quas incidunt est officiis impedit voluptate minus totam eaque earum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam voluptatum corporis omnis praesentium dicta
+        similique impedit illum placeat! Aut harum nihil temporibus laboriosam quasi, deleniti amet quos incidunt hic
+        accusamus."></textarea>
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="item-desc">
+      <strong>PJ</strong>
+      <p>
+        =====================FILE=====================
+      </p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="item-desc">
+      <mat-form-field>
+        <mat-label>Note</mat-label>
+        <input matInput value="18 / 20">
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="item-desc">
+      <mat-form-field>
+        <mat-label>Remarque</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" value="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur illum quibusdam nisi explicabo quo
+        voluptatibus ab molestias repellat quis, vel nostrum praesentium assumenda perferendis cumque, nemo laboriosam?
+        Sunt, quo dolor!"></textarea>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <!-- <mat-card-actions id="bottom">
+    <button mat-button color="primary" (click)="onEditAssignment()">
+      Modifier
+    </button>
+    <button mat-button color="accent" (click)="onDeleteAssignment()">
+      Supprimer
+    </button>
+  </mat-card-actions> -->
+</mat-card>

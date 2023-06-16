@@ -143,3 +143,27 @@ table {
 .example-spacer {
   flex: 1 1 auto;
 }
+
+mat-list-item {
+  height: auto;
+}
+
+.button-detail {
+  width: 100%;
+  color: white;
+  background-color: rgb(52, 46, 46);
+}
+
+.example-card-item {
+  width: 95%;
+  height: 95%;
+}
+
+#content {
+  /* background-color: red; */
+  padding-top: 20px;
+}
+
+.grid-title {
+  padding-top: 24px;
+}

@@ -136,7 +136,134 @@
 </main> -->
 
 <!--  -->
+<h3>Liste de mes devoirs</h3>
+<mat-divider></mat-divider>
 <div id="content">
+    <!-- STUDENT -->
+    <!-- <cdk-virtual-scroll-viewport itemSize="6" class="example-viewport" #scroller>
+        <div class="grid-container">
+            <div class="grid-item">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>
+                            20/12/09
+                        </mat-card-title>
+                        <mat-card-subtitle>Matière Nom</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="" height="200px" alt="" />
+                    <mat-card-content>
+                        <p>
+                            Label test
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button routerLink="" mat-button>DETAILS</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </cdk-virtual-scroll-viewport> -->
+    <div class="container-for-student">
+        <mat-grid-list cols="3">
+            <mat-grid-tile class="grid-title">
+                <mat-card class="example-card-item">
+                    <mat-card-header>
+                        <img mat-card-avatar src="assets/image/profil.png">
+                        <mat-card-title>
+                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                        </mat-card-title>
+                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="" height="200px" alt="" />
+                    <mat-card-content>
+                        <p>Hello word !</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <!-- <span class="example-spacer"></span> -->
+                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile class="grid-title">
+                <mat-card class="example-card-item">
+                    <mat-card-header>
+                        <img mat-card-avatar src="assets/image/profil.png">
+                        <mat-card-title>
+                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                        </mat-card-title>
+                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="" height="200px" alt="" />
+                    <mat-card-content>
+                        <p>Hello word !</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <!-- <span class="example-spacer"></span> -->
+                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile class="grid-title">
+                <mat-card class="example-card-item">
+                    <mat-card-header>
+                        <img mat-card-avatar src="assets/image/profil.png">
+                        <mat-card-title>
+                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                        </mat-card-title>
+                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="" height="200px" alt="" />
+                    <mat-card-content>
+                        <p>Hello word !</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <!-- <span class="example-spacer"></span> -->
+                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile class="grid-title">
+                <mat-card class="example-card-item">
+                    <mat-card-header>
+                        <img mat-card-avatar src="assets/image/profil.png">
+                        <mat-card-title>
+                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                        </mat-card-title>
+                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="" height="200px" alt="" />
+                    <mat-card-content>
+                        <p>Hello word !</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <!-- <span class="example-spacer"></span> -->
+                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile class="grid-title">
+                <mat-card class="example-card-item">
+                    <mat-card-header>
+                        <img mat-card-avatar src="assets/image/profil.png">
+                        <mat-card-title>
+                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                        </mat-card-title>
+                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="" height="200px" alt="" />
+                    <mat-card-content>
+                        <p>Hello word !</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <!-- <span class="example-spacer"></span> -->
+                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <!-- STUDENT -->
     <div class="example-container">
         <h3>Devoir à rendre</h3>
 
@@ -155,7 +282,7 @@
                         <span class="example-spacer"></span>
                         <button routerLink="/assignments/1" mat-icon-button class="example-icon favorite-icon"
                             aria-label="Example icon-button with heart icon">
-                            <mat-icon class="icon-view">edit</mat-icon>
+                            <mat-icon class="icon-view">menu</mat-icon>
                         </button>
                         <!--  -->
                     </mat-card-header>
@@ -185,16 +312,13 @@
                         <span class="example-spacer"></span>
                         <button routerLink="/assignments/2" mat-icon-button class="example-icon favorite-icon"
                             aria-label="Example icon-button with heart icon">
-                            <mat-icon class="icon-view">edit</mat-icon>
+                            <mat-icon class="icon-view">menu</mat-icon>
                         </button>
                         <!--  -->
                     </mat-card-header>
                     <mat-card-content>
                         <p>
                             {{item}}
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste aliquam, assumenda impedit
-                            neque quis facere dignissimos vel delectus nostrum dolor? Dolorem perspiciatis esse ad omnis
-                            obcaecati sed saepe, sequi odit.
                         </p>
                     </mat-card-content>
                 </mat-card>
