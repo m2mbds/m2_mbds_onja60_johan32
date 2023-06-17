@@ -20,20 +20,18 @@ import { Prof } from "../profs/prof.model";
 
 
 export class Assignment {
-    _id!: String;
-    auteur!: String;
-    id!: number;
-    nom!: string;
-    profid!:string;
-    eleveid!:String;   
-    dateDeRendu!: Date;
-    rendu!: boolean;
-    matiereid?:string;
-    note?: number;
-    remarque!: String;
-    eleve!:Eleve;
-    matiere?:Matiere;
-    prof!:Prof;
+    id!: Number;
+    title!: String;
+    description!: String;
+    PJ!: String;
+    idSubject!: Number;
+    idAuthor!: Number;
+    note!: Number;
+    remark!: String;
+    isRender!: Boolean;
+    limitDate!: Date;
+    createdAt!: Date;
+    renderedAt!: Date;
 }
 
 

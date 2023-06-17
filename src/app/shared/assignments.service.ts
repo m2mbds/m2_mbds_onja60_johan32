@@ -16,10 +16,10 @@ export class AssignmentsService {
   // tableau de devoirs à rendre
   assignments: Assignment[] = []
   constructor(private loggingService: LoggingService,
-    private http: HttpClient, private matiere:MatieresService,private eleve:ElevesService) { }
+    private http: HttpClient, private matiere: MatieresService, private eleve: ElevesService) { }
 
-  // uri_api = 'http://localhost:8010/api/assignments';
-  uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/assignments';
+  uri_api = 'http://localhost:8010/api/assignments';
+  //uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/assignments';
 
   getAssignments(page: number, limit: number): Observable<any> {
     // normalement on doit envoyer une requête HTTP
@@ -38,23 +38,23 @@ export class AssignmentsService {
       .pipe(
         map(a => {
           if (a) {
-            
+
           }
           return a;
         }),
         tap(a => {
           if (a)
-            console.log("ICI DANS LE TAP " + a.nom)
+            console.log("ICI DANS LE TAP " + a.description)
         }),
         map(a => {
           if (a) {
-            a.nom += " TOTOTOTO";
+            a.description += " TOTOTOTO";
           }
           return a;
         }),
         catchError(this.handleError<Assignment>("Erreur dans le traitement de assignment avec id = " + id))
       )
-      return s;
+    return s;
 
     // Plus tard on utilisera un Web Service et une BD
     // return this.http.get<Assignment | undefined>(`${this.uri_api}/${id}`)
@@ -78,7 +78,7 @@ export class AssignmentsService {
     //     }),
     //     catchError(this.handleError<Assignment>("Erreur dans le traitement de assignment avec id = " + id))
     //   )
-      
+
 
     // On va chercher dans le tableau des assignments
     // l'assignment dont l'id est celui passé en paramètre
@@ -98,7 +98,7 @@ export class AssignmentsService {
   };
 
   addAssignment(assignment: Assignment): Observable<any> {
-    this.loggingService.log(assignment.nom, 'ajouté');
+    this.loggingService.log(assignment.description, 'ajouté');
 
     // plus tard on utilisera un web service pour l'ajout dans une vraie BD
     return this.http.post<Assignment>(this.uri_api, assignment);
@@ -123,7 +123,7 @@ export class AssignmentsService {
   }
 
   deleteAssignment(assignment: Assignment): Observable<any> {
-    return this.http.delete(this.uri_api + "/" + assignment._id)
+    return this.http.delete(this.uri_api + "/" + assignment.id)
     // pour supprimer on passe à la méthode splice
     // l'index de l'assignment à supprimer et 
     // le nombre d'éléments à supprimer (ici 1)
@@ -141,9 +141,9 @@ export class AssignmentsService {
     bdInitialAssignments.forEach(a => {
       const newAssignment = new Assignment();
       newAssignment.id = a.id;
-      newAssignment.nom = a.nom;
-      newAssignment.dateDeRendu = new Date(a.dateDeRendu);
-      newAssignment.rendu = a.rendu;
+      newAssignment.description = a.nom;
+      newAssignment.renderedAt = new Date(a.dateDeRendu);
+      newAssignment.isRender = a.rendu;
 
       this.addAssignment(newAssignment)
         .subscribe((reponse) => {
@@ -161,9 +161,9 @@ export class AssignmentsService {
     bdInitialAssignments.forEach(a => {
       const nouvelAssignment = new Assignment();
       nouvelAssignment.id = a.id;
-      nouvelAssignment.nom = a.nom;
-      nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
-      nouvelAssignment.rendu = a.rendu;
+      nouvelAssignment.description = a.nom;
+      nouvelAssignment.renderedAt = new Date(a.dateDeRendu);
+      nouvelAssignment.isRender = a.rendu;
 
       appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment))
     });

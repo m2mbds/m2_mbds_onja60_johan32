@@ -34,7 +34,7 @@ export class AssignmentDetailComponent implements OnInit {
   onDeleteAssignment() {
     if (!this.assignmentTransmis) return;
 
-    console.log("Suppression de l'assignment " + this.assignmentTransmis.nom);
+    console.log("Suppression de l'assignment " + this.assignmentTransmis.description);
 
     // on demande au service la suppression de l'assignment
     this.assignmentsService.deleteAssignment(this.assignmentTransmis)
@@ -52,7 +52,7 @@ export class AssignmentDetailComponent implements OnInit {
   onAssignmentRendu() {
     if (!this.assignmentTransmis) return;
 
-    this.assignmentTransmis.rendu = true;
+    this.assignmentTransmis.isRender = true;
 
     // on appelle le service pour faire l'update
     this.assignmentsService.updateAssignment(this.assignmentTransmis)
@@ -70,7 +70,7 @@ export class AssignmentDetailComponent implements OnInit {
     this.router.navigate(["/assignments", this.assignmentTransmis?.id, "edit"],
       {
         queryParams: {
-          nom: this.assignmentTransmis?.nom,
+          nom: this.assignmentTransmis?.description,
           matiere: "Angular"
         },
         fragment: "edition"

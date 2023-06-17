@@ -111,7 +111,7 @@ const routes: Routes = [
     PageNotFoundComponent,
     ElevesComponent,
     ProfsComponent,
-    MatieresComponent
+    MatieresComponent,
   ],
   imports: [
     BrowserModule,

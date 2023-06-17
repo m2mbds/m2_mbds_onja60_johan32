@@ -14,21 +14,85 @@ import { Matiere } from 'src/app/matieres/matiere.model';
 import { ElevesService } from 'src/app/shared/eleves.service';
 import { Eleve } from 'src/app/eleves/eleve.model';
 import { ProfsService } from 'src/app/shared/profs.service';
+import { Subject } from 'src/app/subjects/subjects.models';
+import { SubjectsService } from 'src/app/shared/subjects.service';
+import { User } from 'src/app/login/user.models';
 @Component({
   selector: 'app-add-assignment',
   templateUrl: './add-assignment.component.html',
   styleUrls: ['./add-assignment.component.css']
 })
-export class AddAssignmentComponent
-// implements OnInit 
-{
-  constructor(private _formBuilder: FormBuilder) { }
+export class AddAssignmentComponent implements OnInit {
+
+  constructor(private _formBuilder: FormBuilder,
+    private assignmentsService: AssignmentsService,
+    private subjectsService: SubjectsService) { }
+
+  //liste des Matières
+  subjects!: Subject[];
+  //dans le formulaire 
+  idSubject!: Number;
+  title!: String;
+  description!: String;
+  PJ!: String;
+  deadline!: Date;
+  CurrentUser!: User
+
+  //onInit
+  ngOnInit(): void {
+    this.subjectsService.getSubject().subscribe(subjects => {
+      if (subjects) this.subjects = subjects;
+    })
+    var sessionUser = sessionStorage.getItem("CurrentUser");
+
+    if (sessionUser) {
+      // console.log(sessionUser)
+      this.CurrentUser = JSON.parse(sessionUser) as User;
+      console.log(this.CurrentUser)
+    }
+  }
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
+    idSubject: ['', Validators.required],
+    deadline: ['', Validators.required]
+
   });
   secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
+    title: ['', Validators.required],
+    description: ['', Validators.required],
+    PJ: ['', Validators.required],
   });
+
+
+  //les methodes
+  createAssignment() {
+    let assignment = new Assignment();
+
+    assignment.idAuthor = this.CurrentUser.id;
+    if (
+      this.firstFormGroup.value.idSubject
+      && this.firstFormGroup.value.deadline
+      && this.secondFormGroup.value.description
+      && this.secondFormGroup.value.title
+    ) {
+      assignment.idSubject = +this.firstFormGroup.value.idSubject;
+      assignment.title = this.secondFormGroup.value.title;
+      assignment.description = this.secondFormGroup.value.description;
+      assignment.PJ = this.PJ;
+      assignment.createdAt = new Date();
+      assignment.isRender = false;
+      assignment.renderedAt = new Date(this.firstFormGroup.value.deadline);
+      console.log();
+      console.log(assignment);
+      //appel du service ajout assignment
+      this.assignmentsService.addAssignment(assignment).subscribe(message => {
+        console.log(message);
+      });
+    }
+
+  }
+
   // contentTitle = 'Ajout d\'un Assignment';
   // // champs du formulaire
   // nomDevoir = "";

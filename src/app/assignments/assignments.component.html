@@ -164,7 +164,7 @@
             </div>
         </div>
     </cdk-virtual-scroll-viewport> -->
-    <div class="container-for-student">
+    <div class="container-for-student" *ngIf="CurrentUser.isAdmin">
         <mat-grid-list cols="3">
             <mat-grid-tile class="grid-title">
                 <mat-card class="example-card-item">
@@ -264,64 +264,66 @@
         </mat-grid-list>
     </div>
     <!-- STUDENT -->
-    <div class="example-container">
-        <h3>Devoir à rendre</h3>
+    <div *ngIf="!CurrentUser.isAdmin">
+        <div class="example-container">
+            <h3>Devoir à rendre</h3>
 
-        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
-            class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of todo" cdkDrag>
-                <!--  -->
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <img mat-card-avatar src="assets/image/profil.png">
-                        <mat-card-title>
-                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                        </mat-card-title>
-                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                        <!--  -->
-                        <span class="example-spacer"></span>
-                        <button routerLink="/assignments/1" mat-icon-button class="example-icon favorite-icon"
-                            aria-label="Example icon-button with heart icon">
-                            <mat-icon class="icon-view">menu</mat-icon>
-                        </button>
-                        <!--  -->
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>{{item}}</p>
-                    </mat-card-content>
-                </mat-card>
-                <!--  -->
+            <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
+                class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of todo" cdkDrag>
+                    <!--  -->
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                            <img mat-card-avatar src="assets/image/profil.png">
+                            <mat-card-title>
+                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                            </mat-card-title>
+                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                            <!--  -->
+                            <span class="example-spacer"></span>
+                            <button routerLink="/assignments/1" mat-icon-button class="example-icon favorite-icon"
+                                aria-label="Example icon-button with heart icon">
+                                <mat-icon class="icon-view">menu</mat-icon>
+                            </button>
+                            <!--  -->
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>{{item}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                    <!--  -->
+                </div>
             </div>
         </div>
-    </div>
-    <!-- <span class="example-spacer"></span> -->
-    <div class="example-container">
-        <h3>Devoir déjà rendu</h3>
+        <!-- <span class="example-spacer"></span> -->
+        <div class="example-container">
+            <h3>Devoir déjà rendu</h3>
 
-        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
-            class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of done" cdkDrag>
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <img mat-card-avatar src="assets/image/profil.png">
-                        <mat-card-title>
-                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                        </mat-card-title>
-                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                        <!--  -->
-                        <span class="example-spacer"></span>
-                        <button routerLink="/assignments/2" mat-icon-button class="example-icon favorite-icon"
-                            aria-label="Example icon-button with heart icon">
-                            <mat-icon class="icon-view">menu</mat-icon>
-                        </button>
-                        <!--  -->
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>
-                            {{item}}
-                        </p>
-                    </mat-card-content>
-                </mat-card>
+            <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
+                class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of done" cdkDrag>
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                            <img mat-card-avatar src="assets/image/profil.png">
+                            <mat-card-title>
+                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                            </mat-card-title>
+                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                            <!--  -->
+                            <span class="example-spacer"></span>
+                            <button routerLink="/assignments/2" mat-icon-button class="example-icon favorite-icon"
+                                aria-label="Example icon-button with heart icon">
+                                <mat-icon class="icon-view">menu</mat-icon>
+                            </button>
+                            <!--  -->
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>
+                                {{item}}
+                            </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
             </div>
         </div>
     </div>

@@ -4,14 +4,29 @@
 	<mat-step [stepControl]="firstFormGroup">
 		<form [formGroup]="firstFormGroup">
 			<ng-template matStepLabel>Etape 1</ng-template>
-			<mat-form-field>
+			<!-- <mat-form-field>
 				<mat-label>Matière</mat-label>
 				<input matInput required>
-			</mat-form-field>
+			</mat-form-field> -->
 			<mat-form-field>
-				<mat-label>Deadline</mat-label>
-				<input matInput placeholder="Deadline" required>
+				<mat-label>Matière</mat-label>
+				<mat-select formControlName="idSubject" name="idSubject">
+					<mat-option *ngFor="let item of subjects" [value]="item.id">
+						{{item.designation}}
+					</mat-option>
+				</mat-select>
+
 			</mat-form-field>
+
+			<div class="item-desc">
+				<mat-form-field>
+					<mat-label>Deadline</mat-label>
+					<input matInput [matDatepicker]="picker" formControlName="deadline" name="deadline">
+					<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+			</div>
+
 			<div>
 				<button mat-raised-button matStepperNext>Next</button>
 			</div>
@@ -22,16 +37,25 @@
 			<ng-template matStepLabel>Etape 2</ng-template>
 			<mat-form-field>
 				<mat-label>Titre</mat-label>
-				<input matInput required>
+				<input matInput required formControlName="title" name="title">
 			</mat-form-field>
 			<mat-form-field>
 				<mat-label>Description</mat-label>
 				<textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
-					cdkAutosizeMinRows="5"></textarea>
+					cdkAutosizeMinRows="5" formControlName="description" name="description"></textarea>
 			</mat-form-field>
-			<mat-form-field>
+			<!-- <mat-form-field>
 				<mat-label>PJ</mat-label>
 				<input matInput>
+			</mat-form-field> -->
+			<mat-form-field>
+				<mat-label>PJ</mat-label>
+				<a mat-icon-button matPrefix (click)="f_inputprof.click()">
+					<mat-icon style="color: black;">attach_file</mat-icon>
+				</a>
+				<input type="text" readonly matInput />
+				<input type="file" hidden #f_inputprof />
+				<mat-error>this field is required</mat-error>
 			</mat-form-field>
 			<div>
 				<button mat-raised-button matStepperPrevious>Back</button>
@@ -43,7 +67,7 @@
 		<ng-template matStepLabel>Validation</ng-template>
 		<p>Voulez-vous enregistrer?</p>
 		<div class="right">
-			<button mat-raised-button matStepperPrevious color="primary">Enregistrer</button>
+			<button mat-raised-button matStepperPrevious color="primary" (click)="createAssignment()">Enregistrer</button>
 			{{""}}
 			<button mat-raised-button (click)="stepper.reset()" color="warn">Annuler</button>
 		</div>

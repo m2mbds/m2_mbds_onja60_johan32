@@ -11,7 +11,7 @@ import { Assignment } from '../assignment.model';
 export class EditAssignmentComponent implements OnInit {
   assignment!: Assignment | undefined;
   // associées aux champs du formulaire
-  nomAssignment!: string;
+  nomAssignment!: String;
   dateDeRendu!: Date;
 
   constructor(
@@ -43,16 +43,16 @@ export class EditAssignmentComponent implements OnInit {
         if (!assignment) return;
         this.assignment = assignment;
         // Pour pré-remplir le formulaire
-        this.nomAssignment = assignment.nom;
-        this.dateDeRendu = assignment.dateDeRendu;
+        this.nomAssignment = assignment.description;
+        this.dateDeRendu = assignment.renderedAt;
       });
   }
   onSaveAssignment() {
     if (!this.assignment) return;
 
     // on récupère les valeurs dans le formulaire
-    this.assignment.nom = this.nomAssignment;
-    this.assignment.dateDeRendu = this.dateDeRendu;
+    this.assignment.description = this.nomAssignment;
+    this.assignment.renderedAt = this.dateDeRendu;
     this.assignmentsService
       .updateAssignment(this.assignment)
       .subscribe((message) => {

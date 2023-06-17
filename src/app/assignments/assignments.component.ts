@@ -12,6 +12,7 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
+import { User } from '../login/user.models';
 // 
 
 @Component({
@@ -37,7 +38,7 @@ export class AssignmentsComponent implements OnInit {
   hasNextPage: boolean = false;
   nextPage: number = 0;
   linkImage = "https://drive.google.com/uc?export=view&id=";
-  ;
+  CurrentUser!: User
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
@@ -47,6 +48,14 @@ export class AssignmentsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
+    var sessionUser = sessionStorage.getItem("CurrentUser");
+    
+    if (sessionUser) {
+      // console.log(sessionUser)
+      this.CurrentUser = JSON.parse(sessionUser) as User;
+      console.log(this.CurrentUser)
+    }
+
     // exercice : regarder si il existe des query params
     // page et limit, récupérer leur valeurs si elles existent
     // et les passer à la méthode getAssignments
