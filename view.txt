@@ -1,0 +1,69 @@
+db.assignments.aggregate([
+  {
+    $lookup: {
+      from: "Subject",
+      localField: "idSubject",
+      foreignField: "id",
+      as: "SubjectData"
+    }
+  },
+  {
+    $unwind: "$SubjectData"
+  },
+  {
+    $lookup: {
+      from: "TeacherSubject",
+      localField: "SubjectData.id",
+      foreignField: "idSubject",
+      as: "TeacherSubjectData"
+    }
+  },
+  {
+    $unwind: "$TeacherSubjectData"
+  },
+  {
+    $lookup: {
+      from: "User",
+      localField: "TeacherSubjectData.idUser",
+      foreignField: "id",
+      as: "UserData"
+    }
+  }
+]);
+
+db.createView(
+  "assignmentsSubjectUserView",
+  "assignments",
+  [
+    {
+      $lookup: {
+        from: "Subject",
+        localField: "idSubject",
+        foreignField: "id",
+        as: "SubjectData"
+      }
+    },
+    {
+      $unwind: "$SubjectData"
+    },
+    {
+      $lookup: {
+        from: "TeacherSubject",
+        localField: "SubjectData.id",
+        foreignField: "idSubject",
+        as: "TeacherSubjectData"
+      }
+    },
+    {
+      $unwind: "$TeacherSubjectData"
+    },
+    {
+      $lookup: {
+        from: "User",
+        localField: "TeacherSubjectData.idUser",
+        foreignField: "id",
+        as: "UserData"
+      }
+    }
+  ]
+);
