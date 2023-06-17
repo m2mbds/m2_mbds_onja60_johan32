@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Assignment } from '../assignments/assignment.model';
 import { Observable, catchError, forkJoin, map, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
@@ -8,6 +8,8 @@ import { MatieresService } from './matieres.service';
 import { Matiere } from '../matieres/matiere.model';
 import { Eleve } from '../eleves/eleve.model';
 import { ElevesService } from './eleves.service';
+import { Subject } from '../subjects/subjects.models';
+import { SubjectsService } from './subjects.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,9 @@ export class AssignmentsService {
   // tableau de devoirs à rendre
   assignments: Assignment[] = []
   constructor(private loggingService: LoggingService,
-    private http: HttpClient, private matiere: MatieresService, private eleve: ElevesService) { }
+    private http: HttpClient,
+    private subjectService: SubjectsService,
+    private eleve: ElevesService) { }
 
   uri_api = 'http://localhost:8010/api/assignments';
   //uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/assignments';
@@ -26,7 +30,10 @@ export class AssignmentsService {
     // sur un web service, et ça peut prendre du temps
     // On a donc besoin "d'attendre que les données arrivent".
     // Angular utilise pour cela la notion d'Observable
-    return this.http.get<Assignment[]>(this.uri_api + "?page=" + page + "&limit=" + limit);
+    return this.http.get<Assignment[]>(this.uri_api + "?page=" + page + "&limit=" + limit)
+
+
+    // return this.http.get<Assignment[]>(this.uri_api + "?page=" + page + "&limit=" + limit)
 
     // of() permet de créer un Observable qui va
     // contenir les données du tableau assignments
@@ -38,6 +45,7 @@ export class AssignmentsService {
       .pipe(
         map(a => {
           if (a) {
+
 
           }
           return a;
@@ -170,6 +178,8 @@ export class AssignmentsService {
 
     return forkJoin(appelsVersAddAssignment);
   }
+
+
 
   public postFile(fileToUpload: FormData): Observable<any> {
     let upload = "https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/upload";

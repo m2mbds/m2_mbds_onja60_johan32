@@ -15,4 +15,9 @@ export class SubjectsService {
   getSubject(): Observable<any> {
     return this.http.get<Subject[]>(this.uri_api);
   }
+
+  getSubjectById(id:Number): Observable<any> {
+    return this.http.get<Subject>(`${this.uri_api}/${id}`);
+  }
+
 }

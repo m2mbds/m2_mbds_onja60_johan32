@@ -235,59 +235,59 @@ export class AddAssignmentComponent implements OnInit {
   //   //   formDataMatiere.append("thumbnail", this.uploadedMatiereFiles[i]);
   //   // }
 
-  //   // this.assignmentsService.postFile(formData).pipe(
-  //   //   switchMap((res: any) => {
-  //   //     console.log("upload");
-  //   //     console.log("voici")
-  //   //     if (res.datafile.length > 0) {
-  //   //       console.log(res.datafile[0])
-  //   //       this.idImageEleve = res.datafile[0].id;
-  //   //       this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id=" + this.idImageEleve;
-  //   //       this.nouvelAssignment.eleve.imageEleve = this.idImageEleve;
-  //   //     }
-  //   //     else {
-  //   //       //this.nouvelAssignment.eleve.imageEleve = undefined;
-  //   //     }
-  //   //     // return this.assignmentsService.addAssignment(this.nouvelAssignment)
-  //   //     return this.assignmentsService.postFile(formDataMatiere).pipe(
-  //   //       switchMap((res2: any) => {
-  //   //         if (res2.datafile.length > 0) {
-  //   //           console.log(res2.datafile[0])
-  //   //           this.idImageEleve = res2.datafile[0].id;
-  //   //           this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id=" + this.idImageEleve;
-  //   //           this.nouvelAssignment.matiere!.imageMatiere = this.idImageEleve;
-  //   //         }
-  //   //         else {
-  //   //           //this.nouvelAssignment.matiere!.imageMatiere = undefined;
-  //   //         }
-  //   //         return this.assignmentsService.postFile(formDataProf).pipe(
-  //   //           switchMap((res3: any) => {
-  //   //             if (res3.datafile.length > 0) {
-  //   //               this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id=" + this.idImageEleve;
-  //   //               this.nouvelAssignment.prof.imageProf = res3.datafile[0].id;
-  //   //             }
-  //   //             else {
-  //   //               //this.nouvelAssignment.prof.imageProf = undefined;
-  //   //             }
-  //   //             return this.assignmentsService.addAssignment(this.nouvelAssignment);
-  //   //           })
-  //   //         )
-  //   //       })
-  //   //     )
-  //   //   })        
-  //   // )
-  //   // .subscribe(message => {
-  //   //   console.log("ato ny message")
-  //   //   console.log(this.nouvelAssignment)
-  //   //   this.isImageExist = true;
-  //   //   dialogRef.close();
-  //   //   this.openSnackBar(message.message, "Ajout Assignment Fait")
-  //   //   this.router.navigate(["/home"]);
-  //   //   setTimeout(() => {
-  //   //     this._snackBar.dismiss()
-  //   //   }, 5000);
+    // this.assignmentsService.postFile(formData).pipe(
+    //   switchMap((res: any) => {
+    //     console.log("upload");
+    //     console.log("voici")
+    //     if (res.datafile.length > 0) {
+    //       console.log(res.datafile[0])
+    //       this.idImageEleve = res.datafile[0].id;
+    //       this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id=" + this.idImageEleve;
+    //       this.nouvelAssignment.eleve.imageEleve = this.idImageEleve;
+    //     }
+    //     else {
+    //       //this.nouvelAssignment.eleve.imageEleve = undefined;
+    //     }
+    //     // return this.assignmentsService.addAssignment(this.nouvelAssignment)
+    //     return this.assignmentsService.postFile(formDataMatiere).pipe(
+    //       switchMap((res2: any) => {
+    //         if (res2.datafile.length > 0) {
+    //           console.log(res2.datafile[0])
+    //           this.idImageEleve = res2.datafile[0].id;
+    //           this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id=" + this.idImageEleve;
+    //           this.nouvelAssignment.matiere!.imageMatiere = this.idImageEleve;
+    //         }
+    //         else {
+    //           //this.nouvelAssignment.matiere!.imageMatiere = undefined;
+    //         }
+    //         return this.assignmentsService.postFile(formDataProf).pipe(
+    //           switchMap((res3: any) => {
+    //             if (res3.datafile.length > 0) {
+    //               this.linkIdImageEleve = "https://drive.google.com/uc?export=view&id=" + this.idImageEleve;
+    //               this.nouvelAssignment.prof.imageProf = res3.datafile[0].id;
+    //             }
+    //             else {
+    //               //this.nouvelAssignment.prof.imageProf = undefined;
+    //             }
+    //             return this.assignmentsService.addAssignment(this.nouvelAssignment);
+    //           })
+    //         )
+    //       })
+    //     )
+    //   })        
+    // )
+    // .subscribe(message => {
+    //   console.log("ato ny message")
+    //   console.log(this.nouvelAssignment)
+    //   this.isImageExist = true;
+    //   dialogRef.close();
+    //   this.openSnackBar(message.message, "Ajout Assignment Fait")
+    //   this.router.navigate(["/home"]);
+    //   setTimeout(() => {
+    //     this._snackBar.dismiss()
+    //   }, 5000);
 
-  //   // })
+    // })
 
   //   this.assignmentsService.addAssignment(this.nouvelAssignment).subscribe(message => {
   //     console.log("ato ny message")

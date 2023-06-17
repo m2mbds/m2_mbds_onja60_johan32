@@ -1,8 +1,8 @@
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, Pipe, ViewChild } from '@angular/core';
 import { Assignment } from './assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { filter, map, pairwise, tap, throttleTime } from 'rxjs';
+import { filter, map, pairwise, switchMap, tap, throttleTime } from 'rxjs';
 
 // 
 import {
@@ -13,6 +13,8 @@ import {
   CdkDropList,
 } from '@angular/cdk/drag-drop';
 import { User } from '../login/user.models';
+import { SubjectsService } from '../shared/subjects.service';
+import { Subject } from '../subjects/subjects.models';
 // 
 
 @Component({
@@ -43,11 +45,13 @@ export class AssignmentsComponent implements OnInit {
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
   constructor(private assignmentsService: AssignmentsService,
+    private subjectService:SubjectsService,
     private ngZone: NgZone) {
   }
 
   ngOnInit(): void {
     console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
+    //enregistrer la session de l'user dans sessionStorage
     var sessionUser = sessionStorage.getItem("CurrentUser");
     
     if (sessionUser) {
@@ -103,11 +107,12 @@ export class AssignmentsComponent implements OnInit {
       });
   }
 
+
   getAssignments() {
     console.log("On va chercher les assignments dans le service");
 
     this.assignmentsService.getAssignments(this.page, this.limit)
-      .subscribe(data => {
+      .subscribe((data) => {
         this.assignments = data.docs;
         this.page = data.page;
         this.limit = data.limit;
@@ -117,8 +122,8 @@ export class AssignmentsComponent implements OnInit {
         this.prevPage = data.prevPage;
         this.hasNextPage = data.hasNextPage;
         this.nextPage = data.nextPage;
-
         console.log("Données reçues");
+        console.log(this.assignments);
       });
   }
 
@@ -187,4 +192,11 @@ export class AssignmentsComponent implements OnInit {
     }
   }
   // ==========================================================
+
+  //avoir la Matiere par assignment assignment
+
+                
+      
+   
+  
 }

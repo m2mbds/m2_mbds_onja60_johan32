@@ -15,8 +15,10 @@
 // }
 import { Observable } from "rxjs";
 import { Eleve } from "../eleves/eleve.model";
+import { User } from "../login/user.models";
 import { Matiere } from "../matieres/matiere.model";
 import { Prof } from "../profs/prof.model";
+import { Subject } from "../subjects/subjects.models";
 
 
 export class Assignment {
@@ -32,6 +34,9 @@ export class Assignment {
     limitDate!: Date;
     createdAt!: Date;
     renderedAt!: Date;
+    SubjectData!:Subject;
+    TeacherSubjectData!:any;
+    UserData!:User[];
 }
 
 
