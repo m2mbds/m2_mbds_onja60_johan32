@@ -1,5 +1,5 @@
 let Assignment = require('../model/assignment');
-
+let AssignmentsSubject = require('../model/subjectAssignment');
 // Récupérer tous les assignments (GET)
 function getAssignmentsSansPagination(req, res){
     Assignment.find((err, assignments) => {
@@ -23,6 +23,8 @@ function getAssignments(req, res) {
         if (err) {
           res.send(err);
         }
+        
+
         res.send(assignments);
       }
     );
@@ -71,6 +73,8 @@ function postAssignment(req, res){
     console.log("POST assignment reçu :");
     console.log(assignment)
 
+  
+
     assignment.save((err) => {
         if(err){
             res.status(500).send('cant post assignment ');
@@ -100,6 +104,41 @@ function updateAssignment(req, res) {
 
 }
 
+ async function joinAssignmentSubject(req, res) {
+    var aggregateQuery = AssignmentsSubject.aggregate();
+    
+    AssignmentsSubject.aggregatePaginate(aggregateQuery,
+      {
+        page: parseInt(req.query.page) || 1,
+        limit: parseInt(req.query.limit) || 10,
+      },
+      (err, assignments) => {
+        if (err) {
+          res.send(err);
+        }
+        
+
+        res.send(assignments);
+      }
+    );
+
+        
+
+
+       
+    }
+    
+   
+   
+// Récupérer un assignment par son id (GET)
+function getAssignment(req, res){
+    let assignmentId = req.params.id;
+
+    Assignment.findOne({id: assignmentId}, (err, assignment) =>{
+        if(err){res.send(err)}
+        res.json(assignment);
+    })
+}
 // suppression d'un assignment (DELETE)
 function deleteAssignment(req, res) {
 
@@ -113,4 +152,4 @@ function deleteAssignment(req, res) {
 
 
 
-module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment,getAssignmentByIdUser };
+module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment,getAssignmentByIdUser,joinAssignmentSubject };

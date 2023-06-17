@@ -31,8 +31,9 @@ function getSubjects(req, res) {
 function getSubject(req, res) {
   let subjectId = req.params.id;
 
-  Subject.findOne({ _id: subjectId }, (err, subject) => {
-    if (err) { res.send(err) }
+  Subject.findOne({ id: subjectId }, (err, subject) => {
+    if (err) { console.log(err);res.send(err) }
+    else
     res.json(subject);
   })
 }

@@ -57,7 +57,7 @@ let port = process.env.PORT || 8010;
 const prefix = '/api';
 
 app.route(prefix + '/assignments')
-  .get(assignment.getAssignments)
+  .get(assignment.joinAssignmentSubject)
   .post(assignment.postAssignment)
   .put(assignment.updateAssignment);
 
@@ -104,6 +104,10 @@ app.route(prefix + '/users/:id')
 
 app.route(prefix + '/usersAuthentification')
   .post(user.getAuthentificationUser)
+
+  app.route(prefix + '/assignmentssubject')
+  .get(assignment.joinAssignmentSubject)
+  
 
 
 app.route(prefix + '/teacherSubjects')
