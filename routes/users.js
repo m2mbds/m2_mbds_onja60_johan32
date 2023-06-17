@@ -32,8 +32,22 @@ function getUser(req, res) {
     let userId = req.params.id;
 
     User.findOne({ _id: userId }, (err, user) => {
-        if (err) { res.send(err) }
+        if (err) {
+            console.log(err)
+            res.send(err)            
+        }
         res.json(user);
+    })
+}
+
+function getAuthentificationUser(req, res) {
+    let userEmail = req.body.email;
+    let userPassword = req.body.password;
+    console.log(userEmail)
+    console.log(userPassword)
+    User.findOne({ email: userEmail, password: userPassword }, (err, userAuth) => {
+        if (err) { res.send(err) }
+        res.json(userAuth);
     })
 }
 
@@ -59,4 +73,4 @@ function postUser(req, res) {
     })
 }
 
-module.exports = { getUsersSansPagination, postUser, getUser, getUsers };
+module.exports = { getUsersSansPagination, postUser, getUser, getUsers,getAuthentificationUser };

@@ -102,6 +102,9 @@ app.route(prefix + '/users')
 app.route(prefix + '/users/:id')
   .get(user.getUser)
 
+app.route(prefix + '/usersAuthentification')
+  .post(user.getAuthentificationUser)
+
 
 app.route(prefix + '/teacherSubjects')
   .get(teacherSubject.getTeacherSubjectsSansPagination)
