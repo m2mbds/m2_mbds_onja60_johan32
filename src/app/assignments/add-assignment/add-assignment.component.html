@@ -48,13 +48,15 @@
 				<mat-label>PJ</mat-label>
 				<input matInput>
 			</mat-form-field> -->
+			
 			<mat-form-field>
 				<mat-label>PJ</mat-label>
-				<a mat-icon-button matPrefix (click)="f_inputprof.click()">
+				<a mat-icon-button matPrefix (click)="f_input.click()">
 					<mat-icon style="color: black;">attach_file</mat-icon>
 				</a>
-				<input type="text" readonly matInput />
-				<input type="file" hidden #f_inputprof />
+				<input type="text" readonly matInput [formControl]="display"/>
+				<input type="file" hidden #f_input
+				(change)="InputFileChange(f_input.files)" />
 				<mat-error>this field is required</mat-error>
 			</mat-form-field>
 			<div>

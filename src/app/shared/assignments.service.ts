@@ -114,7 +114,7 @@ export class AssignmentsService {
     //this.assignments.push(assignment);
     // on retourne un message de succès à travers
     // un Observable
-    //return of(`Assignment ${assignment.nom} ajouté avec succès`);
+    // return of(`Assignment ${assignment.remark} ajouté avec succès`);
   }
 
   updateAssignment(assignment: Assignment): Observable<any> {
