@@ -2,9 +2,6 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
-// let eleve = require('./routes/eleves');
-// let matiere = require('./routes/matieres');
-// let prof = require('./routes/profs');
 let subject = require('./routes/subject');
 let user = require('./routes/users');
 let teacherSubject = require('./routes/teacherSubjects');
@@ -65,28 +62,6 @@ app.route(prefix + '/assignments/:id')
   .get(assignment.getAssignmentwithJoin)
   .delete(assignment.deleteAssignment);
 
-
-
-// app.route(prefix + '/eleves')
-//   .get(eleve.getElevesSansPagination)
-//   .post(eleve.postEleve)
-
-// app.route(prefix + '/eleves/:id')
-//   .get(eleve.getEleve)
-
-// app.route(prefix + '/matieres')
-//   .get(matiere.getMatieresSansPagination)
-//   .post(matiere.postMatiere)
-
-// app.route(prefix + '/matieres/:id')
-//   .get(matiere.getMatiere)
-
-// app.route(prefix + '/profs')
-//   .get(prof.getProfs)
-//   .post(prof.postProf)
-
-// app.route(prefix + '/profs/:id')
-//   .get(prof.getProf)
 
 app.route(prefix + '/subjects')
   .get(subject.getSubjectsSansPagination)

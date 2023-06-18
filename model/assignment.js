@@ -37,7 +37,7 @@ let AssignmentSchema = Schema({
     idAuthor: Number,
     note: Number,
     remark: String,
-    isRender: String,
+    isRender: Boolean,
     limitDate: Date,
     createdAt: Date,
     renderedAt: Date,
