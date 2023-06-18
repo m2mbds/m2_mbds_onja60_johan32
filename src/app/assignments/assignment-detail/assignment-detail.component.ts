@@ -39,7 +39,7 @@ export class AssignmentDetailComponent implements OnInit {
 
   onDeleteAssignment() {
     if (!this.assignmentTransmis) return;
-    var dialogRef = this.dialog.open(LoadingBarComponent, { data: " delete.gif" });
+    var dialogRef = this.dialog.open(LoadingBarComponent, { data: "delete.gif" });
     //pour eviter de skipper le chargement
     dialogRef.disableClose = true;
     console.log("Suppression de l'assignment " + this.assignmentTransmis.description);
