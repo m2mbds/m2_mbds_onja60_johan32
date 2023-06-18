@@ -58,7 +58,7 @@ export class EditAssignmentComponent implements OnInit {
     if (!this.assignment) return;
     console.log("save edit");
     // on récupère les valeurs dans le formulaire
-    this.assignment.description = this.nomAssignment;
+    this.assignment.description = this.description;
     this.assignment.renderedAt = this.renderAt;
     this.assignment.title = this.title;
     this.assignment.note = this.note;
