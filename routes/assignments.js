@@ -44,7 +44,7 @@ function getAssignment(req, res){
 function getAssignmentByIdUser(req, res){
     let userId = req.params.idUser;
 
-    Assignment.findOne({idAuthor: userId}, (err, assignment) =>{
+    AssignmentsSubject.findOne({idAuthor: userId}, (err, assignment) =>{
         if(err){res.send(err)}
         res.json(assignment);
     })
@@ -134,11 +134,24 @@ function updateAssignment(req, res) {
 function getAssignment(req, res){
     let assignmentId = req.params.id;
 
-    Assignment.findOne({id: assignmentId}, (err, assignment) =>{
+    Assignment.findOne({_id: assignmentId}, (err, assignment) =>{
         if(err){res.send(err)}
+        else
         res.json(assignment);
     })
 }
+
+
+function getAssignmentwithJoin(req, res){
+  let assignmentId = req.params.id;
+
+  AssignmentsSubject.findOne({_id: assignmentId}, (err, assignment) =>{
+      if(err){res.send(err)}
+      else
+      res.json(assignment);
+  })
+}
+
 // suppression d'un assignment (DELETE)
 function deleteAssignment(req, res) {
 
@@ -152,4 +165,4 @@ function deleteAssignment(req, res) {
 
 
 
-module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment,getAssignmentByIdUser,joinAssignmentSubject };
+module.exports = { getAssignments, postAssignment, getAssignment, updateAssignment, deleteAssignment,getAssignmentByIdUser,joinAssignmentSubject,getAssignmentwithJoin };

@@ -62,7 +62,7 @@ app.route(prefix + '/assignments')
   .put(assignment.updateAssignment);
 
 app.route(prefix + '/assignments/:id')
-  .get(assignment.getAssignment)
+  .get(assignment.getAssignmentwithJoin)
   .delete(assignment.deleteAssignment);
 
 

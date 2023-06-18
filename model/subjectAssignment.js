@@ -17,9 +17,9 @@ let assignmentsSubjectSchema = Schema({
     limitDate: Date,
     createdAt: Date,
     renderedAt: Date,
-    SubjectData:Array,
-    TeacherSubjectData:Array,
-    UserData:Array,
+    SubjectData:Object,
+    TeacherSubjectData:Object,
+    UserData:Object,
 
 }, { collection: 'assignmentsSubjectUserView' });
 
