@@ -3,10 +3,10 @@
         <a routerLink="/home"><span>{{title}}</span></a>
     </nav>
     <span class="example-spacer"></span>
-    <a *ngIf="!isLogged()" routerLink="/login">
+    <a *ngIf="!isLogged" routerLink="/login">
         <button mat-raised-button>Se connecter</button>
     </a>
-    <button *ngIf="isLogged()" mat-raised-button (click)="logout()">Se déconnecter</button>
+    <button *ngIf="isLogged" mat-raised-button (click)="logout()">Se déconnecter</button>
 
 </mat-toolbar>
 
@@ -15,10 +15,10 @@
         <img class="avatar mat-elevation-z8" src="assets/image/profil.png" />
 
         <h4 class="name">
-            <span *ngIf="isLogged()">{{CurrentUser.lastname + ' ' + CurrentUser.firstname}}</span>
+            <span *ngIf="isLogged">{{nom}}</span>
         </h4>
-        <p class="designation" *ngIf="CurrentUser && CurrentUser.role == 'teacher'">Enseignant(e)</p>
-        <p class="designation" *ngIf="CurrentUser && CurrentUser.role == 'student'">Etudiant(e)</p>
+        <p class="designation" *ngIf="isLogged && CurrentUser.role == 'teacher'">Enseignant(e)</p>
+        <p class="designation" *ngIf="isLogged && CurrentUser.role == 'student'">Etudiant(e)</p>
 
         <mat-divider></mat-divider>
         <button mat-button class="menu-button" routerLink="/home">
@@ -39,13 +39,9 @@
         </button>
     </mat-sidenav>
     <mat-sidenav-content>
-        <!-- <div class="content mat-elevation-z4"> -->
         <div class="content">
-            <!-- Main content -->
             <!-- Indique que le composant affiché sera celui correspondant à l'URL courant -->
             <router-outlet class="darkmode"></router-outlet>
-            <!-- Main content -->
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
-<!-- <router-outlet class="darkmode"></router-outlet> -->

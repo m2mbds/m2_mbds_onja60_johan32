@@ -40,12 +40,13 @@ export class AssignmentsComponent implements OnInit {
   hasNextPage: boolean = false;
   nextPage: number = 0;
   linkImage = "https://drive.google.com/uc?export=view&id=";
-  CurrentUser!: User
+  CurrentUser!: User;
+  isLogged = false;
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
   constructor(private assignmentsService: AssignmentsService,
-    private subjectService:SubjectsService,
+    private subjectService: SubjectsService,
     private ngZone: NgZone) {
   }
 
@@ -53,9 +54,9 @@ export class AssignmentsComponent implements OnInit {
     console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
     //enregistrer la session de l'user dans sessionStorage
     var sessionUser = sessionStorage.getItem("CurrentUser");
-    
+
     if (sessionUser) {
-      // console.log(sessionUser)
+      this.isLogged = true;
       this.CurrentUser = JSON.parse(sessionUser) as User;
       console.log(this.CurrentUser)
     }
@@ -195,8 +196,8 @@ export class AssignmentsComponent implements OnInit {
 
   //avoir la Matiere par assignment assignment
 
-                
-      
-   
-  
+
+
+
+
 }

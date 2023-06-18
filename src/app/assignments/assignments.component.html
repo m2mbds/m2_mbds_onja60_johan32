@@ -1,95 +1,3 @@
-<!-- <h2>{{contentTitle}}</h2>
-
-<main class="container">
-    <nav class="ajouterBtn">
-        <a routerLink="/add">
-            <button mat-flat-button color="accent"> Ajouter Assignment
-            </button>
-        </a>
-    </nav> -->
-
-<!-- 
-
-    <mat-divider></mat-divider>
-    <p>
-        Nb assignments total {{totalDocs}}, par page {{limit}}, nbPages {{totalPages}}
-    </p>
-    <p>
-        Régler nb par page :
-        <input type="range" min=1 max=100 value=10 [(ngModel)]="limit" (change)="getAssignments()" /> {{limit}}
-    </p> -->
-<!-- <p>
-        <button (click)="premierePage()" [disabled]="!hasPrevPage">
-            Première page
-        </button>
-        <button (click)="pagePrecedente()" [disabled]="!hasPrevPage">
-            Page Précédente
-        </button>
-        <button (click)="pageSuivante()" [disabled]="!hasNextPage">Page Suivante</button>
-        <button (click)="dernierePage()" [disabled]="!hasNextPage">
-            Derniere page
-        </button>
-    </p>
-    <h1>Affichage avec data table</h1>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Selection de la page des assigments"
-        (page)="handlePage($event)" class="demo-paginator" [length]="totalPages" [pageSize]="limit" [pageIndex]="page">
-    </mat-paginator>
-    <table mat-table [dataSource]="assignments" class="mat-elevation-z8 demo-table"> -->
-<!-- id Column -->
-<!-- <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container> -->
-
-<!-- nom Column -->
-<!-- <ng-container matColumnDef="nom">
-            <th mat-header-cell *matHeaderCellDef> Nom </th>
-            <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
-        </ng-container> -->
-
-<!-- dateDeRendu Column -->
-<!-- <ng-container matColumnDef="dateDeRendu">
-            <th mat-header-cell *matHeaderCellDef> Date de rendu </th>
-            <td mat-cell *matCellDef="let element"> {{element.dateDeRendu}} </td>
-        </ng-container> -->
-
-<!-- rendu Column -->
-<!-- <ng-container matColumnDef="rendu">
-            <th mat-header-cell *matHeaderCellDef> Rendu </th>
-            <td mat-cell *matCellDef="let element"> {{element.rendu}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Selection de la page des assigments"
-        (page)="handlePage($event)" class="demo-paginator" [length]="totalPages" [pageSize]="limit" [pageIndex]="page">
-    </mat-paginator> -->
-
-
-<!-- <h1>Affichage avec mat-list / mat-list-item</h1>
-    <mat-list *ngFor="let a of assignments">
-        <a routerLink="/assignments/{{a.id}}">
-            <h3 mat-subheader>Date limite: {{a.dateDeRendu | date: 'dd/MM/yy'}}</h3>
-            <mat-list-item>
-
-                <p appRendu *ngIf="a.rendu; else nonsoumis">
-                    {{a.nom}} id = {{a._id}}
-                </p>
-
-
-                <ng-template #nonsoumis>
-                    {{a.nom}} NON RENDU id = {{a._id}}
-                </ng-template>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <p> -->
-<!-- <img [src]="linkImage+a.imageEleve" width="300px"/> -->
-<!-- </p>
-        </a>
-    </mat-list> -->
-
-
 <!-- <h1>Exemple de scrolling virtuel infini</h1> -->
 <!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller>
     <mat-list *cdkVirtualFor="let a of assignments">
@@ -107,7 +15,6 @@
         </a>
     </mat-list>
 </cdk-virtual-scroll-viewport> -->
-
 
 <!-- <cdk-virtual-scroll-viewport itemSize="6" class="example-viewport" #scroller>
         <div class="grid-container">
@@ -135,7 +42,6 @@
     </cdk-virtual-scroll-viewport>
 </main> -->
 
-<!--  -->
 <h3>Liste de mes devoirs</h3>
 <mat-divider></mat-divider>
 <div id="content">
@@ -164,117 +70,39 @@
             </div>
         </div>
     </cdk-virtual-scroll-viewport> -->
-    <div class="container-for-student" *ngIf="CurrentUser.isAdmin">
+    <div class="container-for-student" *ngIf="isLogged && CurrentUser.isAdmin">
         <!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller> -->
-            <mat-grid-list cols="3">
-                <mat-grid-tile class="grid-title" *ngFor="let assignment of assignments">
-                    <mat-card class="example-card-item">
-                        <mat-card-header>
-                            <img mat-card-avatar src="assets/image/profil.png">
-                            <mat-card-title>
-                                Matière {{assignment.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
-                            </mat-card-title>
-                            <mat-card-subtitle>A rendre le {{assignment.renderedAt|date}}</mat-card-subtitle>
-                        </mat-card-header>
-                        <img *ngFor="let user of assignment.UserData" mat-card-image [src]="linkImage+user.picture" height="200px" alt="{{user.lastname}}" />               
-                        <mat-card-content>
-                            <p>{{assignment.description}}</p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <!-- <span class="example-spacer"></span> -->
-                            <button class="button-detail" routerLink="/assignments/{{assignment._id}}" mat-stroked-button>DETAIL {{assignment.id}}</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </mat-grid-tile>
-                <!-- <mat-grid-tile class="grid-title">
-                    <mat-card class="example-card-item">
-                        <mat-card-header>
-                            <img mat-card-avatar src="assets/image/profil.png">
-                            <mat-card-title>
-                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                            </mat-card-title>
-                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                        </mat-card-header>
-                        <img mat-card-image [src]="" height="200px" alt="" />
-                        <mat-card-content>
-                            <p>Hello word !</p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                             <span class="example-spacer"></span> 
-                            <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </mat-grid-tile> -->
-                <!-- <mat-grid-tile class="grid-title">
-                    <mat-card class="example-card-item">
-                        <mat-card-header>
-                            <img mat-card-avatar src="assets/image/profil.png">
-                            <mat-card-title>
-                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                            </mat-card-title>
-                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                        </mat-card-header>
-                        <img mat-card-image [src]="" height="200px" alt="" />
-                        <mat-card-content>
-                            <p>Hello word !</p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <span class="example-spacer"></span>
-                            <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </mat-grid-tile> -->
-                <!-- <mat-grid-tile class="grid-title">
-                    <mat-card class="example-card-item">
-                        <mat-card-header>
-                            <img mat-card-avatar src="assets/image/profil.png">
-                            <mat-card-title>
-                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                            </mat-card-title>
-                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                        </mat-card-header>
-                        <img mat-card-image [src]="" height="200px" alt="" />
-                        <mat-card-content>
-                            <p>Hello word !</p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <span class="example-spacer"></span>
-                            <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </mat-grid-tile> -->
-                <!-- <mat-grid-tile class="grid-title">
-                    <mat-card class="example-card-item">
-                        <mat-card-header>
-                            <img mat-card-avatar src="assets/image/profil.png">
-                            <mat-card-title>
-                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                            </mat-card-title>
-                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                        </mat-card-header>
-                        <img mat-card-image [src]="" height="200px" alt="" />
-                        <mat-card-content>
-                            <p>Hello word !</p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <span class="example-spacer"></span>
-                            <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </mat-grid-tile> -->
-            </mat-grid-list>
+        <mat-grid-list cols="3">
+            <mat-grid-tile class="grid-title" *ngFor="let assignment of assignments">
+                <mat-card class="example-card-item">
+                    <mat-card-header>
+                        <img mat-card-avatar src="assets/image/profil.png">
+                        <mat-card-title>
+                            Matière {{assignment.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
+                        </mat-card-title>
+                        <mat-card-subtitle>A rendre le {{assignment.renderedAt|date}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img *ngFor="let user of assignment.UserData" mat-card-image [src]="linkImage+user.picture"
+                        height="200px" alt="{{user.lastname}}" />
+                    <mat-card-content>
+                        <p>{{assignment.description}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button class="button-detail" routerLink="/assignments/{{assignment._id}}"
+                            mat-stroked-button>DETAIL {{assignment.id}}</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
         <!-- </cdk-virtual-scroll-viewport> -->
-        
     </div>
     <!-- STUDENT -->
-    <div *ngIf="!CurrentUser.isAdmin">
+    <div *ngIf="isLogged && !CurrentUser.isAdmin">
         <div class="example-container">
             <h3>Devoir à rendre</h3>
-
             <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
                 class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let item of todo" cdkDrag>
-                    <!--  -->
                     <mat-card class="example-card">
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">
@@ -282,26 +110,21 @@
                                 Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
                             </mat-card-title>
                             <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                            <!--  -->
                             <span class="example-spacer"></span>
                             <button routerLink="/assignments/1" mat-icon-button class="example-icon favorite-icon"
                                 aria-label="Example icon-button with heart icon">
                                 <mat-icon class="icon-view">menu</mat-icon>
                             </button>
-                            <!--  -->
                         </mat-card-header>
                         <mat-card-content>
                             <p>{{item}}</p>
                         </mat-card-content>
                     </mat-card>
-                    <!--  -->
                 </div>
             </div>
         </div>
-        <!-- <span class="example-spacer"></span> -->
         <div class="example-container">
             <h3>Devoir déjà rendu</h3>
-
             <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
                 class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let item of done" cdkDrag>
@@ -312,13 +135,11 @@
                                 Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
                             </mat-card-title>
                             <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                            <!--  -->
                             <span class="example-spacer"></span>
                             <button routerLink="/assignments/2" mat-icon-button class="example-icon favorite-icon"
                                 aria-label="Example icon-button with heart icon">
                                 <mat-icon class="icon-view">menu</mat-icon>
                             </button>
-                            <!--  -->
                         </mat-card-header>
                         <mat-card-content>
                             <p>
