@@ -107,17 +107,17 @@
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">
                             <mat-card-title>
-                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                                Matière {{item.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
                             </mat-card-title>
-                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                            <mat-card-subtitle>A rendre le {{item.renderedAt|date}}</mat-card-subtitle>
                             <span class="example-spacer"></span>
-                            <button routerLink="/assignments/1" mat-icon-button class="example-icon favorite-icon"
+                            <button routerLink="/assignments/{{item._id}}" mat-icon-button class="example-icon favorite-icon"
                                 aria-label="Example icon-button with heart icon">
                                 <mat-icon class="icon-view">menu</mat-icon>
                             </button>
                         </mat-card-header>
                         <mat-card-content>
-                            <p>{{item}}</p>
+                            <p>{{item.title}}</p>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -132,18 +132,18 @@
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">
                             <mat-card-title>
-                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                               Matière {{item.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
                             </mat-card-title>
-                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                            <mat-card-subtitle>A rendre le {{item.renderedAt|date}}</mat-card-subtitle>
                             <span class="example-spacer"></span>
-                            <button routerLink="/assignments/2" mat-icon-button class="example-icon favorite-icon"
+                            <button routerLink="/assignments/{{item._id}}" mat-icon-button class="example-icon favorite-icon"
                                 aria-label="Example icon-button with heart icon">
                                 <mat-icon class="icon-view">menu</mat-icon>
                             </button>
                         </mat-card-header>
                         <mat-card-content>
                             <p>
-                                {{item}}
+                                {{item.title}}
                             </p>
                         </mat-card-content>
                     </mat-card>

@@ -3,6 +3,9 @@ import { Assignment } from '../assignment.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoadingBarComponent } from 'src/app/loading-bar/loading-bar.component';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -15,7 +18,9 @@ export class AssignmentDetailComponent implements OnInit {
   constructor(private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     // appelée avant le rendu du composant
@@ -34,8 +39,11 @@ export class AssignmentDetailComponent implements OnInit {
 
   onDeleteAssignment() {
     if (!this.assignmentTransmis) return;
-
+    var dialogRef = this.dialog.open(LoadingBarComponent, { data: " delete.gif" });
+    //pour eviter de skipper le chargement
+    dialogRef.disableClose = true;
     console.log("Suppression de l'assignment " + this.assignmentTransmis.description);
+
 
     // on demande au service la suppression de l'assignment
     this.assignmentsService.deleteAssignment(this.assignmentTransmis)
@@ -43,9 +51,14 @@ export class AssignmentDetailComponent implements OnInit {
         console.log(message);
         // Pour cacher le detail, on met l'assignment à null
         this.assignmentTransmis = undefined;
-
-        // et on navigue vers la page d'accueil
+        this.openSnackBar(message.message, "Suppression Assignment Fait")
+        dialogRef.close();
+        // navigation vers la home page
         this.router.navigate(["/home"]);
+
+        setTimeout(() => {
+          this._snackBar.dismiss()
+        }, 5000);
       });
 
   }
@@ -81,5 +94,10 @@ export class AssignmentDetailComponent implements OnInit {
   isLogged() {
     // renvoie si on est loggé ou pas
     return this.authService.loggedIn;
+  }
+
+  openSnackBar(message: string, action: string) {
+    console.log(message)
+    this._snackBar.open(message, action);
   }
 }

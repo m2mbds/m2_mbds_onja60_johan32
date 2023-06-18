@@ -68,6 +68,7 @@ export class AssignmentsComponent implements OnInit {
     // TODO
 
     this.getAssignments();
+    
   }
 
   ngAfterViewInit() {
@@ -128,6 +129,12 @@ export class AssignmentsComponent implements OnInit {
         this.nextPage = data.nextPage;
         console.log("Données reçues");
         console.log(this.assignments);
+        // this.todo = data.docs;
+    
+        this.todo = this.assignments.filter(x=>x.isRender==true)
+        this.done = this.assignments.filter(x=>x.isRender==false)
+        console.log(this.todo)
+        console.log(this.done)
       });
   }
 
@@ -179,11 +186,11 @@ export class AssignmentsComponent implements OnInit {
     this.getAssignments();
   }
   // ==========================================================
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+   todo:Assignment[] = [] //this.assignments.filter(x=>!x.isRender) as Array<Assignment>;//['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  
+   done:Assignment[] = [] //this.assignments.filter(x=>x.isRender)as Array<Assignment>;//['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Assignment[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

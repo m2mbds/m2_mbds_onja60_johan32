@@ -131,7 +131,7 @@ export class AssignmentsService {
   }
 
   deleteAssignment(assignment: Assignment): Observable<any> {
-    return this.http.delete(this.uri_api + "/" + assignment.id)
+    return this.http.delete(this.uri_api + "/" + assignment._id)
     // pour supprimer on passe à la méthode splice
     // l'index de l'assignment à supprimer et 
     // le nombre d'éléments à supprimer (ici 1)

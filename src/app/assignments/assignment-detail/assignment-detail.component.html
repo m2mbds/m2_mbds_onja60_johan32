@@ -97,15 +97,19 @@
   <mat-card-header>
     <img *ngFor="let user of assignmentTransmis!.UserData" mat-card-avatar [src]="linkImage+user.picture">
     <mat-card-title>
-      Matière {{assignmentTransmis!.SubjectData!.designation}} <mat-slide-toggle checked></mat-slide-toggle>
+      Matière {{assignmentTransmis!.SubjectData!.designation}} <mat-slide-toggle
+        checked="{{assignmentTransmis!.isRender}}" (click)="onAssignmentRendu()"
+        *ngIf="assignmentTransmis!.note"></mat-slide-toggle>
     </mat-card-title>
     <mat-card-subtitle>A rendre le {{assignmentTransmis!.renderedAt | date}}</mat-card-subtitle>
     <!--  -->
     <span class="example-spacer"></span>
-    <button routerLink="/assignments/edit/{{assignmentTransmis!._id}}" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button routerLink="/assignments/edit/{{assignmentTransmis!._id}}" mat-icon-button
+      class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon color="primary">edit</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" routerLink="/assignments/{{assignmentTransmis!._id}}" aria-label="Example icon-button with share icon">
+    <button mat-icon-button class="example-icon" (click)="onDeleteAssignment()"
+      aria-label="Example icon-button with share icon">
       <mat-icon color="warn">delete</mat-icon>
     </button>
     <!--  -->
@@ -127,11 +131,11 @@
     <mat-divider></mat-divider>
     <div class="item-desc">
       <strong>PJ</strong>
-      
+
       <p>
         <a target="_blank" [href]="linkImage+assignmentTransmis!.PJ">telecharger Le fichier</a>
         <!-- =====================FILE===================== -->
-        
+
       </p>
     </div>
     <mat-divider></mat-divider>
