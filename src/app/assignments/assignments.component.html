@@ -71,9 +71,9 @@
         </div>
     </cdk-virtual-scroll-viewport> -->
     <div class="container-for-student" *ngIf="isLogged && CurrentUser.isAdmin">
-        <!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller> -->
+        <cdk-virtual-scroll-viewport itemSize="1" class="example-viewport" #scroller>
         <mat-grid-list cols="3">
-            <mat-grid-tile class="grid-title" *ngFor="let assignment of assignments">
+            <mat-grid-tile class="grid-title" *cdkVirtualFor="let assignment of assignments">
                 <mat-card class="example-card-item">
                     <mat-card-header>
                         <img mat-card-avatar src="assets/image/profil.png">
@@ -94,7 +94,7 @@
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>
-        <!-- </cdk-virtual-scroll-viewport> -->
+        </cdk-virtual-scroll-viewport>
     </div>
     <!-- STUDENT -->
     <div *ngIf="isLogged && !CurrentUser.isAdmin">

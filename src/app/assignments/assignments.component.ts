@@ -32,7 +32,7 @@ export class AssignmentsComponent implements OnInit {
 
   // propriétés pour la pagination
   page: number = 1;
-  limit: number = 10;
+  limit: number = 3;
   totalDocs: number = 0;
   totalPages: number = 0;
   hasPrevPage: boolean = false;
@@ -42,6 +42,7 @@ export class AssignmentsComponent implements OnInit {
   linkImage = "https://drive.google.com/uc?export=view&id=";
   CurrentUser!: User;
   isLogged = false;
+  i:number=0;
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
@@ -98,7 +99,9 @@ export class AssignmentsComponent implements OnInit {
       )
       .subscribe((val) => {
         console.log("val = " + val);
+        if(this.i>0)return;
         console.log("je CHARGE DE NOUVELLES DONNEES page = " + this.page);
+        this.i = this.i+1;
         this.ngZone.run(() => {
           if (!this.hasNextPage) return;
 
@@ -143,7 +146,7 @@ export class AssignmentsComponent implements OnInit {
         this.prevPage = data.prevPage;
         this.hasNextPage = data.hasNextPage;
         this.nextPage = data.nextPage;
-
+        this.i = 0;
         console.log("Données ajoutées pour scrolling");
       });
   }

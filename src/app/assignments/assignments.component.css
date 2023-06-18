@@ -70,7 +70,11 @@
   color: white;
   text-align: center;
 } */
-
+.example-viewport {
+  height: 400px;
+  width: auto;
+  /* border: 1px solid black; */
+}
 
 .example-container {
   width: 50%;
