@@ -6,32 +6,15 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <!-- <form class="example-form">
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td><mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-            </mat-form-field></td>
-        </tr>
-      </table>
-    </form> -->
-    <!--  -->
     <form class="example-form">
       <mat-form-field class="example-full-width">
         <mat-label>Entrer votre Email</mat-label>
         <input type="email" matInput placeholder="Ex : sonja@gmail.com" [(ngModel)]="email" name="email">
         <mat-error>
-          Please enter a valid email address
+          Entrer un email valide svp!
         </mat-error>
         <mat-error>
-          Email is <strong>required</strong>
+          Email est <strong>obligatoire</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
@@ -43,7 +26,6 @@
         </button>
       </mat-form-field>
     </form>
-    <!--  -->
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
   <mat-card-actions>

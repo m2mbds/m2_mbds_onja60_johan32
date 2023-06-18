@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './shared/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { AssignmentsService } from './shared/assignments.service';
+import { User } from './login/user.models';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,9 @@ import { AssignmentsService } from './shared/assignments.service';
 })
 export class AppComponent {
   title = 'Application de gestion de devoirs à rendre';
-  labelConnexion = "Se connecter";
-  linkConnexion = "/login";
-  nom: string = "";
+  nom: String = "";
   currentRoute: string = "";
+  CurrentUser!: User
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -29,28 +29,56 @@ export class AppComponent {
 
 
   }
+  ngOnInit(): void {
+    console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
+    var sessionUser = sessionStorage.getItem("CurrentUser");
 
-  login() {
-    // utilise l'authService pour se connecter
-    if (!this.authService.loggedIn) {
-      this.authService.logIn();
-      // on change le label du bouton
-      this.labelConnexion = "Se déconnecter";
-      this.linkConnexion = "/login"
-    } else {
-      this.authService.logOut();
-      this.labelConnexion = "Se connecter";
-      this.linkConnexion = "/login";
-      // et on navigue vers la page d'accueil
-      this.router.navigate(["/home"]);
+    if (sessionUser) {
+      this.CurrentUser = JSON.parse(sessionUser) as User;
+      this.nom = this.CurrentUser.firstname;
+      console.log(this.CurrentUser)
     }
   }
 
-  isLogged() {
-    if (this.authService.loggedIn) {
-      this.nom = "Michel Buffa";
+  login() {
+    // utilise l'authService pour se connecter
+    // if (!this.authService.loggedIn) {
+    // this.authService.logIn();
+    this.router.navigate(["/login"]);
+    // on change le label du bouton
+    // } else {
+    //   this.authService.logOut();
+    //   // et on navigue vers la page d'accueil
+    //   this.router.navigate(["/home"]);
+    // }
+  }
+
+  logout() {
+    // this.authService.logOut();
+    var sessionUser = sessionStorage.getItem("CurrentUser");
+    console.log("xxxxxxxxxx");
+    if (sessionUser) {
+      console.log("1111111111111111111");
+      console.log("userData1 ===> " + sessionStorage.getItem("CurrentUser"));
+      sessionStorage.removeItem("CurrentUser");
+      this.router.navigate(["/login"]);
+      console.log("userData2 ===> " + sessionStorage.getItem("CurrentUser"));
     }
-    return this.authService.loggedIn;
+    this.authService.logOut();
+  }
+
+  isLogged() {
+    // if (this.authService.loggedIn) {
+    //   this.nom = "Michel Buffa";
+    // }
+    // return this.authService.loggedIn;
+    var sessionUser = sessionStorage.getItem("CurrentUser");
+    console.log("sessionUser ===> ", sessionUser)
+    if (sessionUser && sessionUser != null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   creerDonneesDeTest() {

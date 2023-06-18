@@ -3,9 +3,11 @@
         <a routerLink="/home"><span>{{title}}</span></a>
     </nav>
     <span class="example-spacer"></span>
-    <a routerLink="{{linkConnexion}}">
-        <button mat-raised-button (click)="login()">{{labelConnexion}}</button>
+    <a *ngIf="!isLogged()" routerLink="/login">
+        <button mat-raised-button>Se connecter</button>
     </a>
+    <button *ngIf="isLogged()" mat-raised-button (click)="logout()">Se déconnecter</button>
+
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -13,9 +15,10 @@
         <img class="avatar mat-elevation-z8" src="assets/image/profil.png" />
 
         <h4 class="name">
-            <span *ngIf="isLogged()">{{nom}}</span>
+            <span *ngIf="isLogged()">{{CurrentUser.lastname + ' ' + CurrentUser.firstname}}</span>
         </h4>
-        <p class="designation">Enseignante</p>
+        <p class="designation" *ngIf="CurrentUser && CurrentUser.role == 'teacher'">Enseignant(e)</p>
+        <p class="designation" *ngIf="CurrentUser && CurrentUser.role == 'student'">Etudiant(e)</p>
 
         <mat-divider></mat-divider>
         <button mat-button class="menu-button" routerLink="/home">

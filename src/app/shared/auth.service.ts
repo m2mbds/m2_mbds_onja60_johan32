@@ -19,9 +19,19 @@ export class AuthService {
   }
 
   logOut() {
-    console.log("ON SE DELOGGE")
+    // console.log("ON SE DELOGGE")
 
-    this.loggedIn = false;
+    // this.loggedIn = false;
+
+    // 
+    var sessionUser = sessionStorage.getItem("CurrentUser");
+    if (sessionUser) {
+      console.log("userData1 ===> " + sessionStorage.getItem("CurrentUser"));
+      sessionStorage.removeItem("CurrentUser");
+      console.log("userData2 ===> " + sessionStorage.getItem("CurrentUser"));
+    }
+    // 
+
   }
 
   // si on l'utilisait on ferai isAdmin().then(...)

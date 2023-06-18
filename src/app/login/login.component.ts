@@ -9,9 +9,8 @@ import { User } from './user.models';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username = "";
-  password = "";
   email = "";
+  password = "";
   showSpinner = false;
   hide = true;
   constructor(
@@ -20,17 +19,15 @@ export class LoginComponent {
   ) { }
   login() {
     console.log("LOGIN")
-    // this.showSpinner = !this.showSpinner;
+    this.showSpinner = !this.showSpinner;
     let userLogging = new User();
     userLogging.email = this.email;
     userLogging.password = this.password;
     console.log(userLogging);
     //vérifie si l'authentification de l'user 
     this.userService.getUserAuthentification(userLogging).subscribe(userLogging => {
-
-      
       if (userLogging) {
-        console.log(userLogging)
+        console.log("userLogging ===> ", userLogging)
         sessionStorage.setItem('CurrentUser', JSON.stringify(userLogging));
         this.router.navigate(['/home']);
       }
