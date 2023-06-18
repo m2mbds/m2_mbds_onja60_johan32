@@ -165,103 +165,106 @@
         </div>
     </cdk-virtual-scroll-viewport> -->
     <div class="container-for-student" *ngIf="CurrentUser.isAdmin">
-        <mat-grid-list cols="3">
-            <mat-grid-tile class="grid-title" *ngFor="let assignment of assignments">
-                <mat-card class="example-card-item">
-                    <mat-card-header>
-                        <img mat-card-avatar src="assets/image/profil.png">
-                        <mat-card-title>
-                            Matière {{assignment.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
-                        </mat-card-title>
-                        <mat-card-subtitle>A rendre le {{assignment.renderedAt|date}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <img *ngFor="let user of assignment.UserData" mat-card-image [src]="linkImage+user.picture" height="200px" alt="{{user.lastname}}" />               
-                    <mat-card-content>
-                        <p>{{assignment.description}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <!-- <span class="example-spacer"></span> -->
-                        <button class="button-detail" routerLink="/assignments/{{assignment.id}}" mat-stroked-button>DETAIL</button>
-                    </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile>
-            <!-- <mat-grid-tile class="grid-title">
-                <mat-card class="example-card-item">
-                    <mat-card-header>
-                        <img mat-card-avatar src="assets/image/profil.png">
-                        <mat-card-title>
-                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                        </mat-card-title>
-                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="" height="200px" alt="" />
-                    <mat-card-content>
-                        <p>Hello word !</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                         <span class="example-spacer"></span> 
-                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
-                    </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile> -->
-            <!-- <mat-grid-tile class="grid-title">
-                <mat-card class="example-card-item">
-                    <mat-card-header>
-                        <img mat-card-avatar src="assets/image/profil.png">
-                        <mat-card-title>
-                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                        </mat-card-title>
-                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="" height="200px" alt="" />
-                    <mat-card-content>
-                        <p>Hello word !</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <span class="example-spacer"></span>
-                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
-                    </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile> -->
-            <!-- <mat-grid-tile class="grid-title">
-                <mat-card class="example-card-item">
-                    <mat-card-header>
-                        <img mat-card-avatar src="assets/image/profil.png">
-                        <mat-card-title>
-                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                        </mat-card-title>
-                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="" height="200px" alt="" />
-                    <mat-card-content>
-                        <p>Hello word !</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <span class="example-spacer"></span>
-                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
-                    </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile> -->
-            <!-- <mat-grid-tile class="grid-title">
-                <mat-card class="example-card-item">
-                    <mat-card-header>
-                        <img mat-card-avatar src="assets/image/profil.png">
-                        <mat-card-title>
-                            Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
-                        </mat-card-title>
-                        <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="" height="200px" alt="" />
-                    <mat-card-content>
-                        <p>Hello word !</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <span class="example-spacer"></span>
-                        <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
-                    </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile> -->
-        </mat-grid-list>
+        <!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller> -->
+            <mat-grid-list cols="3">
+                <mat-grid-tile class="grid-title" *ngFor="let assignment of assignments">
+                    <mat-card class="example-card-item">
+                        <mat-card-header>
+                            <img mat-card-avatar src="assets/image/profil.png">
+                            <mat-card-title>
+                                Matière {{assignment.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
+                            </mat-card-title>
+                            <mat-card-subtitle>A rendre le {{assignment.renderedAt|date}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img *ngFor="let user of assignment.UserData" mat-card-image [src]="linkImage+user.picture" height="200px" alt="{{user.lastname}}" />               
+                        <mat-card-content>
+                            <p>{{assignment.description}}</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <!-- <span class="example-spacer"></span> -->
+                            <button class="button-detail" routerLink="/assignments/{{assignment._id}}" mat-stroked-button>DETAIL {{assignment.id}}</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+                <!-- <mat-grid-tile class="grid-title">
+                    <mat-card class="example-card-item">
+                        <mat-card-header>
+                            <img mat-card-avatar src="assets/image/profil.png">
+                            <mat-card-title>
+                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                            </mat-card-title>
+                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image [src]="" height="200px" alt="" />
+                        <mat-card-content>
+                            <p>Hello word !</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                             <span class="example-spacer"></span> 
+                            <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile> -->
+                <!-- <mat-grid-tile class="grid-title">
+                    <mat-card class="example-card-item">
+                        <mat-card-header>
+                            <img mat-card-avatar src="assets/image/profil.png">
+                            <mat-card-title>
+                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                            </mat-card-title>
+                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image [src]="" height="200px" alt="" />
+                        <mat-card-content>
+                            <p>Hello word !</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <span class="example-spacer"></span>
+                            <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile> -->
+                <!-- <mat-grid-tile class="grid-title">
+                    <mat-card class="example-card-item">
+                        <mat-card-header>
+                            <img mat-card-avatar src="assets/image/profil.png">
+                            <mat-card-title>
+                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                            </mat-card-title>
+                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image [src]="" height="200px" alt="" />
+                        <mat-card-content>
+                            <p>Hello word !</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <span class="example-spacer"></span>
+                            <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile> -->
+                <!-- <mat-grid-tile class="grid-title">
+                    <mat-card class="example-card-item">
+                        <mat-card-header>
+                            <img mat-card-avatar src="assets/image/profil.png">
+                            <mat-card-title>
+                                Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+                            </mat-card-title>
+                            <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image [src]="" height="200px" alt="" />
+                        <mat-card-content>
+                            <p>Hello word !</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <span class="example-spacer"></span>
+                            <button class="button-detail" routerLink="/assignments/1" mat-stroked-button>DETAIL</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile> -->
+            </mat-grid-list>
+        <!-- </cdk-virtual-scroll-viewport> -->
+        
     </div>
     <!-- STUDENT -->
     <div *ngIf="!CurrentUser.isAdmin">

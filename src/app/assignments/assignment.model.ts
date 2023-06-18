@@ -22,6 +22,7 @@ import { Subject } from "../subjects/subjects.models";
 
 
 export class Assignment {
+    _id!:String;
     id!: Number;
     title!: String;
     description!: String;

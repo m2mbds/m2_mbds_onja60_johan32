@@ -56,7 +56,7 @@ export class AssignmentsService {
         }),
         map(a => {
           if (a) {
-            a.description += " TOTOTOTO";
+           // a.description += " TOTOTOTO";
           }
           return a;
         }),

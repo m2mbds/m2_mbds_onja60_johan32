@@ -95,17 +95,17 @@
 
 <mat-card class="example-card">
   <mat-card-header>
-    <img mat-card-avatar src="assets/image/profil.png">
+    <img *ngFor="let user of assignmentTransmis!.UserData" mat-card-avatar [src]="linkImage+user.picture">
     <mat-card-title>
-      Matière Big data <mat-slide-toggle checked></mat-slide-toggle>
+      Matière {{assignmentTransmis!.SubjectData!.designation}} <mat-slide-toggle checked></mat-slide-toggle>
     </mat-card-title>
-    <mat-card-subtitle>A rendre le 20/02/23</mat-card-subtitle>
+    <mat-card-subtitle>A rendre le {{assignmentTransmis!.renderedAt | date}}</mat-card-subtitle>
     <!--  -->
     <span class="example-spacer"></span>
-    <button routerLink="/assignments/edit/201" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button routerLink="/assignments/edit/{{assignmentTransmis!._id}}" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon color="primary">edit</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button mat-icon-button class="example-icon" routerLink="/assignments/{{assignmentTransmis!._id}}" aria-label="Example icon-button with share icon">
       <mat-icon color="warn">delete</mat-icon>
     </button>
     <!--  -->
@@ -114,18 +114,14 @@
     <div class="item-desc">
       <strong>Titre</strong>
       <p>
-        Hello word!
+        {{assignmentTransmis!.title}}
       </p>
     </div>
     <mat-divider></mat-divider>
     <div class="item-desc">
-      <strong>Description</strong>
+      <strong>description</strong>
       <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe facilis optio, cupiditate esse non magnam
-        dignissimos nesciunt distinctio nisi sequi quas incidunt est officiis impedit voluptate minus totam eaque earum.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam voluptatum corporis omnis praesentium dicta
-        similique impedit illum placeat! Aut harum nihil temporibus laboriosam quasi, deleniti amet quos incidunt hic
-        accusamus.
+        {{assignmentTransmis!.description}}
       </p>
     </div>
     <mat-divider></mat-divider>
@@ -139,16 +135,14 @@
     <div class="item-desc">
       <strong>Note</strong>
       <p>
-        18 / 20
+        {{assignmentTransmis!.note}}
       </p>
     </div>
     <mat-divider></mat-divider>
     <div class="item-desc">
       <strong>Remarque</strong>
       <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur illum quibusdam nisi explicabo quo
-        voluptatibus ab molestias repellat quis, vel nostrum praesentium assumenda perferendis cumque, nemo laboriosam?
-        Sunt, quo dolor!
+        {{assignmentTransmis!.remark}}
       </p>
     </div>
   </mat-card-content>
