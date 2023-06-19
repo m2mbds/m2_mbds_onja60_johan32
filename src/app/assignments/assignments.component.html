@@ -42,7 +42,7 @@
     </cdk-virtual-scroll-viewport>
 </main> -->
 
-<h3>Liste de mes devoirs</h3>
+<h3 *ngIf="isLogged && !CurrentUser.isAdmin">Liste de mes devoirs</h3>
 <mat-divider></mat-divider>
 <div id="content">
     <!-- STUDENT -->
@@ -70,9 +70,9 @@
             </div>
         </div>
     </cdk-virtual-scroll-viewport> -->
-    <div class="container-for-student" *ngIf="isLogged && CurrentUser.isAdmin">
+    <div class="container-for-student" *ngIf="isLogged && !CurrentUser.isAdmin">
         <cdk-virtual-scroll-viewport itemSize="1" class="example-viewport" #scroller>
-        <mat-grid-list cols="4">
+        <mat-grid-list cols="3">
             <mat-grid-tile class="grid-title" *cdkVirtualFor="let assignment of assignments">
                 <mat-card class="example-card-item">
                     <mat-card-header>
@@ -97,7 +97,7 @@
         </cdk-virtual-scroll-viewport>
     </div>
     <!-- STUDENT -->
-    <div *ngIf="isLogged && !CurrentUser.isAdmin">
+    <div *ngIf="isLogged && CurrentUser.isAdmin">
         <div class="example-container">
             <h3>Devoir à rendre</h3>
             <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
