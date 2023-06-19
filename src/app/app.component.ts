@@ -20,9 +20,11 @@ export class AppComponent {
     private router: Router,
     private assigmmentsService: AssignmentsService) {
     console.log(router.url);
+    console.log("=============constructor=============")
 
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        console.log("hello")
         console.log(event.url);
         this.currentRoute = event.url;
       }
@@ -31,11 +33,13 @@ export class AppComponent {
 
   }
   ngOnInit(): void {
-    console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
+    console.log("=============ngOnInit=============")
+    // console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
     var sessionUser = sessionStorage.getItem("CurrentUser");
 
     if (sessionUser) {
       this.isLogged = true;
+      console.log("ngOnInit isLogged ===> " + this.isLogged)
       this.CurrentUser = JSON.parse(sessionUser) as User;
       this.nom = this.CurrentUser.lastname + ' ' + this.CurrentUser.firstname;
       console.log(this.CurrentUser)
@@ -43,8 +47,12 @@ export class AppComponent {
   }
 
   logout() {
+    this.isLogged = false;
     this.authService.logOut();
-    this.router.navigate(["/login"]);
+
+    console.log("logout isLogged ===> " + this.isLogged)
+    // this.router.navigate(["/login"]);
+    // window.location.reload()
   }
 
   creerDonneesDeTest() {

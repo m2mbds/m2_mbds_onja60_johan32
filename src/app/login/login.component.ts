@@ -26,10 +26,11 @@ export class LoginComponent {
     console.log(userLogging);
     //vérifie si l'authentification de l'user 
     this.userService.getUserAuthentification(userLogging).subscribe(userLogging => {
+      console.log("userLogging ===> ", userLogging)
       if (userLogging) {
-        console.log("userLogging ===> ", userLogging)
         sessionStorage.setItem('CurrentUser', JSON.stringify(userLogging));
         this.router.navigate(['/home']);
+        // window.location.reload()
       }
     }
     )
