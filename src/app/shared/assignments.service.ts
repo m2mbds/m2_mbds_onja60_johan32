@@ -22,8 +22,8 @@ export class AssignmentsService {
     private subjectService: SubjectsService,
     private eleve: ElevesService) { }
 
-  uri_api = 'http://localhost:8010/api/assignments';
-  //uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/assignments';
+  //uri_api = 'http://localhost:8010/api/assignments';
+  uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/assignments';
 
   getAssignments(page: number, limit: number): Observable<any> {
     // normalement on doit envoyer une requête HTTP
