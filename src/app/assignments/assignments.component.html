@@ -33,7 +33,7 @@
             <h3>Devoir à rendre</h3>
             <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
                 class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of todo" cdkDrag>
+                <div class="example-box" *ngFor="let item of todo" cdkDrag >
                     <mat-card class="example-card">
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">
@@ -58,7 +58,7 @@
             <h3>Devoir déjà rendu</h3>
             <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
                 class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of done" cdkDrag>
+                <div class="example-box" *ngFor="let item of done" cdkDrag [cdkDragDisabled]="true">
                     <mat-card class="example-card">
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">

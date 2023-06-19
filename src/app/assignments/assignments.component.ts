@@ -137,8 +137,8 @@ export class AssignmentsComponent implements OnInit {
         console.log(this.assignments);
         // this.todo = data.docs;
 
-        this.todo = this.assignments.filter(x => x.isRender == true)
-        this.done = this.assignments.filter(x => x.isRender == false)
+        this.todo = this.assignments.filter(x => x.isRender == false)
+        this.done = this.assignments.filter(x => x.isRender == true)
         console.log(this.todo)
         console.log(this.done)
         if (this.isInit) [
