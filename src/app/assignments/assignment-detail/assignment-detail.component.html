@@ -104,11 +104,11 @@
     <mat-card-subtitle>A rendre le {{assignmentTransmis!.renderedAt | date}}</mat-card-subtitle>
     <!--  -->
     <span class="example-spacer"></span>
-    <button routerLink="/assignments/edit/{{assignmentTransmis!._id}}" mat-icon-button
+    <button *ngIf="CurrentUser!.isAdmin" routerLink="/assignments/edit/{{assignmentTransmis!._id}}" mat-icon-button
       class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon color="primary">edit</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" (click)="onDeleteAssignment()"
+    <button *ngIf="CurrentUser!.isAdmin" mat-icon-button class="example-icon" (click)="onDeleteAssignment()"
       aria-label="Example icon-button with share icon">
       <mat-icon color="warn">delete</mat-icon>
     </button>

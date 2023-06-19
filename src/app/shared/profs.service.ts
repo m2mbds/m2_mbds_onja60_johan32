@@ -10,8 +10,8 @@ import { LoggingService } from './logging.service';
 export class ProfsService {
 
   constructor(private loggingService: LoggingService,private http: HttpClient) { }
-  uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/profs';
-  // uri_api = 'http://localhost:8010/api/profs';
+  //uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/profs';
+  uri_api = 'http://localhost:8010/api/profs';
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {

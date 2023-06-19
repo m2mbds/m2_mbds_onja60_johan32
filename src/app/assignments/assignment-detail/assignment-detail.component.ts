@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadingBarComponent } from 'src/app/loading-bar/loading-bar.component';
+import { User } from 'src/app/login/user.models';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -21,6 +22,8 @@ export class AssignmentDetailComponent implements OnInit {
     private authService: AuthService,
     private _snackBar: MatSnackBar,
     private dialog: MatDialog) { }
+    
+    CurrentUser!:User;
 
   ngOnInit(): void {
     // appelée avant le rendu du composant
@@ -29,6 +32,13 @@ export class AssignmentDetailComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     console.log("Dans le ngOnInit de detail, id = " + id);
 
+    var sessionUser = sessionStorage.getItem("CurrentUser");
+
+    if (sessionUser) {
+      // console.log(sessionUser)
+      this.CurrentUser = JSON.parse(sessionUser) as User;
+      console.log(this.CurrentUser)
+    }
     // on va chercher l'assignment à afficher
     this.assignmentsService.getAssignment(id)
       .subscribe(assignment => {
@@ -95,6 +105,7 @@ export class AssignmentDetailComponent implements OnInit {
     // renvoie si on est loggé ou pas
     return this.authService.loggedIn;
   }
+
 
   openSnackBar(message: string, action: string) {
     console.log(message)
