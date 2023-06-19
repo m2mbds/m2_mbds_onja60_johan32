@@ -173,25 +173,30 @@ export class AssignmentsComponent implements OnInit {
 
   premierePage() {
     this.page = 1;
+    this.isInit = true;
     this.getAssignments();
   }
 
   pageSuivante() {
+    this.isInit = true;
     this.page = this.nextPage;
     this.getAssignments();
   }
 
   pagePrecedente() {
+    this.isInit = true;
     this.page = this.prevPage;
     this.getAssignments();
   }
   dernierePage() {
+    this.isInit = true;
     this.page = this.totalPages;
     this.getAssignments();
   }
 
   // Pour mat-paginator
   handlePage(event: any) {
+    this.isInit = true;
     console.log(event);
 
     this.page = event.pageIndex;
@@ -207,12 +212,21 @@ export class AssignmentsComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+     
+      
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex,
       );
+      // console.log(event.container.data[event.currentIndex])
+      let assignment = event.container.data[event.currentIndex]
+      assignment.isRender = true;
+      this.assignmentsService.updateAssignment(assignment)
+      .subscribe(message => {
+        console.log(message);
+      });
     }
   }
   // ==========================================================

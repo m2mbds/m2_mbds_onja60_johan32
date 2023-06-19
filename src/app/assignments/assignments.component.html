@@ -33,7 +33,7 @@
             <h3>Devoir à rendre</h3>
             <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
                 class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of todo" cdkDrag >
+                <div class="example-box" *ngFor="let item of todo" cdkDrag [cdkDragDisabled]="(!item.note)?true:false">
                     <mat-card class="example-card">
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">
@@ -81,5 +81,16 @@
                 </div>
             </div>
         </div>
+        <mat-paginator
+        [pageSizeOptions]="[5, 10,20]"
+        showFirstLastButtons
+        aria-label="Afficher tous les Devoirs"
+        (page)="handlePage($event)"
+        class="demo-paginator"
+        [length]="totalPages"
+        [pageSize]="limit"
+        [pageIndex]="page">
+
+        </mat-paginator>
     </div>
 </div>
