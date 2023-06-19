@@ -95,3 +95,8 @@ Fonctionnalités :
     7) logout()
  
 =====================================================================================================================================
+Pour installer faire tourner le projet du code source dans votre poste, il suffit de :
+- Cloner le projet :
+  - Back-end : https://github.com/m2mbds/m2_mbds_onja60_johan32 branche "back_end"
+  - Front-end : https://github.com/m2mbds/m2_mbds_onja60_johan32 branche "front_end"
+  
