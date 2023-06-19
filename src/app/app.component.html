@@ -26,7 +26,7 @@
             <span>Accueil</span>
         </button>
 
-        <button mat-button class="menu-button" routerLink="/add">
+        <button mat-button class="menu-button" *ngIf="!isAdmin && isLogged" routerLink="/add">
             <mat-icon>add</mat-icon>
             <span>Assignment</span>
         </button>
@@ -42,6 +42,7 @@
         <div class="content">
             <!-- Indique que le composant affiché sera celui correspondant à l'URL courant -->
             <router-outlet class="darkmode"></router-outlet>
+            <!-- <app-login *ngIf="!isLogged" class="darkmode" (myEventEmitter)="onComponentActivate($event)"></app-login> -->
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

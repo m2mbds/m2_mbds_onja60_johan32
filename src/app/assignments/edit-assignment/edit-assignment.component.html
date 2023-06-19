@@ -40,6 +40,7 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
+    
     <!--  -->
     <div class="item-desc">
       <mat-form-field>
@@ -55,6 +56,18 @@
       </mat-form-field>
     </div>
     <mat-divider></mat-divider>
+
+    <mat-form-field>
+      <mat-label>PJ</mat-label>
+      <a mat-icon-button matPrefix (click)="f_input.click()">
+        <mat-icon style="color: black;">attach_file</mat-icon>
+      </a>
+      <input type="text" readonly matInput [formControl]="display"/>
+      <input type="file" hidden #f_input
+      (change)="InputFileChange(f_input.files)" />
+      <mat-error>this field is required</mat-error>
+    </mat-form-field>
+
     <div class="item-desc">
       <strong>PJ</strong>
       <p>

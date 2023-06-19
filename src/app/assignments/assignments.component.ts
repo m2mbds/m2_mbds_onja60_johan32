@@ -15,6 +15,8 @@ import {
 import { User } from '../login/user.models';
 import { SubjectsService } from '../shared/subjects.service';
 import { Subject } from '../subjects/subjects.models';
+import { MatDialog } from '@angular/material/dialog';
+import { LoadingBarComponent } from '../loading-bar/loading-bar.component';
 // 
 
 @Component({
@@ -32,7 +34,7 @@ export class AssignmentsComponent implements OnInit {
 
   // propriétés pour la pagination
   page: number = 1;
-  limit: number = 3;
+  limit: number = 4;
   totalDocs: number = 0;
   totalPages: number = 0;
   hasPrevPage: boolean = false;
@@ -43,12 +45,15 @@ export class AssignmentsComponent implements OnInit {
   CurrentUser!: User;
   isLogged = false;
   i:number=0;
+  isInit = true;
+  
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
   constructor(private assignmentsService: AssignmentsService,
     private subjectService: SubjectsService,
-    private ngZone: NgZone) {
+    private ngZone: NgZone,
+    private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -112,10 +117,14 @@ export class AssignmentsComponent implements OnInit {
       });
   }
 
+  
 
   getAssignments() {
     console.log("On va chercher les assignments dans le service");
-
+    
+    var dialogRef = this.dialog.open(LoadingBarComponent, { data: "toys.gif" });
+    //pour eviter de skipper le chargement
+    if(this.isInit)dialogRef.disableClose = true;
     this.assignmentsService.getAssignments(this.page, this.limit)
       .subscribe((data) => {
         this.assignments = data.docs;
@@ -135,8 +144,15 @@ export class AssignmentsComponent implements OnInit {
         this.done = this.assignments.filter(x=>x.isRender==false)
         console.log(this.todo)
         console.log(this.done)
+        if(this.isInit)[
+          
+          dialogRef.close()
+        ]
+        this.isInit = false
       });
   }
+
+
 
   getAddAssignmentsForScroll() {
     this.assignmentsService.getAssignments(this.page, this.limit)

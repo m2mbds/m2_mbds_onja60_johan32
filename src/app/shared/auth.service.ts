@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class AuthService {
     var sessionUser = sessionStorage.getItem("CurrentUser");
     if (sessionUser) {
       sessionStorage.removeItem("CurrentUser");
+   
     }
   }
 

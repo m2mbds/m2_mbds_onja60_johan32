@@ -72,7 +72,7 @@
     </cdk-virtual-scroll-viewport> -->
     <div class="container-for-student" *ngIf="isLogged && CurrentUser.isAdmin">
         <cdk-virtual-scroll-viewport itemSize="1" class="example-viewport" #scroller>
-        <mat-grid-list cols="3">
+        <mat-grid-list cols="4">
             <mat-grid-tile class="grid-title" *cdkVirtualFor="let assignment of assignments">
                 <mat-card class="example-card-item">
                     <mat-card-header>

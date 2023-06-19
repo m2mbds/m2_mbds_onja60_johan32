@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingBarComponent } from 'src/app/loading-bar/loading-bar.component';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
+import { FormControl, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-edit-assignment',
@@ -20,6 +22,9 @@ export class EditAssignmentComponent implements OnInit {
   description!: String;
   note!: Number;
   remark!: String;
+  file_store!: FileList | null;
+  uploadedFiles: Array<File> = [];
+  display: FormControl = new FormControl("", Validators.required);
   constructor(
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
@@ -62,35 +67,84 @@ export class EditAssignmentComponent implements OnInit {
   onSaveAssignment() {
     if (!this.assignment) return;
     console.log("save edit");
-    var dialogRef = this.dialog.open(LoadingBarComponent, { data: "brush.gif" });
+    //var dialogRef = this.dialog.open(LoadingBarComponent, { data: "brush.gif" });
     //pour eviter de skipper le chargement
-    dialogRef.disableClose = true;
+    //dialogRef.disableClose = true;
     // on récupère les valeurs dans le formulaire
     this.assignment.description = this.description;
     this.assignment.renderedAt = this.renderAt;
     this.assignment.title = this.title;
     this.assignment.note = this.note;
     this.assignment.remark = this.remark;
-    this.assignmentsService
-      .updateAssignment(this.assignment)
-      .subscribe((message) => {
-        console.log(message);
 
-        this.openSnackBar(message.message, "Edition Assignment Fait")
-        dialogRef.close();
-        // navigation vers la home page
-        this.router.navigate(["/home"]);
+    this.uploadFiles();
+    // this.assignmentsService
+    //   .updateAssignment(this.assignment)
+    //   .subscribe((message) => {
+    //     console.log(message);
 
-        setTimeout(() => {
-          this._snackBar.dismiss()
-        }, 5000);
-      });
+    //     this.openSnackBar(message.message, "Edition Assignment Fait")
+    //     dialogRef.close();
+    //     // navigation vers la home page
+    //     this.router.navigate(["/home"]);
+
+    //     setTimeout(() => {
+    //       this._snackBar.dismiss()
+    //     }, 5000);
+    //   });
   }
 
   openSnackBar(message: string, action: string) {
     console.log(message)
     this._snackBar.open(message, action);
   }
+
+    //chargement du fichier
+    InputFileChange(l: FileList | null): void{
+      this.file_store = l;
+      if (l == null) return
+      if (l.length) {
+        const f = l[0];
+        const count = l.length > 1 ? `(+${l.length - 1} files)` : "";
+        this.display.patchValue(`${f.name}${count}`);
+      } else {
+        this.display.patchValue("");
+      }
+      this.uploadedFiles = [];
+      this.uploadedFiles.push(l[0]);
+    }
+
+
+      //ajouter la PS si il y en a
+      uploadFiles(){
+        //dialog de chargement pour l'ajout
+        var dialogRef = this.dialog.open(LoadingBarComponent, { data: "brush.gif" });
+        //pour eviter de skipper le chargement
+        dialogRef.disableClose = true;
+        let formData = new FormData();
+        for (var i = 0; i < this.uploadedFiles.length; i++) {
+              formData.append("thumbnail", this.uploadedFiles[i]);
+          }
+        //service qui sert a ajouter le fichier
+        this.assignmentsService.postFile(formData).pipe(
+          switchMap((res: any) => {
+            if (res.datafile.length > 0) {
+              console.log(res.datafile[0])
+              this.assignment!.PJ = res.datafile[0].id;
+            }
+            return this.assignmentsService.updateAssignment(this.assignment!)
+          })
+          )
+          .subscribe(message => {
+            console.log(message);
+            dialogRef.close();
+            this.openSnackBar(message.message, "Ajout Assignment Fait")
+            this.router.navigate(["/home"]);
+            setTimeout(() => {
+              this._snackBar.dismiss()
+            }, 5000);
+          })
+      }
 }
 
 
