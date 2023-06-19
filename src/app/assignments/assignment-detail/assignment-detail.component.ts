@@ -22,8 +22,8 @@ export class AssignmentDetailComponent implements OnInit {
     private authService: AuthService,
     private _snackBar: MatSnackBar,
     private dialog: MatDialog) { }
-    
-    CurrentUser!:User;
+
+  CurrentUser!: User;
 
   ngOnInit(): void {
     // appelée avant le rendu du composant

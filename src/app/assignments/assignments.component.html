@@ -1,102 +1,33 @@
-<!-- <h1>Exemple de scrolling virtuel infini</h1> -->
-<!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport" #scroller>
-    <mat-list *cdkVirtualFor="let a of assignments">
-        <a routerLink="/assignments/{{a.id}}">
-            <h3 mat-subheader>Date limite: {{a.dateDeRendu | date: 'dd/MM/yy'}}</h3>
-            <mat-list-item>
-                <p appRendu *ngIf="a.rendu; else nonsoumis">
-                    {{a.nom}} id = {{a._id}}
-                </p>
-                <ng-template #nonsoumis>
-                    {{a.nom}} NON RENDU id = {{a._id}}
-                </ng-template>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-        </a>
-    </mat-list>
-</cdk-virtual-scroll-viewport> -->
-
-<!-- <cdk-virtual-scroll-viewport itemSize="6" class="example-viewport" #scroller>
-        <div class="grid-container">
-            <div class="grid-item" *cdkVirtualFor="let a of assignments; let index = index">
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title>
-                            {{a.dateDeRendu | date: 'dd/MM/yy'}}
-                        </mat-card-title>
-                        <mat-card-subtitle>{{a.matiere}} {{a.nom}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="linkImage+a.imageEleve" height="200px" alt="Photo of a Shiba Inu" />
-                    <mat-card-content>
-                        <p>
-                            {{a.remarque}}
-                        </p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button routerLink="/assignments/{{a.id}}" mat-button>DETAILS</button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
-        </div>
-    </cdk-virtual-scroll-viewport>
-</main> -->
-
 <h3 *ngIf="isLogged && !CurrentUser.isAdmin">Liste de mes devoirs</h3>
 <mat-divider></mat-divider>
 <div id="content">
-    <!-- STUDENT -->
-    <!-- <cdk-virtual-scroll-viewport itemSize="6" class="example-viewport" #scroller>
-        <div class="grid-container">
-            <div class="grid-item">
-                <mat-card class="example-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="example-header-image"></div>
-                        <mat-card-title>
-                            20/12/09
-                        </mat-card-title>
-                        <mat-card-subtitle>Matière Nom</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="" height="200px" alt="" />
-                    <mat-card-content>
-                        <p>
-                            Label test
-                        </p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button routerLink="" mat-button>DETAILS</button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
-        </div>
-    </cdk-virtual-scroll-viewport> -->
     <div class="container-for-student" *ngIf="isLogged && !CurrentUser.isAdmin">
         <cdk-virtual-scroll-viewport itemSize="1" class="example-viewport" #scroller>
-        <mat-grid-list cols="3">
-            <mat-grid-tile class="grid-title" *cdkVirtualFor="let assignment of assignments">
-                <mat-card class="example-card-item">
-                    <mat-card-header>
-                        <img mat-card-avatar src="assets/image/profil.png">
-                        <mat-card-title>
-                            Matière {{assignment.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
-                        </mat-card-title>
-                        <mat-card-subtitle>A rendre le {{assignment.renderedAt|date}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <img *ngFor="let user of assignment.UserData" mat-card-image [src]="linkImage+user.picture"
-                        height="200px" alt="{{user.lastname}}" />
-                    <mat-card-content>
-                        <p>{{assignment.description}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button class="button-detail" routerLink="/assignments/{{assignment._id}}"
-                            mat-stroked-button>DETAIL {{assignment.id}}</button>
-                    </mat-card-actions>
-                </mat-card>
-            </mat-grid-tile>
-        </mat-grid-list>
+            <mat-grid-list cols="3">
+                <mat-grid-tile class="grid-title" *cdkVirtualFor="let assignment of assignments">
+                    <mat-card class="example-card-item">
+                        <mat-card-header>
+                            <img mat-card-avatar src="assets/image/profil.png">
+                            <mat-card-title>
+                                Matière {{assignment.SubjectData.designation}} <mat-slide-toggle
+                                    checked></mat-slide-toggle>
+                            </mat-card-title>
+                            <mat-card-subtitle>A rendre le {{assignment.renderedAt|date}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img *ngFor="let user of assignment.UserData" mat-card-image [src]="linkImage+user.picture"
+                            height="200px" alt="{{user.lastname}}" />
+                        <mat-card-content>
+                            <p>{{assignment.description}}</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button class="button-detail" routerLink="/assignments/{{assignment._id}}"
+                                mat-stroked-button>DETAIL {{assignment.id}}</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
         </cdk-virtual-scroll-viewport>
     </div>
-    <!-- STUDENT -->
     <div *ngIf="isLogged && CurrentUser.isAdmin">
         <div class="example-container">
             <h3>Devoir à rendre</h3>
@@ -111,8 +42,8 @@
                             </mat-card-title>
                             <mat-card-subtitle>A rendre le {{item.renderedAt|date}}</mat-card-subtitle>
                             <span class="example-spacer"></span>
-                            <button routerLink="/assignments/{{item._id}}" mat-icon-button class="example-icon favorite-icon"
-                                aria-label="Example icon-button with heart icon">
+                            <button routerLink="/assignments/{{item._id}}" mat-icon-button
+                                class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
                                 <mat-icon class="icon-view">menu</mat-icon>
                             </button>
                         </mat-card-header>
@@ -132,12 +63,12 @@
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">
                             <mat-card-title>
-                               Matière {{item.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
+                                Matière {{item.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
                             </mat-card-title>
                             <mat-card-subtitle>A rendre le {{item.renderedAt|date}}</mat-card-subtitle>
                             <span class="example-spacer"></span>
-                            <button routerLink="/assignments/{{item._id}}" mat-icon-button class="example-icon favorite-icon"
-                                aria-label="Example icon-button with heart icon">
+                            <button routerLink="/assignments/{{item._id}}" mat-icon-button
+                                class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
                                 <mat-icon class="icon-view">menu</mat-icon>
                             </button>
                         </mat-card-header>

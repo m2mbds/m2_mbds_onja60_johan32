@@ -3,8 +3,6 @@ import { Assignment } from './assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { filter, map, pairwise, switchMap, tap, throttleTime } from 'rxjs';
-
-// 
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -17,7 +15,6 @@ import { SubjectsService } from '../shared/subjects.service';
 import { Subject } from '../subjects/subjects.models';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingBarComponent } from '../loading-bar/loading-bar.component';
-// 
 
 @Component({
   selector: 'app-assignments',
@@ -44,9 +41,9 @@ export class AssignmentsComponent implements OnInit {
   linkImage = "https://drive.google.com/uc?export=view&id=";
   CurrentUser!: User;
   isLogged = false;
-  i:number=0;
+  i: number = 0;
   isInit = true;
-  
+
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
@@ -73,7 +70,7 @@ export class AssignmentsComponent implements OnInit {
     // TODO
 
     this.getAssignments();
-    
+
   }
 
   ngAfterViewInit() {
@@ -105,9 +102,9 @@ export class AssignmentsComponent implements OnInit {
       )
       .subscribe((val) => {
         console.log("val = " + val);
-        if(this.i>0)return;
+        if (this.i > 0) return;
         console.log("je CHARGE DE NOUVELLES DONNEES page = " + this.page);
-        this.i = this.i+1;
+        this.i = this.i + 1;
         this.ngZone.run(() => {
           if (!this.hasNextPage) return;
 
@@ -117,14 +114,14 @@ export class AssignmentsComponent implements OnInit {
       });
   }
 
-  
+
 
   getAssignments() {
     console.log("On va chercher les assignments dans le service");
-    
+
     var dialogRef = this.dialog.open(LoadingBarComponent, { data: "toys.gif" });
     //pour eviter de skipper le chargement
-    if(this.isInit)dialogRef.disableClose = true;
+    if (this.isInit) dialogRef.disableClose = true;
     this.assignmentsService.getAssignments(this.page, this.limit)
       .subscribe((data) => {
         this.assignments = data.docs;
@@ -139,13 +136,13 @@ export class AssignmentsComponent implements OnInit {
         console.log("Données reçues");
         console.log(this.assignments);
         // this.todo = data.docs;
-    
-        this.todo = this.assignments.filter(x=>x.isRender==true)
-        this.done = this.assignments.filter(x=>x.isRender==false)
+
+        this.todo = this.assignments.filter(x => x.isRender == true)
+        this.done = this.assignments.filter(x => x.isRender == false)
         console.log(this.todo)
         console.log(this.done)
-        if(this.isInit)[
-          
+        if (this.isInit) [
+
           dialogRef.close()
         ]
         this.isInit = false
@@ -202,9 +199,9 @@ export class AssignmentsComponent implements OnInit {
     this.getAssignments();
   }
   // ==========================================================
-   todo:Assignment[] = [] //this.assignments.filter(x=>!x.isRender) as Array<Assignment>;//['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-  
-   done:Assignment[] = [] //this.assignments.filter(x=>x.isRender)as Array<Assignment>;//['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  todo: Assignment[] = [] //this.assignments.filter(x=>!x.isRender) as Array<Assignment>;//['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+
+  done: Assignment[] = [] //this.assignments.filter(x=>x.isRender)as Array<Assignment>;//['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   drop(event: CdkDragDrop<Assignment[]>) {
     if (event.previousContainer === event.container) {
@@ -221,9 +218,4 @@ export class AssignmentsComponent implements OnInit {
   // ==========================================================
 
   //avoir la Matiere par assignment assignment
-
-
-
-
-
 }

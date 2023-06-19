@@ -28,11 +28,11 @@ export class LoginComponent {
     userLogging.email = this.email;
     userLogging.password = this.password;
     //vérifie si l'authentification de l'user 
-    this.userService.getUserAuthentification(userLogging).subscribe(userData => {
-      if (userData) {
-        sessionStorage.setItem('CurrentUser', JSON.stringify(userData));
+    this.userService.getUserAuthentification(userLogging).subscribe(dataUser => {
+      if (dataUser) {
+        sessionStorage.setItem('CurrentUser', JSON.stringify(dataUser));
         this.router.navigate(['/home']);
-        this.callMethod(this.appComponent, true, userData.isAdmin, userData)
+        this.callMethod(this.appComponent, true, dataUser.isAdmin, dataUser)
       }
     }
     )
