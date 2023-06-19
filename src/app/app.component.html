@@ -15,10 +15,10 @@
         <img class="avatar mat-elevation-z8" src="assets/image/profil.png" />
 
         <h4 class="name">
-            <span *ngIf="isLogged">{{nom}}</span>
+            <span *ngIf="isLogged">{{currentUser.lastname + ' ' + currentUser.firstname}}</span>
         </h4>
-        <p class="designation" *ngIf="isLogged && CurrentUser.role == 'teacher'">Enseignant(e)</p>
-        <p class="designation" *ngIf="isLogged && CurrentUser.role == 'student'">Etudiant(e)</p>
+        <p class="designation" *ngIf="isLogged && currentUser.role == 'teacher'">Enseignant(e)</p>
+        <p class="designation" *ngIf="isLogged && currentUser.role == 'student'">Etudiant(e)</p>
 
         <mat-divider></mat-divider>
         <button mat-button class="menu-button" routerLink="/home">
@@ -41,8 +41,7 @@
     <mat-sidenav-content>
         <div class="content">
             <!-- Indique que le composant affiché sera celui correspondant à l'URL courant -->
-            <router-outlet class="darkmode"></router-outlet>
-            <!-- <app-login *ngIf="!isLogged" class="darkmode" (myEventEmitter)="onComponentActivate($event)"></app-login> -->
+            <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

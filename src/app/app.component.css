@@ -1,16 +1,10 @@
-.darkmode {
-    /* background-color: rgb(52, 46, 46); */
-}
-
 mat-toolbar {
     background: rgb(52, 46, 46);
-    /* #002b5c; */
     color: white;
 }
 
 mat-sidenav-container {
     height: calc(100vh - 65px);
-    /* background-image: url('src/assets/image/space-stars.gif'); */
 }
 
 mat-sidenav {
@@ -25,18 +19,7 @@ mat-sidenav {
 }
 
 .content {
-    /* height: calc(100vh - 98px);
-    margin: 16px;
     margin-left: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    color: lightgray;
-    border-radius: 10px; */
-    /* ============================= */
-    margin-left: 32px;
-    /* ============================= */
 }
 
 .avatar {
@@ -53,7 +36,6 @@ mat-sidenav {
 
 .designation {
     margin-top: 2px;
-    /* font-size: 0.7rem; */
     color: lightgrey;
 }
 
@@ -68,7 +50,6 @@ mat-divider {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /* font-size: 1rem; */
 }
 
 mat-icon {

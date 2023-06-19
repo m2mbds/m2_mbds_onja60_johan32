@@ -10,16 +10,16 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email = "";
-  password = "";
+  email = "sonja@gmail.com";
+  password = "1234";
   showSpinner = false;
   hide = true;
   @Output()
-   myEventEmitter: EventEmitter<any> = new EventEmitter<Boolean>();
+  myEventEmitter: EventEmitter<any> = new EventEmitter<Boolean>();
   constructor(
     private router: Router,
     private userService: UsersService,
-    private appComponent:AppComponent
+    private appComponent: AppComponent
   ) { }
   login() {
     console.log("LOGIN")
@@ -27,35 +27,20 @@ export class LoginComponent {
     let userLogging = new User();
     userLogging.email = this.email;
     userLogging.password = this.password;
-    //console.log(userLogging);
     //vérifie si l'authentification de l'user 
-    this.userService.getUserAuthentification(userLogging).subscribe(userLogging => {
-      //console.log("userLogging ===> ", userLogging)
-      
-      if (userLogging) {
-        sessionStorage.setItem('CurrentUser', JSON.stringify(userLogging));
+    this.userService.getUserAuthentification(userLogging).subscribe(userData => {
+      if (userData) {
+        sessionStorage.setItem('CurrentUser', JSON.stringify(userData));
         this.router.navigate(['/home']);
-        // window.location.reload()
-        this.callMethod(this.appComponent,userLogging.isAdmin)
-       
+        this.callMethod(this.appComponent, true, userData.isAdmin, userData)
       }
-      
     }
-         
     )
-    
   }
 
-  callMethod(component1: AppComponent,isAdmin:Boolean) {
-    component1.checkRole(isAdmin); // Call the method of Component1
+  callMethod(componentApp: AppComponent, isLogged: Boolean, isAdmin: Boolean, currentUser: User) {
+    componentApp.setIsLogged(isLogged);
+    componentApp.checkRole(isAdmin); // Call the method of ComponentApp
+    componentApp.setCurrentUser(currentUser);
   }
-
-  // myEventEmitter: EventEmitter<any> = new EventEmitter<any>();
-  
-  
-    
-  // triggerEvent(data: any) {
-  //   this.myEventEmitter.emit(data);
-  // }
-  
 }
