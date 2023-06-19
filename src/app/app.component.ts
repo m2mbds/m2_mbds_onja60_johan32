@@ -33,6 +33,13 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     console.log("OnInit Composant instancié et juste avant le rendu HTML (le composant est visible dans la page HTML)");
+    var sessionUser = sessionStorage.getItem("CurrentUser");
+    if (sessionUser) {
+      var userTemp = JSON.parse(sessionUser) as User;
+      this.setIsLogged(true);
+      this.setCurrentUser(userTemp);
+      this.checkRole(userTemp.isAdmin);
+    }
     console.log("currentUser ===> ", this.currentUser);
     console.log("isLogged ===> ", this.isLogged);
     console.log("isAdmin ===> ", this.isAdmin);

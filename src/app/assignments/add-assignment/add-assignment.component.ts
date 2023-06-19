@@ -22,7 +22,7 @@ export class AddAssignmentComponent implements OnInit {
     private assignmentsService: AssignmentsService,
     private subjectsService: SubjectsService,
     private _snackBar: MatSnackBar,
-    private router: Router, 
+    private router: Router,
     private dialog: MatDialog) { }
 
   //liste des Matières
@@ -68,7 +68,7 @@ export class AddAssignmentComponent implements OnInit {
   //les methodes
   createAssignment() {
     // let assignment = new Assignment();
-   
+
     this.assignment.idAuthor = this.CurrentUser.id;
     if (
       this.firstFormGroup.value.idSubject
@@ -83,14 +83,14 @@ export class AddAssignmentComponent implements OnInit {
       this.assignment.createdAt = new Date();
       this.assignment.isRender = false;
       this.assignment.renderedAt = new Date(this.firstFormGroup.value.deadline);
-      
+
       //appel du service ajout des PS et sauvegarde de l'assignment
       this.uploadFiles();
     }
 
   }
   //chargement du fichier
-  InputFileChange(l: FileList | null): void{
+  InputFileChange(l: FileList | null): void {
     this.file_store = l;
     if (l == null) return
     if (l.length) {
@@ -104,17 +104,17 @@ export class AddAssignmentComponent implements OnInit {
     this.uploadedFiles.push(l[0]);
   }
   //ajouter la PS si il y en a
-  uploadFiles(){
+  uploadFiles() {
     //dialog de chargement pour l'ajout
     var dialogRef = this.dialog.open(LoadingBarComponent, { data: "hourglass_empty.gif" });
     //pour eviter de skipper le chargement
     dialogRef.disableClose = true;
     let formData = new FormData();
     for (var i = 0; i < this.uploadedFiles.length; i++) {
-          formData.append("thumbnail", this.uploadedFiles[i]);
-      }
+      formData.append("thumbnail", this.uploadedFiles[i]);
+    }
     //service qui sert a ajouter le fichier
-     this.assignmentsService.postFile(formData).pipe(
+    this.assignmentsService.postFile(formData).pipe(
       switchMap((res: any) => {
         if (res.datafile.length > 0) {
           console.log(res.datafile[0])
@@ -122,7 +122,7 @@ export class AddAssignmentComponent implements OnInit {
         }
         return this.assignmentsService.addAssignment(this.assignment)
       })
-      )
+    )
       .subscribe(message => {
         console.log(message);
         dialogRef.close();
