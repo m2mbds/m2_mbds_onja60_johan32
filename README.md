@@ -62,7 +62,7 @@ Notre site est bien hébergé dans render.com avec l'url :
     - sjohan@gmail.com / 1234
     - sonja@gmail.com / 1234
 
-# Le lien pour la vidéo de démonstration se trouve dans https://drive.google.com/file/d/1yg-hKyUP9Kkrh3uMCBlJQEiyilHsdTy6/view
+# Le lien pour la vidéo de démonstration se trouve dans https://clipchamp.com/watch/MPiq0IYb57R
 
 =================================================
 # Autres :
