@@ -1,3 +1,4 @@
+//requette de la vue
 db.assignments.aggregate([
   {
     $lookup: {
@@ -31,6 +32,7 @@ db.assignments.aggregate([
   }
 ]);
 
+//mettre la requette dans la vue
 db.createView(
   "assignmentsSubjectUserView",
   "assignments",
