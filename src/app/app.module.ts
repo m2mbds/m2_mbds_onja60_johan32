@@ -43,6 +43,7 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
+import { ProfsComponent } from './profs/profs.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: AssignmentsComponent
+  },
+  {
+    path: 'profs',
+    component: ProfsComponent
   },
   {
     path: 'add',
@@ -89,6 +94,7 @@ const routes: Routes = [
     LoginComponent,
     LoadingBarComponent,
     PageNotFoundComponent,
+    ProfsComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,8 +10,8 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email = "sonja@gmail.com";
-  password = "1234";
+  email = "";
+  password = "";
   showSpinner = false;
   hide = true;
   @Output()

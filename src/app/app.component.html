@@ -33,7 +33,14 @@
 
         <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button" (click)="creerDonneesDeTest()">
+        <button mat-button class="menu-button" routerLink="/profs">
+            <mat-icon>list</mat-icon>
+            <span>Les profs</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" *ngIf="isLogged" (click)="creerDonneesDeTest()">
             <mat-icon>help</mat-icon>
             <span>Ajout données</span>
         </button>
