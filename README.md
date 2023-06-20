@@ -5,25 +5,42 @@ TSIORINANAHARY Onjampandresena n° 60
 
 # Fonctionnalités existantes :
 - Si pas d'utilisateur connecté :
-  - Accès à un menu "Les profs" : pour voir les listes  des profs existants et les matières qu'il enseigne
+  - Accès à un menu "Les profs" : pour voir les listes des profs existants et les matières qu'il enseigne
 - Authentification
 - Si l'utilisateur est un enseignant (admin), après connexion :
-  - Possibilité de voir les devoirs qui concernent ses matières, avec 2 colonnes "Devoir à rendre" et "Devoir déjà rendu" qui est un drag and grop
+  - Possibilité de voir les devoirs qui concernent ses matières, avec 2 colonnes "Devoir à rendre" et "Devoir déjà rendu" qui est un drag and drop
   - Voir détail du devoir
   - Modifier le devoir
   - Supprimer le devoir
-  - Modifier le status d'un assignment (rendu ou pas)
+  - Modifier le statut d'un assignment (rendu ou pas)
 
 - Si l'utilisateur est un étudiant (n'est pas admin), après connexion :
-  - Possiblilité de voir une liste de ses devoirs avec leur status
+  - Possibilité de voir une liste de ses devoirs avec leur statut
   - Voir détail du devoir
   - Créer un devoir (assignment)
 
+- Nous avons mis en place un système d'upload fichier dans Google drive et pour la documentation à ce propos, on a suivi ce lien https://webninjadeveloper.com/nodejs/node-js-express-google-drive-api-example-to-upload-multiple-files-to-folder-using-service-account-in-javascript/
+
+Notre site est bien hébergé dans render.com avec l'url :
+  - Back end : https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/
+  - Front end : https://m2-mbds-onja60-johan32-front-end.onrender.com/ 
 # Autres :
+  - Vous trouverez dans le fichier "BackAssignment.postman_collection.json" les listes des collections API que nous avons testé
+  - Et aussi un fichier "view.txt" qui contient le script de création d'un view
   - Page not found : si l'url données n'existe pas
-  - Utilisation de Shift + Alt + F pour ranger les codes
+  - On a utilisé un Formulaire de type Stepper (formulaire en plusieurs étapes) pour l'ajout d'Assignments
+    Onglet 1 : Etape 1
+      Matière*
+      Deadline*
+    
+    Onglet 2 : Etape 2
+      Titre*
+      Description
+      Pièce(s) jointe(s) (PJ)
+
   - Nous avons utilisé : Material Card, SnackBar Material, ... pour rendre notre site plus jolie et attractive
-  
+  - Utilisation de Shift + Alt + F pour ranger les codes
+
 # Pour installer et faire tourner le projet du code source dans votre poste, il suffit de :
 - Cloner le projet :
   - Back-end : https://github.com/m2mbds/m2_mbds_onja60_johan32 branche "back_end"
@@ -128,3 +145,4 @@ TeacherSubject(2, 4)
     7) logout()
     
 # Merci
+
