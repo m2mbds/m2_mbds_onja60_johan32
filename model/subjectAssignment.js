@@ -3,7 +3,6 @@ let Schema = mongoose.Schema;
 var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 const subject = require('./subject');
 
-
 let assignmentsSubjectSchema = Schema({
     id: Number,
     title: String,
@@ -17,9 +16,9 @@ let assignmentsSubjectSchema = Schema({
     limitDate: Date,
     createdAt: Date,
     renderedAt: Date,
-    SubjectData:Object,
-    TeacherSubjectData:Object,
-    UserData:Object,
+    SubjectData: Object,
+    TeacherSubjectData: Object,
+    UserData: Object,
 
 }, { collection: 'assignmentsSubjectUserView' });
 
