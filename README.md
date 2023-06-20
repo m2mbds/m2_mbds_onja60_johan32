@@ -1,7 +1,7 @@
 # PROJET Angular sur l'Assignment
 
-RAKOTOVAO Mihary Johan Christian n° 32
-TSIORINANAHARY Onjampandresena n° 60
+- RAKOTOVAO Mihary Johan Christian n° 32
+- TSIORINANAHARY Onjampandresena n° 60
 
 # Fonctionnalités existantes :
 - Si pas d'utilisateur connecté :
