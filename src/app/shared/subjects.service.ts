@@ -10,8 +10,8 @@ export class SubjectsService {
 
 
   constructor(private http: HttpClient) { }
-  uri_api = 'http://localhost:8010/api/subjects';
-  //uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/subjects';
+  //uri_api = 'http://localhost:8010/api/subjects';
+  uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/subjects';
   getSubject(): Observable<any> {
     return this.http.get<Subject[]>(this.uri_api);
   }

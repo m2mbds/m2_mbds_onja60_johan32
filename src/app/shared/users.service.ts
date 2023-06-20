@@ -9,8 +9,8 @@ import { User } from '../login/user.models';
 export class UsersService {
 
   constructor(private http: HttpClient) { }
-   uri_api = 'http://localhost:8010/api/usersAuthentification';
-  //uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/usersAuthentification';
+   //uri_api = 'http://localhost:8010/api/usersAuthentification';
+  uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/usersAuthentification';
   getUserAuthentification(loggingUser: User): Observable<any> {
     return this.http.post<User>(this.uri_api, loggingUser);
   }
