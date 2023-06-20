@@ -15,11 +15,12 @@
   - Modifier le statut d'un assignment (rendu ou pas)
 
 - Si l'utilisateur est un étudiant (n'est pas admin), après connexion :
-  - Possibilité de voir une liste de ses devoirs avec leur statut
+  - Possibilité de voir une liste de ses devoirs avec leur statut dans un scroll infini
   - Voir détail du devoir
   - Créer un devoir (assignment)
 
 - Nous avons mis en place un système d'upload fichier dans Google drive et pour la documentation à ce propos, on a suivi ce lien https://webninjadeveloper.com/nodejs/node-js-express-google-drive-api-example-to-upload-multiple-files-to-folder-using-service-account-in-javascript/
+- Nous avons aussi utiliser des pages avec des backgrounds transparents et des images gifs pour l'attente des chargements de données
 
 Notre site est bien hébergé dans render.com avec l'url :
   - Back end : https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/
@@ -40,6 +41,7 @@ Notre site est bien hébergé dans render.com avec l'url :
 
   - Nous avons utilisé : Material Card, SnackBar Material, ... pour rendre notre site plus jolie et attractive
   - Utilisation de Shift + Alt + F pour ranger les codes
+  
 
 # Pour installer et faire tourner le projet du code source dans votre poste, il suffit de :
 - Cloner le projet :

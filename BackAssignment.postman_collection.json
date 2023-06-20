@@ -10,7 +10,19 @@
 			"name": "GetUser",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8010/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"user"
+					]
+				}
 			},
 			"response": []
 		},
@@ -47,7 +59,19 @@
 			"name": "GetSubject",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8010/api/subjects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"subjects"
+					]
+				}
 			},
 			"response": []
 		},
@@ -55,7 +79,20 @@
 			"name": "GetSubjectById",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8010/api/subjects/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"subjects",
+						"4"
+					]
+				}
 			},
 			"response": []
 		},
@@ -63,7 +100,19 @@
 			"name": "GetAssignmentSubject",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8010/api/assignmentssubject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"assignmentssubject"
+					]
+				}
 			},
 			"response": []
 		}
