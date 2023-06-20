@@ -14,16 +14,18 @@ import { User } from 'src/app/login/user.models';
   styleUrls: ['./assignment-detail.component.css']
 })
 export class AssignmentDetailComponent implements OnInit {
-  assignmentTransmis?: Assignment;
+  assignmentTransmis: Assignment = new Assignment();
   linkImage = "https://drive.google.com/uc?export=view&id=";
   constructor(private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
     private _snackBar: MatSnackBar,
+    
     private dialog: MatDialog) { }
 
   CurrentUser!: User;
+  isrender!:string;
 
   ngOnInit(): void {
     // appelée avant le rendu du composant
@@ -42,9 +44,22 @@ export class AssignmentDetailComponent implements OnInit {
     // on va chercher l'assignment à afficher
     this.assignmentsService.getAssignment(id)
       .subscribe(assignment => {
-        this.assignmentTransmis = assignment;
-        console.log(assignment)
+        if(assignment){
+          this.assignmentTransmis = assignment;
+          console.log(this.assignmentTransmis.isRender)
+          if(""+this.assignmentTransmis.isRender ==="true"){
+           this.isrender = "A rendre le";
+           console.log(this.isrender)
+          }
+          else{
+           this.isrender = "rendu le";
+           console.log(this.isrender)
+          }
+          // console.log(this.isrender)
+        }
+       
       });
+
   }
 
   onDeleteAssignment() {
@@ -60,7 +75,7 @@ export class AssignmentDetailComponent implements OnInit {
       .subscribe(message => {
         console.log(message);
         // Pour cacher le detail, on met l'assignment à null
-        this.assignmentTransmis = undefined;
+        //this.assignmentTransmis = undefined;
         this.openSnackBar(message.message, "Suppression Assignment Fait")
         dialogRef.close();
         // navigation vers la home page

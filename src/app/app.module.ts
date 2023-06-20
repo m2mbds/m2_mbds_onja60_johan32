@@ -37,9 +37,6 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ElevesComponent } from './eleves/eleves.component';
-import { ProfsComponent } from './profs/profs.component';
-import { MatieresComponent } from './matieres/matieres.component';
 import { NgFor } from '@angular/common';
 import { MatChipsModule } from '@angular/material/chips';
 import {
@@ -92,9 +89,6 @@ const routes: Routes = [
     LoginComponent,
     LoadingBarComponent,
     PageNotFoundComponent,
-    ElevesComponent,
-    ProfsComponent,
-    MatieresComponent,
   ],
   imports: [
     BrowserModule,

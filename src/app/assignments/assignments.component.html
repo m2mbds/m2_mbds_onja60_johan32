@@ -38,7 +38,7 @@
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">
                             <mat-card-title>
-                                Matière {{item.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
+                                Matière {{item.SubjectData.designation}}                               
                             </mat-card-title>
                             <mat-card-subtitle>A rendre le {{item.renderedAt|date}}</mat-card-subtitle>
                             <span class="example-spacer"></span>
@@ -49,6 +49,8 @@
                         </mat-card-header>
                         <mat-card-content>
                             <p>{{item.title}}</p>
+                            <br>
+                            <span *ngIf="item.note">note : {{item.note}}/20</span>
                         </mat-card-content>
                     </mat-card>
                 </div>
@@ -63,7 +65,7 @@
                         <mat-card-header>
                             <img mat-card-avatar src="assets/image/profil.png">
                             <mat-card-title>
-                                Matière {{item.SubjectData.designation}} <mat-slide-toggle checked></mat-slide-toggle>
+                                Matière {{item.SubjectData.designation}} 
                             </mat-card-title>
                             <mat-card-subtitle>A rendre le {{item.renderedAt|date}}</mat-card-subtitle>
                             <span class="example-spacer"></span>
@@ -76,6 +78,8 @@
                             <p>
                                 {{item.title}}
                             </p>
+                            <br>
+                            <span *ngIf="item.note">{{item.note}}/20</span>
                         </mat-card-content>
                     </mat-card>
                 </div>

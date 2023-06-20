@@ -62,6 +62,7 @@ export class AssignmentsComponent implements OnInit {
       this.isLogged = true;
       this.CurrentUser = JSON.parse(sessionUser) as User;
       console.log(this.CurrentUser)
+      if(this.CurrentUser.isAdmin)this.limit = 10;
     }
 
     // exercice : regarder si il existe des query params

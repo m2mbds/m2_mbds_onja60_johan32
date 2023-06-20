@@ -4,10 +4,6 @@ import { Observable, catchError, forkJoin, map, of, tap } from 'rxjs';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
 import { bdInitialAssignments } from './data';
-import { MatieresService } from './matieres.service';
-import { Matiere } from '../matieres/matiere.model';
-import { Eleve } from '../eleves/eleve.model';
-import { ElevesService } from './eleves.service';
 import { Subject } from '../subjects/subjects.models';
 import { SubjectsService } from './subjects.service';
 
@@ -20,7 +16,7 @@ export class AssignmentsService {
   constructor(private loggingService: LoggingService,
     private http: HttpClient,
     private subjectService: SubjectsService,
-    private eleve: ElevesService) { }
+   ) { }
 
   //uri_api = 'http://localhost:8010/api/assignments';
   uri_api = 'https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/api/assignments';

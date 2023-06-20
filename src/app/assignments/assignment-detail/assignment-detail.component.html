@@ -1,18 +1,26 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <img *ngFor="let user of assignmentTransmis!.UserData" mat-card-avatar [src]="linkImage+user.picture">
+    <img *ngFor="let user of assignmentTransmis.UserData" mat-card-avatar [src]="linkImage+user.picture">
     <mat-card-title>
-      Matière {{assignmentTransmis!.SubjectData!.designation}} <mat-slide-toggle
-        checked="{{assignmentTransmis!.isRender}}" (click)="onAssignmentRendu()"
-        *ngIf="assignmentTransmis!.note"></mat-slide-toggle>
+      Matière {{assignmentTransmis.SubjectData.designation}} <mat-slide-toggle
+        checked="{{assignmentTransmis.isRender}}" (click)="onAssignmentRendu()" *ngIf="assignmentTransmis.note"
+        disabled></mat-slide-toggle>
     </mat-card-title>
-    <mat-card-subtitle>A rendre le {{assignmentTransmis!.renderedAt | date}}</mat-card-subtitle>
+    <mat-card-subtitle>{{isrender}} {{assignmentTransmis.renderedAt |
+      date}} 
+    </mat-card-subtitle>
+      
+      
+
+    <!-- <ng-template #rendu>
+      <mat-card-subtitle>devoir rendu le : {{assignmentTransmis!.renderedAt | date}}</mat-card-subtitle>
+    </ng-template> -->
     <span class="example-spacer"></span>
-    <button *ngIf="CurrentUser!.isAdmin" routerLink="/assignments/edit/{{assignmentTransmis!._id}}" mat-icon-button
+    <button *ngIf="CurrentUser.isAdmin" routerLink="/assignments/edit/{{assignmentTransmis._id}}" mat-icon-button
       class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon color="primary">edit</mat-icon>
     </button>
-    <button *ngIf="CurrentUser!.isAdmin" mat-icon-button class="example-icon" (click)="onDeleteAssignment()"
+    <button *ngIf="CurrentUser.isAdmin" mat-icon-button class="example-icon" (click)="onDeleteAssignment()"
       aria-label="Example icon-button with share icon">
       <mat-icon color="warn">delete</mat-icon>
     </button>
