@@ -146,7 +146,7 @@ export class AssignmentsService {
       const newAssignment = new Assignment();
       newAssignment.id = a.id;
       newAssignment.description = a.nom;
-      newAssignment.renderedAt = new Date(a.dateDeRendu);
+      newAssignment.renderedAt = new Date(a.renderedAt);
       newAssignment.isRender = a.rendu;
 
       this.addAssignment(newAssignment)
@@ -166,7 +166,7 @@ export class AssignmentsService {
       const nouvelAssignment = new Assignment();
       nouvelAssignment.id = a.id;
       nouvelAssignment.description = a.nom;
-      nouvelAssignment.renderedAt = new Date(a.dateDeRendu);
+      nouvelAssignment.renderedAt = new Date(a.renderedAt);
       nouvelAssignment.isRender = a.rendu;
 
       appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment))
@@ -178,8 +178,8 @@ export class AssignmentsService {
 
 
   public postFile(fileToUpload: FormData): Observable<any> {
-    //let upload = "https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/upload";
-    let upload = "http://localhost:8010/upload";
+    let upload = "https://m2-mbds-onja60-johan32-backend-qtb0.onrender.com/upload";
+    //let upload = "http://localhost:8010/upload";
     return this.http.post(upload, fileToUpload).pipe();
   }
 
